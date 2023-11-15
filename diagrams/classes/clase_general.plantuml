@@ -1,0 +1,53 @@
+@startuml
+
+' fuente: https://plantuml.com/es/class-diagram
+
+package AlgoRoma {
+
+        AlgoRoma --> "2..6" Gladiador
+        Gladiador --> "1" Equipamiento
+        Gladiador --> "1" Seniority
+        AlgoRoma --> "1" Tablero
+        Tablero --> "n" Casilla
+        SinNada --|> Casilla
+        ConPremio --|> Casilla
+        ConObstaculo --|> Casilla
+
+        class AlgoRoma {
+            - ronda : Int
+
+            + AlgoRoma(ubicacionTableroJSON : String, numeroJugadores : Int)
+            + tirarDado() : Void
+        }
+
+        class Gladiador {
+            - nombre : String
+            - energia : Int
+            - ubicacion : Int
+
+            +mover(nuevaUbicacion : Int) : Void
+        }
+
+        class Equipamiento {
+            - nivel : Int
+
+            + subirNivel()
+        }
+
+        class Tablero {
+            + Tablero(ubicacionTableroJSON : String)
+        }
+
+}
+
+@enduml
+@startuml(id=WITHOUTATTRIBUTES)
+
+package Model {
+        class Localize {
+                + Localize(String esContent, String usContent)
+                + String greet(String lang) : String
+        }
+}
+
+@enduml

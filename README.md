@@ -1,4 +1,4 @@
-![tp2](https://github.com/fiuba/algo3_proyecto_base_tp2/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2/branch/master/graph/badge.svg)](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2)
+[![codecov](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2/branch/master/graph/badge.svg)](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2)
 
 # TP2 Algoritmos 3: AlgoRoma 
 
@@ -6,9 +6,9 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo 8
 
-* **Lautaro Cosentino** - [integrante1](https://github.com/LauCosen)
-* **Lautaro Jovanovics** - [integrante2](https://github.com/lautiland)
-* **Matias Vallejos** - [integrante3](https://github.com/MatiasTK)
+* **Lautaro Cosentino** - [LauCosen - Github](https://github.com/LauCosen)
+* **Lautaro Jovanovics** - [lautiland - Github](https://github.com/lautiland)
+* **Matias Vallejos** - [MatiasTK - Github](https://github.com/MatiasTK)
 * **Lima Damian** - [integrante4](https://github.com/Damlima)
 
 Corrector: **{Corrector}**

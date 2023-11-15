@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Lautaro Cosentino** - [integrante1](https://github.com/LauCosen)
 * **Lautaro Jovanovics** - [integrante2](https://github.com/lautiland)
 * **Matias Vallejos** - [integrante3](https://github.com/MatiasTK)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Lima Damian** - [integrante4](https://github.com/Damlima)
 
 Corrector: **{Corrector}**
 

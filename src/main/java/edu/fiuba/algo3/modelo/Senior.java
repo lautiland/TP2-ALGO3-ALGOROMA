@@ -9,12 +9,7 @@ public class Senior implements Nivel {
     }
 
     @Override
-    public void setNivel(Gladiador g) {
+    public void setGladiador(Gladiador g) {
         this.gladiador = g;
-    }
-
-    @Override
-    public void verNivel() {
-        System.out.println("Senior");
     }
 }

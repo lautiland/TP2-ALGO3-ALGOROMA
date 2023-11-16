@@ -5,7 +5,7 @@ public class Novato implements Nivel{
     private Gladiador gladiador;
 
     @Override
-    public void setNivel(Gladiador g) {
+    public void setGladiador(Gladiador g) {
         this.gladiador = g;
     }
 
@@ -15,11 +15,6 @@ public class Novato implements Nivel{
         if (turnosJugados == 8)
             gladiador.setNivel(new SemiSenior());
 
-    }
-
-    @Override
-    public void verNivel() {
-        System.out.println("Novato");
     }
 
 }

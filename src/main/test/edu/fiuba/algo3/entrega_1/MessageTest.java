@@ -7,8 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MessageTest {
     @Test
     public void jugadorEmpiezaConLaEnergiaYEquipamientoCorrespondiente() {
-        NivelFactory nivel = new NivelFactory();
-        Nivel novato = nivel.obtenerInstancia("NOVATO");
+
 
 
     }

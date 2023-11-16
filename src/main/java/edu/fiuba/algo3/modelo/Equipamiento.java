@@ -6,7 +6,6 @@ public interface Equipamiento {
 
     void resistir(Energia e);
 
-    void agregarEquipo(ArrayList<Equipamiento> e);
-
+    Equipamiento actualizarEquipo();
 
 }

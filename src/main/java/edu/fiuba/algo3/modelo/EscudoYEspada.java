@@ -6,12 +6,12 @@ public class EscudoYEspada implements Equipamiento{
 
     @Override
     public void resistir(Energia e) {
-        e.sumarPuntos(5);
+        e.restarPuntos(2);
     }
 
     @Override
-    public void agregarEquipo(ArrayList<Equipamiento> e) {
-        e.add(new Llave());
+    public Equipamiento actualizarEquipo() {
+        return new Llave();
     }
 
 }

@@ -8,31 +8,13 @@ import static org.mockito.Mockito.*;
 public class GladiadorTest {
 
     @Test
-    public void gladiadorSubeDeNivelCorrectamente() {
-        // Arrange
-        Gladiador gladiador = new Gladiador();
-        Nivel nivelMock = mock(Nivel.class);
-        gladiador.setNivel(nivelMock);
-
-        // Act
-        for (int turno = 1; turno < 13; turno++) {
-            gladiador.jugar();
-        }
-
-        // Assert
-        verify(nivelMock, times(1)).setGladiador(gladiador);
-        verify(nivelMock, times(1)).sumarPuntos(any(Energia.class), eq(8)); // Verifica la transición a SemiSenior
-        verify(nivelMock, times(1)).sumarPuntos(any(Energia.class), eq(12)); // Verifica la transición a Senior
-    }
-
-    @Test
-    public void test02gladiadorRecibeCasco() {
+    public void test05gladiadorRecibeCasco() {
         //Act
         Gladiador gladiador = new Gladiador();
 
         // Arrange
         gladiador.recibirPremio();
-        Equipamiento equipo = gladiador.getUltimoEquipo();
+        Equipamiento equipo = gladiador.getEquipo();
         Casco casco = new Casco();
 
         // Assert
@@ -40,7 +22,7 @@ public class GladiadorTest {
     }
 
     @Test
-    public void test03gladiadorRecibeLEscudoYEspada() {
+    public void test06gladiadorRecibeLEscudoYEspada() {
         //Act
         Gladiador gladiador = new Gladiador();
         EscudoYEspada escudoYEspada = new EscudoYEspada();
@@ -49,7 +31,7 @@ public class GladiadorTest {
         gladiador.recibirPremio();
         gladiador.recibirPremio();
         gladiador.recibirPremio();
-        Equipamiento equipo = gladiador.getUltimoEquipo();
+        Equipamiento equipo = gladiador.getEquipo();
 
 
         // Assert
@@ -57,7 +39,7 @@ public class GladiadorTest {
     }
 
     @Test
-    public void test04gladiadorEsAtacadoYPierde15Puntos() {
+    public void test07gladiadorEsAtacadoYPierde15Puntos() {
 
         //Act
         Gladiador gladiador = new Gladiador();
@@ -68,6 +50,63 @@ public class GladiadorTest {
 
         //Assert
         assertEquals(5, gladiador.getEnergia().getPuntos());
+    }
+
+    @Test
+    public void test08gladiadorSubeASemiSeniorDespuesDe8TurnosEIncrementaSuEnergia() {
+        // Arrange
+        Gladiador gladiador = new Gladiador();
+        Novato novato = new Novato();
+        SemiSenior semiSenior = new SemiSenior();
+
+        //ver el nivel inicial
+        assertEquals(novato.getClass(), gladiador.getNivel().getClass());
+
+        // Act
+        for (int turno = 1; turno <= 8; turno++) {
+            gladiador.jugar();
+        }
+
+        // Sube a semi senior
+        assertEquals(semiSenior.getClass(), gladiador.getNivel().getClass());
+
+        gladiador.jugar();
+        //sube 5 puntos de los 20 iniciales
+        assertEquals(25, gladiador.getEnergia().getPuntos());
+    }
+
+    @Test
+    public void test10gladiadorEsAtacadoYNoReciveDanioPorPoseerTodoElEquipo() {
+        //Act
+        Gladiador gladiador = new Gladiador();
+
+        // Arrange
+        gladiador.recibirPremio();
+        gladiador.recibirPremio();
+        gladiador.recibirPremio();
+        gladiador.recibirPremio();
+        gladiador.esAtacado();
+
+        //Assert
+        assertEquals(20, gladiador.getEnergia().getPuntos());
+    }
+
+    @Test
+    public void test11gladiadorTieneLlaveYRecibeOtroPremioNoCambiaNada() {
+        //Act
+        Gladiador gladiador = new Gladiador();
+        Llave llave = new Llave();
+
+        // Arrange
+        gladiador.recibirPremio();
+        gladiador.recibirPremio();
+        gladiador.recibirPremio();
+        gladiador.recibirPremio();
+
+        gladiador.recibirPremio();
+
+        //Assert
+        assertEquals(llave.getClass(), gladiador.getEquipo().getClass());
     }
 
 

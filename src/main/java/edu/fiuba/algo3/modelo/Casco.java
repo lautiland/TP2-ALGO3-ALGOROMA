@@ -6,12 +6,12 @@ public class Casco implements Equipamiento {
 
     @Override
     public void resistir(Energia e) {
-        e.sumarPuntos(5);
+        e.restarPuntos(15);
     }
 
     @Override
-    public void agregarEquipo(ArrayList<Equipamiento> equipos) {
-        equipos.add(new Armadura());
+    public Equipamiento actualizarEquipo() {
+        return new Armadura();
     }
 
 

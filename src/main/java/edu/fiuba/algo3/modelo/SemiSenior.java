@@ -6,6 +6,8 @@ public class SemiSenior implements Nivel{
     @Override
     public void sumarPuntos(Energia e, int turnosJugados) {
         e.sumarPuntos(5);
+        if (turnosJugados == 9)
+            this.gladiador.setNivel(new Senior());
     }
 
     @Override

@@ -8,13 +8,13 @@ public class Gladiador {
     private Nivel nivel;
     private int posicionTablero;
 
-    private ArrayList<Equipamiento> equipamientos;
+    private Equipamiento equipo;
     private int turnosJugados = 0;
 
     public Gladiador() {
         this.energia = new Energia();
         this.setNivel(new Novato());
-        this.equipamientos = new ArrayList<>();
+        this.equipo = new Vacio();
     }
 
     public void setNivel(Nivel n) {
@@ -28,27 +28,23 @@ public class Gladiador {
     }
 
     public void recibirPremio() {
-        if (this.equipamientos.isEmpty())
-            this.equipamientos.add(new Casco());
-        else {
-            Equipamiento ultimoEquipo = this.equipamientos.get(this.equipamientos.size()-1);
-            ultimoEquipo.agregarEquipo(this.equipamientos);
-        }
+        this.equipo = this.equipo.actualizarEquipo();
     }
 
     public void esAtacado() {
-        energia.restarPuntos(20);
-        for (Equipamiento equipo : this.equipamientos) {
-            equipo.resistir(this.energia);
-        }
+        this.equipo.resistir(this.energia);
     }
 
-    public Equipamiento getUltimoEquipo() {
-        return this.equipamientos.get(this.equipamientos.size()-1);
+    public Equipamiento getEquipo() {
+        return this.equipo;
     }
 
     public Energia getEnergia() {
         return this.energia;
+    }
+
+    public Nivel getNivel() {
+        return this.nivel;
     }
 
 }

@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Llave implements Equipamiento {
     @Override
     public void resistir(Energia e) {
-        e.sumarPuntos(8);
+        e.restarPuntos(0);
     }
 
     @Override
-    public void agregarEquipo(ArrayList<Equipamiento> e) {
-
+    public Equipamiento actualizarEquipo() {
+        return this;
     }
 
 }

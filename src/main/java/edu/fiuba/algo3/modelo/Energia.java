@@ -2,17 +2,17 @@ package edu.fiuba.algo3.modelo;
 
 public class Energia {
 
-    private int cantidadPuntos = 20;
+    private int puntos = 20;
 
     public void sumarPuntos(int cantidad) {
-        this.cantidadPuntos += cantidad;
+        this.puntos += cantidad;
     }
 
     public void restarPuntos(int cantidad) {
-        this.cantidadPuntos -= cantidad;
+        this.puntos -= cantidad;
     }
 
     public int getPuntos() {
-        return this.cantidadPuntos;
+        return this.puntos;
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Llave implements Equipamiento {
     @Override
-    public void resistir(Energia e) {
+    public void resistirAtaque(Energia e) {
         e.restarPuntos(0);
     }
 

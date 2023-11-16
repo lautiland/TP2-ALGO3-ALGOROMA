@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
-
 public interface Equipamiento {
 
-    void resistir(Energia e);
+    void resistirAtaque(Energia e);
 
     Equipamiento actualizarEquipo();
 

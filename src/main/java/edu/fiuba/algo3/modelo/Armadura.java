@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Armadura implements Equipamiento {
 
     @Override
-    public void resistir(Energia e) {
+    public void resistirAtaque(Energia e) {
         e.restarPuntos(10);
     }
 

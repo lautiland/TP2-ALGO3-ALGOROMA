@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
-
 public class Gladiador {
 
     private Energia energia;
@@ -32,7 +30,7 @@ public class Gladiador {
     }
 
     public void esAtacado() {
-        this.equipo.resistir(this.energia);
+        this.equipo.resistirAtaque(this.energia);
     }
 
     public Equipamiento getEquipo() {

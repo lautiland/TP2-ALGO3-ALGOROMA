@@ -1,0 +1,42 @@
+@startuml
+
+' fuente: https://plantuml.com/es/class-diagram
+
+package PatronState {
+
+
+        Gladiador --> "1" Nivel
+        Nivel <--. Novato
+        Nivel <--. SemiSenior
+        Nivel <--. Senior
+
+        class Gladiador {
+            - nombre : String
+            - energia : Energia
+            - ubicacion : Pendiente
+
+            +mover(nuevaUbicacion : Int) : Void
+        }
+
+        interface Nivel {
+            + sumarPuntos()
+            + setNivel()
+            + verNivel()
+        }
+
+        class Novato {
+
+        }
+
+        class SemiSenior {
+        }
+
+        class Senior {
+        }
+
+
+
+
+}
+
+@enduml

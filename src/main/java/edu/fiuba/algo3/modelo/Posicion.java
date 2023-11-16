@@ -3,25 +3,22 @@ package edu.fiuba.algo3.modelo;
 import java.util.Objects;
 
 public class Posicion {
-    private int x;
-    private int y;
-
-    public Posicion(int x, int y){
-        this.x = x;
-        this.y = y;
+    private int actual;
+    public Posicion(int inicial){
+        this.actual = inicial;
     }
 
-    public int obtenerX() {
-        return x;
+    public int obtenerActual() {
+        return actual;
     }
 
-    public int obtenerY() {
-        return y;
+    public void avanzar(int cantidadDeCasilleros){
+        actual += cantidadDeCasilleros;
     }
 
     @Override
     public boolean equals(Object o) {
         Posicion posicion = (Posicion) o;
-        return x == posicion.obtenerX() && y == posicion.obtenerY();
+        return actual == posicion.obtenerActual();
     }
 }

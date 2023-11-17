@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.equipamiento;
 
 import edu.fiuba.algo3.modelo.Energia;
 
-public class Vacio extends Equipamiento{
+public class SinEquipo extends Equipamiento {
     @Override
     public void resistirAtaque(Energia e) {
         e.restarPuntos(20);

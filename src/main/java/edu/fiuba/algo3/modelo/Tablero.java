@@ -16,7 +16,7 @@ public class Tablero {
     }
 
     public void avanzar(Gladiador gladiador, Dado dado){
-        if(gladiador.obtenerEnergia().obtenerPuntos() == 0) return;
+        if(gladiador.tenesPuntosDeEnegia(0)) return;
         int cantidadDeCasilleros = dado.tirar();
         Posicion posicionActual = casillerosGladiadores.get(gladiador.obtenerNombre());
         Fiera fiera = casilleros.get(posicionActual);

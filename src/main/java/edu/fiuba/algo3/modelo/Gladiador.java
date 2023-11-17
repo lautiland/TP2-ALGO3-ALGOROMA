@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
-import edu.fiuba.algo3.modelo.equipamiento.Vacio;
+import edu.fiuba.algo3.modelo.equipamiento.SinEquipo;
 import edu.fiuba.algo3.modelo.nivel.Nivel;
 import edu.fiuba.algo3.modelo.nivel.Novato;
 
@@ -17,7 +17,7 @@ public class Gladiador {
     public Gladiador() {
         this.energia = new Energia();
         this.setNivel(new Novato());
-        this.equipo = new Vacio();
+        this.equipo = new SinEquipo();
     }
 
     public void setNivel(Nivel n) {
@@ -42,7 +42,7 @@ public class Gladiador {
         return this.equipo.equals(e);
     }
 
-    public boolean tenesEstosPuntosDeEnegia(int puntos) {
+    public boolean tenesPuntosDeEnegia(int puntos) {
         return this.energia.tenes(puntos);
     }
 
@@ -50,4 +50,7 @@ public class Gladiador {
         return this.nivel;
     }
 
+    public String obtenerNombre() {
+        return "nombre";
+    }
 }

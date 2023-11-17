@@ -1,0 +1,11 @@
+@startuml
+class Gladiador{
++ moverSiguienteCasillero(Casillero conjuntoCasilleros)
+}
+
+class Casillero {
++ obtenerSiguiente()
+}
+
+Gladiador .> Casillero
+@enduml

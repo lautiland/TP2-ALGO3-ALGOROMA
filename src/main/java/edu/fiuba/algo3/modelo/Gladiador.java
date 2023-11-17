@@ -1,5 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
+import edu.fiuba.algo3.modelo.equipamiento.Vacio;
+import edu.fiuba.algo3.modelo.nivel.Nivel;
+import edu.fiuba.algo3.modelo.nivel.Novato;
+
 public class Gladiador {
 
     private Energia energia;
@@ -22,7 +27,7 @@ public class Gladiador {
 
     public void jugar() {
         this.turnosJugados += 1;
-        this.nivel.sumarPuntos(this.energia, this.turnosJugados);
+        this.nivel.actualizarPuntos(this.energia, this.turnosJugados);
     }
 
     public void recibirPremio() {
@@ -33,12 +38,12 @@ public class Gladiador {
         this.equipo.resistirAtaque(this.energia);
     }
 
-    public Equipamiento getEquipo() {
-        return this.equipo;
+    public boolean tenesEsteEquipo(Equipamiento e) {
+        return this.equipo.equals(e);
     }
 
-    public Energia getEnergia() {
-        return this.energia;
+    public boolean tenesEstosPuntosDeEnegia(int puntos) {
+        return this.energia.tenes(puntos);
     }
 
     public Nivel getNivel() {

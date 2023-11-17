@@ -1,6 +1,8 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.equipamiento;
 
-public class Vacio implements Equipamiento{
+import edu.fiuba.algo3.modelo.Energia;
+
+public class Vacio extends Equipamiento{
     @Override
     public void resistirAtaque(Energia e) {
         e.restarPuntos(20);

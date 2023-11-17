@@ -1,9 +1,15 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.equipamiento.Casco;
+import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
+import edu.fiuba.algo3.modelo.equipamiento.EscudoYEspada;
+import edu.fiuba.algo3.modelo.equipamiento.Llave;
+import edu.fiuba.algo3.modelo.nivel.Novato;
+import edu.fiuba.algo3.modelo.nivel.SemiSenior;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GladiadorTest {
 
@@ -11,14 +17,13 @@ public class GladiadorTest {
     public void test05gladiadorRecibeCasco() {
         //Act
         Gladiador gladiador = new Gladiador();
+        Casco casco = new Casco();
 
         // Arrange
         gladiador.recibirPremio();
-        Equipamiento equipo = gladiador.getEquipo();
-        Casco casco = new Casco();
 
         // Assert
-        assertEquals(casco.getClass(), equipo.getClass());
+        assertTrue(gladiador.tenesEsteEquipo(casco));
     }
 
     @Test
@@ -31,11 +36,9 @@ public class GladiadorTest {
         gladiador.recibirPremio();
         gladiador.recibirPremio();
         gladiador.recibirPremio();
-        Equipamiento equipo = gladiador.getEquipo();
-
 
         // Assert
-        assertEquals(escudoYEspada.getClass(), equipo.getClass());
+        assertTrue(gladiador.tenesEsteEquipo(escudoYEspada));
     }
 
     @Test
@@ -49,7 +52,7 @@ public class GladiadorTest {
         gladiador.esAtacado();
 
         //Assert
-        assertEquals(5, gladiador.getEnergia().getPuntos());
+        assertTrue(gladiador.tenesEstosPuntosDeEnegia(5));
     }
 
     @Test
@@ -72,7 +75,7 @@ public class GladiadorTest {
 
         gladiador.jugar();
         //sube 5 puntos de los 20 iniciales
-        assertEquals(25, gladiador.getEnergia().getPuntos());
+        assertTrue(gladiador.tenesEstosPuntosDeEnegia(25));
     }
 
     @Test
@@ -88,7 +91,7 @@ public class GladiadorTest {
         gladiador.esAtacado();
 
         //Assert
-        assertEquals(20, gladiador.getEnergia().getPuntos());
+        assertTrue(gladiador.tenesEstosPuntosDeEnegia(20));
     }
 
     @Test
@@ -106,7 +109,7 @@ public class GladiadorTest {
         gladiador.recibirPremio();
 
         //Assert
-        assertEquals(llave.getClass(), gladiador.getEquipo().getClass());
+        assertTrue(gladiador.tenesEsteEquipo(llave));
     }
 
 

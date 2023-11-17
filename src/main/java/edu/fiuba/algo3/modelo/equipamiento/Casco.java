@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.equipamiento;
 
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Energia;
 
-public class Casco implements Equipamiento {
+public class Casco extends Equipamiento {
 
     @Override
     public void resistirAtaque(Energia e) {
@@ -13,6 +13,5 @@ public class Casco implements Equipamiento {
     public Equipamiento actualizarEquipo() {
         return new Armadura();
     }
-
 
 }

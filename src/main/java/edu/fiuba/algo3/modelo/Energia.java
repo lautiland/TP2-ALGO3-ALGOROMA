@@ -1,21 +1,18 @@
 package edu.fiuba.algo3.modelo;
 
 public class Energia {
-    private int puntos;
-    // Podria implementar Puntuable
-    public Energia(int puntosIniciales){
-        puntos = puntosIniciales;
+
+    private int puntos = 20;
+
+    public void sumarPuntos(int cantidad) {
+        this.puntos += cantidad;
     }
 
-    public void sumarPuntos(int puntosASumar){
-        puntos += puntosASumar;
+    public void restarPuntos(int cantidad) {
+        this.puntos -= cantidad;
     }
 
-    public void restarPuntos(int puntosARestar){
-        puntos -= puntosARestar;
-    }
-
-    public int obtenerPuntos(){
-        return puntos;
+    public int getPuntos() {
+        return this.puntos;
     }
 }

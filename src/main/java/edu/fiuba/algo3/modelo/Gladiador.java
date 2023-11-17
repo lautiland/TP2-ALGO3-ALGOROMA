@@ -1,37 +1,48 @@
 package edu.fiuba.algo3.modelo;
 
-import javafx.geometry.Pos;
-
-import java.util.ArrayList;
-
 public class Gladiador {
-    private String nombre;
+
     private Energia energia;
-    private ArrayList<Equipamiento> equipamientos;
+    private Nivel nivel;
+    private int posicionTablero;
 
-    public Gladiador(String nombre, Energia energia){
-        this.nombre = nombre;
-        this.energia = energia;
-        this.equipamientos = new ArrayList<Equipamiento>();
+    private Equipamiento equipo;
+    private int turnosJugados = 0;
+
+    public Gladiador() {
+        this.energia = new Energia();
+        this.setNivel(new Novato());
+        this.equipo = new Vacio();
     }
 
-    public ArrayList<Equipamiento> obtenerEquipamiento(){
-        return equipamientos;
+    public void setNivel(Nivel n) {
+        this.nivel = n;
+        this.nivel.setGladiador(this);
     }
 
-    public Energia obtenerEnergia(){
-        return energia;
+    public void jugar() {
+        this.turnosJugados += 1;
+        this.nivel.sumarPuntos(this.energia, this.turnosJugados);
     }
 
-    public void recibirDanio(){
-        for(Equipamiento equipamiento: equipamientos){
-            equipamiento.recibirDanio();
-        }
-
-        energia.restarPuntos();
+    public void recibirPremio() {
+        this.equipo = this.equipo.actualizarEquipo();
     }
 
-    public String obtenerNombre(){
-        return nombre;
+    public void esAtacado() {
+        this.equipo.resistirAtaque(this.energia);
     }
+
+    public Equipamiento getEquipo() {
+        return this.equipo;
+    }
+
+    public Energia getEnergia() {
+        return this.energia;
+    }
+
+    public Nivel getNivel() {
+        return this.nivel;
+    }
+
 }

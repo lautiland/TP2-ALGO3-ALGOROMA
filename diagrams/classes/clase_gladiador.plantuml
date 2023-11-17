@@ -1,0 +1,95 @@
+@startuml
+
+' fuente: https://plantuml.com/es/class-diagram
+
+package UnaSolucion {
+
+
+        Gladiador --> "1" Nivel
+        Gladiador --> "1" Equipamiento
+        Gladiador --> "1" Energia
+        Nivel <--. Novato
+        Nivel <--. SemiSenior
+        Nivel <--. Senior
+        Equipamiento <--. Vacio
+        Equipamiento <--. Casco
+        Equipamiento <--. Armadura
+        Equipamiento <--. EscudoYEspada
+        Equipamiento <--. Llave
+
+
+        class Gladiador {
+            - nombre : String
+            - ubicacion : Pendiente
+            + jugar() : Void
+            + setNivel() : Void
+            + recibirPremio(): Void
+            + esAtacado(): Void
+            + gettersMalos(): nose
+
+        }
+
+        interface Nivel {
+            + sumarPuntos()
+            + setGladiador()
+
+        }
+
+        class Novato {
+            + sumarPuntos()
+            + setGladiador()
+        }
+
+        class SemiSenior {
+            + sumarPuntos()
+            + setGladiador()
+        }
+
+        class Senior {
+            + sumarPuntos()
+            + setGladiador()
+        }
+
+        interface Equipamiento{
+            + actualizarEquipo(): Equipamiento
+            + resistirAtaque(e: Energia): Void
+
+        }
+
+        class Energia {
+            - puntos
+            + sumarPuntos(int cantidad): Void
+            + restarPuntos(int cantidad): Void
+        }
+
+        class Vacio {
+        + actualizarEquipo(): Equipamiento
+        + resistirAtaque(e: Energia): Void
+        }
+
+        class Casco {
+            + actualizarEquipo(): Equipamiento
+            + resistirAtaque(e: Energia): Void
+        }
+
+        class Armadura {
+            + actualizarEquipo(): Equipamiento
+            + resistirAtaque(e: Energia): Void
+        }
+
+        class EscudoYEspada {
+            + actualizarEquipo(): Equipamiento
+            + resistirAtaque(e: Energia): Void
+        }
+
+        class Llave {
+            + actualizarEquipo(): Equipamiento
+            + resistirAtaque(e: Energia): Void
+        }
+
+
+
+
+}
+
+@enduml

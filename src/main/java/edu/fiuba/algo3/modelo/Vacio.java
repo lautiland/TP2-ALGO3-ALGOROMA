@@ -1,16 +1,13 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
-
-public class Armadura implements Equipamiento {
-
+public class Vacio implements Equipamiento{
     @Override
     public void resistirAtaque(Energia e) {
-        e.restarPuntos(10);
+        e.restarPuntos(20);
     }
 
     @Override
     public Equipamiento actualizarEquipo() {
-        return new EscudoYEspada();
+        return new Casco();
     }
 }

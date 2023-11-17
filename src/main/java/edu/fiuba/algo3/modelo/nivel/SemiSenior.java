@@ -1,10 +1,13 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.nivel;
 
-public class SemiSenior implements Nivel{
+import edu.fiuba.algo3.modelo.Energia;
+import edu.fiuba.algo3.modelo.Gladiador;
+
+public class SemiSenior implements Nivel {
 
     private Gladiador gladiador;
     @Override
-    public void sumarPuntos(Energia e, int turnosJugados) {
+    public void actualizarPuntos(Energia e, int turnosJugados) {
         e.sumarPuntos(5);
         if (turnosJugados == 9)
             this.gladiador.setNivel(new Senior());

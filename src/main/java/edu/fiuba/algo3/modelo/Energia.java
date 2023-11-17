@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.nivel.Nivel;
+
 public class Energia {
 
     private int puntos = 20;
@@ -12,7 +14,7 @@ public class Energia {
         this.puntos -= cantidad;
     }
 
-    public int getPuntos() {
-        return this.puntos;
+    public boolean tenes(int puntos) {
+        return this.puntos == puntos;
     }
 }

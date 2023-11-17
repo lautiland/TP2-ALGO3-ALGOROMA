@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.equipamiento;
 
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Energia;
 
-public class EscudoYEspada implements Equipamiento{
+public class EscudoYEspada extends Equipamiento {
 
     @Override
     public void resistirAtaque(Energia e) {

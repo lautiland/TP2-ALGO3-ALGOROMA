@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.premio.equipamiento.Equipo;
-import edu.fiuba.algo3.premio.equipamiento.SinEquipo;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Equipo;
+import edu.fiuba.algo3.modelo.premio.equipamiento.SinEquipo;
 import edu.fiuba.algo3.modelo.nivel.Nivel;
 import edu.fiuba.algo3.modelo.nivel.Novato;
 

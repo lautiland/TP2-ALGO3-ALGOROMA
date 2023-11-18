@@ -3,11 +3,10 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.nivel.Novato;
 import edu.fiuba.algo3.modelo.nivel.SemiSenior;
-import edu.fiuba.algo3.premio.Comida;
-import edu.fiuba.algo3.premio.Equipamiento;
-import edu.fiuba.algo3.premio.equipamiento.Equipo;
-import edu.fiuba.algo3.premio.Premio;
-import edu.fiuba.algo3.premio.equipamiento.*;
+import edu.fiuba.algo3.modelo.premio.Comida;
+import edu.fiuba.algo3.modelo.premio.Equipamiento;
+import edu.fiuba.algo3.modelo.premio.equipamiento.*;
+import edu.fiuba.algo3.modelo.premio.Premio;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

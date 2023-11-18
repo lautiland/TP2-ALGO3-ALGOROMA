@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.premio;
+package edu.fiuba.algo3.modelo.premio;
 
 import edu.fiuba.algo3.modelo.Gladiador;
 

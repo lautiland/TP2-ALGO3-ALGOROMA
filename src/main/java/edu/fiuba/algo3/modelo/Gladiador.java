@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.premio.equipamiento.Equipo;
-import edu.fiuba.algo3.modelo.premio.equipamiento.SinEquipo;
+import edu.fiuba.algo3.modelo.equipamiento.Equipo;
+import edu.fiuba.algo3.modelo.equipamiento.SinEquipo;
 import edu.fiuba.algo3.modelo.nivel.Nivel;
 import edu.fiuba.algo3.modelo.nivel.Novato;
 
@@ -35,6 +35,10 @@ public class Gladiador {
         this.equipo = this.equipo.actualizar();
     }
 
+    public void beber(int puntosPerdidos) {
+        this.energia.restarPuntos(puntosPerdidos);
+    }
+
     public void esAtacado() {
         this.equipo.resistirAtaque(this.energia);
     }
@@ -57,5 +61,8 @@ public class Gladiador {
 
     public String obtenerNombre() {
         return "nombre";
+    }
+
+    public void lesion() {
     }
 }

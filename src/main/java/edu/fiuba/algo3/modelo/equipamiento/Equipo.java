@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.premio.equipamiento;
+package edu.fiuba.algo3.modelo.equipamiento;
 
 import edu.fiuba.algo3.modelo.Energia;
 

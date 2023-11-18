@@ -1,12 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.equipamiento.*;
 import edu.fiuba.algo3.modelo.nivel.Novato;
 import edu.fiuba.algo3.modelo.nivel.SemiSenior;
-import edu.fiuba.algo3.modelo.premio.Comida;
-import edu.fiuba.algo3.modelo.premio.Equipamiento;
-import edu.fiuba.algo3.modelo.premio.equipamiento.*;
-import edu.fiuba.algo3.modelo.premio.Premio;
+import edu.fiuba.algo3.modelo.efectos.Fiera;
+import edu.fiuba.algo3.modelo.efectos.Comida;
+import edu.fiuba.algo3.modelo.efectos.Equipamiento;
+import edu.fiuba.algo3.modelo.Efecto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -58,10 +59,10 @@ public class PrimerEntregaTest {
     public void test04RecibeComidaIncrementaEnergiaEn10() {
         //Act
         Gladiador gladiador = new Gladiador();
-        Premio premio = new Comida();
+        Efecto premio = new Comida();
 
         //Arrange
-        premio.aplicarEfecto(gladiador);
+        premio.aplicar(gladiador);
 
         //Assert 20 iniciales + 10 por comer
         assertTrue(gladiador.tenesPuntosDeEnegia(30));
@@ -73,10 +74,10 @@ public class PrimerEntregaTest {
         //Act
         Gladiador gladiador = new Gladiador();
         Casco casco = new Casco();
-        Premio premio = new Equipamiento();
+        Efecto premio = new Equipamiento();
 
         // Arrange
-        premio.aplicarEfecto(gladiador);
+        premio.aplicar(gladiador);
 
         // Assert
         assertTrue(gladiador.tenesEsteEquipo(casco));
@@ -86,12 +87,12 @@ public class PrimerEntregaTest {
     public void test06gladiadorRecibeLEscudoYEspada() {
         //Act
         Gladiador gladiador = new Gladiador();
-        Premio premio = new Equipamiento();
+        Efecto premio = new Equipamiento();
 
         // Arrange
-        premio.aplicarEfecto(gladiador);
-        premio.aplicarEfecto(gladiador);
-        premio.aplicarEfecto(gladiador);
+        premio.aplicar(gladiador);
+        premio.aplicar(gladiador);
+        premio.aplicar(gladiador);
 
         // Assert
         assertTrue(gladiador.tenesEsteEquipo(new EscudoYEspada()));
@@ -102,9 +103,12 @@ public class PrimerEntregaTest {
 
         //Act
         Gladiador gladiador = new Gladiador();
+        EfectoFactory fabrica = new EfectoFactory();
+        Efecto efecto = fabrica.crearEfecto("Equipamiento");
+        Casilla casilla = new Casilla(efecto);
 
         //Arrange
-        gladiador.actualizarEquipo();
+        casilla.aplicarEfecto(gladiador);
         gladiador.esAtacado();
 
         //Assert
@@ -138,13 +142,15 @@ public class PrimerEntregaTest {
     public void test10gladiadorEsAtacadoYNoReciveDanioPorPoseerTodoElEquipo() {
         //Act
         Gladiador gladiador = new Gladiador();
+        Efecto obstaculo = new Fiera();
 
         // Arrange
         gladiador.actualizarEquipo();
         gladiador.actualizarEquipo();
         gladiador.actualizarEquipo();
         gladiador.actualizarEquipo();
-        gladiador.esAtacado();
+
+        obstaculo.aplicar(gladiador);
 
         //Assert
         assertTrue(gladiador.tenesPuntosDeEnegia(20));

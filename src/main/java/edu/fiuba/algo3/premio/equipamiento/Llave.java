@@ -1,15 +1,15 @@
-package edu.fiuba.algo3.modelo.equipamiento;
+package edu.fiuba.algo3.premio.equipamiento;
 
 import edu.fiuba.algo3.modelo.Energia;
 
-public class Llave extends Equipamiento {
+public class Llave extends Equipo {
     @Override
     public void resistirAtaque(Energia e) {
         e.restarPuntos(0);
     }
 
     @Override
-    public Equipamiento actualizarEquipo() {
+    public Equipo actualizar() {
         return this;
     }
 

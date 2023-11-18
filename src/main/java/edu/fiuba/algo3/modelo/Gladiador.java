@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
-import edu.fiuba.algo3.modelo.equipamiento.SinEquipo;
+import edu.fiuba.algo3.premio.equipamiento.Equipo;
+import edu.fiuba.algo3.premio.equipamiento.SinEquipo;
 import edu.fiuba.algo3.modelo.nivel.Nivel;
 import edu.fiuba.algo3.modelo.nivel.Novato;
 
@@ -11,7 +11,8 @@ public class Gladiador {
     private Nivel nivel;
     private int posicionTablero;
 
-    private Equipamiento equipo;
+    //como no tiene efecto el historial de obtenciones de equipo por parte del jugador, simplemente tiene el ultimo equipo obtenido
+    private Equipo equipo;
     private int turnosJugados = 0;
 
     public Gladiador() {
@@ -30,15 +31,19 @@ public class Gladiador {
         this.nivel.actualizarPuntos(this.energia, this.turnosJugados);
     }
 
-    public void recibirPremio() {
-        this.equipo = this.equipo.actualizarEquipo();
+    public void actualizarEquipo() {
+        this.equipo = this.equipo.actualizar();
     }
 
     public void esAtacado() {
         this.equipo.resistirAtaque(this.energia);
     }
 
-    public boolean tenesEsteEquipo(Equipamiento e) {
+    public void comer() {
+        this.energia.sumarPuntos(10);
+    }
+
+    public boolean tenesEsteEquipo(Equipo e) {
         return this.equipo.equals(e);
     }
 

@@ -16,7 +16,7 @@ public class TableroB {
         this.casillas = new ArrayList<>();
         this.camino = new HashMap<>();
         this.posicionGladiadiores = new HashMap<>();
-        //crearTablero(mapa);
+        crearTablero(mapa);
         asignarPosicionesDe(gladiadores);
     }
 
@@ -36,7 +36,7 @@ public class TableroB {
         }
     }
 
-    /*private void crearTablero(List<JsonObject> mapa) {
+    private void crearTablero(List<JsonObject> mapa) {
         int y = 0;
         ArrayList<Casilla> fila = new ArrayList<>();
         for (JsonObject dato: mapa) {
@@ -57,5 +57,5 @@ public class TableroB {
                 y = dato.get("y").getAsInt();
             }
         }
-    }*/
+    }
 }

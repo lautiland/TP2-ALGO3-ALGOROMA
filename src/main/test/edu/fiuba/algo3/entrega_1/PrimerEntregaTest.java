@@ -52,13 +52,13 @@ public class PrimerEntregaTest {
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         gladiadores.add(new Gladiador());
         gladiadores.add(new Gladiador());
-        //TableroB tablero = new TableroB(gladiadores, mapa);
+        TableroB tablero = new TableroB(gladiadores, mapa);
 
         //Arrange
-        //tablero.mover(gladiadores.get(0), 3);
+        tablero.mover(gladiadores.get(0), 3);
 
         //Assert
-        //assertTrue(tablero.estaEl(gladiadores.get(0), 3));
+        assertTrue(tablero.estaEl(gladiadores.get(0), 3));
     }
 
     @Test
@@ -195,7 +195,7 @@ public class PrimerEntregaTest {
     }
 
     //@Test
-    /*public void leerArchivo() throws IOException {
+    public void leerArchivo() throws IOException {
         List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         gladiadores.add(new Gladiador());
@@ -210,6 +210,6 @@ public class PrimerEntregaTest {
 
         tablero.mover(gladiadores.get(0), -2);
         assertTrue(tablero.estaEl(gladiadores.get(0), 1));
-    }*/
+    }
 
 }

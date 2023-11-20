@@ -1,0 +1,31 @@
+[
+  {"x": 0, "y": 0, "esCamino": true, "ordenRecorrido": 1, "efecto":  "Comida"},
+  {"x": 1, "y": 0, "esCamino": true, "ordenRecorrido": 2, "efecto":  null},
+  {"x": 2, "y": 0, "esCamino": false, "ordenRecorrido": null, "efecto":  null},
+  {"x": 3, "y": 0, "esCamino": true, "ordenRecorrido": 3, "efecto":  "Comida"},
+  {"x": 4, "y": 0, "esCamino": true, "ordenRecorrido": 4, "efecto":  null},
+
+  {"x": 0, "y": 1, "esCamino": true, "ordenRecorrido": 5, "efecto":  "Bacanal"},
+  {"x": 1, "y": 1, "esCamino": false, "ordenRecorrido": null, "efecto":  null},
+  {"x": 2, "y": 1, "esCamino": true, "ordenRecorrido": 6, "efecto":  null},
+  {"x": 3, "y": 1, "esCamino": false, "ordenRecorrido": null, "efecto":  null},
+  {"x": 4, "y": 1, "esCamino": true, "ordenRecorrido": 7, "efecto":  "Fiera"},
+
+  {"x": 0, "y": 2, "esCamino": false, "ordenRecorrido": null, "efecto":  null},
+  {"x": 1, "y": 2, "esCamino": true, "ordenRecorrido": 8, "efecto":  null},
+  {"x": 2, "y": 2, "esCamino": true, "ordenRecorrido": 9, "efecto":  "Equipamiento"},
+  {"x": 3, "y": 2, "esCamino": true, "ordenRecorrido": 10, "efecto":  null},
+  {"x": 4, "y": 2, "esCamino": false, "ordenRecorrido": null, "efecto":  null},
+
+  {"x": 0, "y": 3, "esCamino": true, "ordenRecorrido": 11, "efecto":  "Equipamiento"},
+  {"x": 1, "y": 3, "esCamino": false, "ordenRecorrido": null, "efecto":  null},
+  {"x": 2, "y": 3, "esCamino": true, "ordenRecorrido": 12, "efecto":  null},
+  {"x": 3, "y": 3, "esCamino": false, "ordenRecorrido": null, "efecto":  null},
+  {"x": 4, "y": 3, "esCamino": true, "ordenRecorrido": 13, "efecto":  null},
+
+  {"x": 0, "y": 4, "esCamino": true, "ordenRecorrido": 14, "efecto":  null},
+  {"x": 1, "y": 4, "esCamino": true, "ordenRecorrido": 15, "efecto":  null},
+  {"x": 2, "y": 4, "esCamino": false, "ordenRecorrido": null, "efecto":  null},
+  {"x": 3, "y": 4, "esCamino": true, "ordenRecorrido": 16, "efecto":  null},
+  {"x": 4, "y": 4, "esCamino": true, "ordenRecorrido": 17, "efecto":  null}
+]

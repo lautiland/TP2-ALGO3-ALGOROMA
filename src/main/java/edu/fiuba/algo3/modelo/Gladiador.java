@@ -9,7 +9,7 @@ public class Gladiador {
 
     private Energia energia;
     private Nivel nivel;
-    private int posicionTablero;
+    private Casilla casilla;
 
     //como no tiene efecto el historial de obtenciones de equipo por parte del jugador, simplemente tiene el ultimo equipo obtenido
     private Equipo equipo;
@@ -21,6 +21,7 @@ public class Gladiador {
         this.equipo = new SinEquipo();
     }
 
+    //esto usa el patron state, ver si se puede mejorar, sacar el SET
     public void setNivel(Nivel n) {
         this.nivel = n;
         this.nivel.setGladiador(this);
@@ -55,6 +56,7 @@ public class Gladiador {
         return this.energia.tenes(puntos);
     }
 
+    //mejorar
     public Nivel getNivel() {
         return this.nivel;
     }
@@ -64,5 +66,9 @@ public class Gladiador {
     }
 
     public void lesion() {
+    }
+
+    public void efecto() {
+        this.casilla.aplicarEfecto(this);
     }
 }

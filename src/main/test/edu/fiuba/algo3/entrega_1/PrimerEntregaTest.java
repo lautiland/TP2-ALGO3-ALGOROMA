@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
+import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.camino.Camino;
 import edu.fiuba.algo3.modelo.equipamiento.*;
 import edu.fiuba.algo3.modelo.nivel.Novato;
 import edu.fiuba.algo3.modelo.nivel.SemiSenior;
@@ -10,7 +12,9 @@ import edu.fiuba.algo3.modelo.efectos.Equipamiento;
 import edu.fiuba.algo3.modelo.Efecto;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,6 +43,22 @@ public class PrimerEntregaTest {
        tablero.avanzar(gladiador, new Dado());
 
         assertNotEquals(tablero.obtenerPosicionGladiador(gladiador), posicionInicial);
+    }
+
+    @Test
+    public void test02ConTableroBJugadorSaleDeLaCasillaInicial() throws IOException {
+        //Act
+        List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
+        ArrayList<Gladiador> gladiadores = new ArrayList<>();
+        gladiadores.add(new Gladiador());
+        gladiadores.add(new Gladiador());
+        TableroB tablero = new TableroB(gladiadores, mapa);
+
+        //Arrange
+        tablero.mover(gladiadores.get(0), 3);
+
+        //Assert
+        assertTrue(tablero.estaEl(gladiadores.get(0), 3));
     }
 
     @Test
@@ -105,7 +125,7 @@ public class PrimerEntregaTest {
         Gladiador gladiador = new Gladiador();
         EfectoFactory fabrica = new EfectoFactory();
         Efecto efecto = fabrica.crearEfecto("Equipamiento");
-        Casilla casilla = new Casilla(efecto);
+        Casilla casilla = new Casilla(efecto, new Camino());
 
         //Arrange
         casilla.aplicarEfecto(gladiador);
@@ -172,6 +192,24 @@ public class PrimerEntregaTest {
 
         //Assert
         assertTrue(gladiador.tenesEsteEquipo(llave));
+    }
+
+    @Test
+    public void leerArchivo() throws IOException {
+        List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
+        ArrayList<Gladiador> gladiadores = new ArrayList<>();
+        gladiadores.add(new Gladiador());
+        gladiadores.add(new Gladiador());
+        TableroB tablero = new TableroB(gladiadores, mapa);
+
+
+        tablero.mover(gladiadores.get(0), 3);
+        assertTrue(tablero.estaEl(gladiadores.get(0), 3));
+        assertTrue(gladiadores.get(0).tenesPuntosDeEnegia(30));
+
+
+        tablero.mover(gladiadores.get(0), -2);
+        assertTrue(tablero.estaEl(gladiadores.get(0), 1));
     }
 
 }

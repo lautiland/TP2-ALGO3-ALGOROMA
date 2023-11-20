@@ -4,22 +4,21 @@ import edu.fiuba.algo3.modelo.efectos.*;
 
 public class EfectoFactory {
 
-    public Efecto crearEfecto(String efecto) {
-        if (efecto.contentEquals("Comida"))
-            return new Comida();
+    public static Efecto crearEfecto(String efecto) {
 
-        if (efecto.contentEquals("Equipamiento"))
-            return new Equipamiento();
-
-        if (efecto.contentEquals("Bacanal"))
-            return new Bacanal(4);
-
-        if (efecto.contentEquals("Fiera"))
-            return new Fiera();
-
-        if (efecto.contentEquals("Lesion"))
-            return new Lesion();
-
-        return null;
+        switch (efecto) {
+            case "Comida":
+                return new Comida();
+            case "Equipamiento":
+                return new Equipamiento();
+            case "Bacanal":
+                return new Bacanal(4);
+            case "Fiera":
+                return new Fiera();
+            case "Lesion":
+                return new Lesion();
+            default:
+                return new Ninguno();
+        }
     }
 }

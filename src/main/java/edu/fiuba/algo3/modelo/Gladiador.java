@@ -2,14 +2,16 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.equipamiento.Equipo;
 import edu.fiuba.algo3.modelo.equipamiento.SinEquipo;
+import edu.fiuba.algo3.modelo.estado.Estado;
+import edu.fiuba.algo3.modelo.estado.Sano;
 import edu.fiuba.algo3.modelo.nivel.Nivel;
 import edu.fiuba.algo3.modelo.nivel.Novato;
 
 public class Gladiador {
 
-    private Energia energia;
+    private final Energia energia;
     private Nivel nivel;
-    private Casilla casilla;
+    private Estado estado;
 
     //como no tiene efecto el historial de obtenciones de equipo por parte del jugador, simplemente tiene el ultimo equipo obtenido
     private Equipo equipo;
@@ -19,11 +21,11 @@ public class Gladiador {
         this.energia = new Energia();
         this.nivel = new Novato();
         this.equipo = new SinEquipo();
+        this.estado = new Sano();
     }
 
-    public void jugar() {
-        this.turnosJugados += 1;
-        this.nivel = this.nivel.actualizarPuntos(this.energia, this.turnosJugados);
+    public void jugar(TableroB t) {
+        this.estado = this.estado.jugar(this, t);
     }
 
     public void actualizarEquipo() {
@@ -35,7 +37,7 @@ public class Gladiador {
     }
 
     public void esAtacado() {
-        this.equipo.resistirAtaque(this.energia);
+        this.equipo.resistirAtaque(this);
     }
 
     public void comer() {
@@ -58,6 +60,29 @@ public class Gladiador {
         return "nombre";
     }
 
-    public void lesion() {
+    public void setEstado(Estado e) {
+        this.estado = e;
     }
+
+    public void actualizarPuntosSegunNivel() {
+        turnosJugados += 1;
+        this.nivel = this.nivel.actualizarPuntos(this.energia, this.turnosJugados);
+    }
+
+    public void sumarEnergia(int cantidad) {
+        this.energia.sumarPuntos(cantidad);
+    }
+
+    public void restarEnegia(int cantidad) {
+        this.energia.restarPuntos(cantidad);
+    }
+
+    public boolean sinEnergia() {
+        return this.energia.tenesPuntosMenorA(0);
+    }
+
+    public boolean conEnergia() {
+        return this.energia.tenesPuntosMayorA(0);
+    }
+
 }

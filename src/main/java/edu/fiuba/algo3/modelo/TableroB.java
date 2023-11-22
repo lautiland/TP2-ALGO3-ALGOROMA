@@ -5,10 +5,11 @@ import java.util.*;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.camino.CaminoFactory;
 import edu.fiuba.algo3.modelo.camino.CaminoTipo;
+import edu.fiuba.algo3.modelo.equipamiento.Llave;
 
 public class TableroB {
 
-    private final ArrayList<ArrayList<Casilla>> casillas;
+    private final List<List<Casilla>> casillas;
     private final Map<Integer, Casilla> camino;
     private final Map<Gladiador, Integer> posicionGladiadiores;
 
@@ -22,8 +23,16 @@ public class TableroB {
 
     public void mover(Gladiador g, int a) {
         int nuevaUbicacion = posicionGladiadiores.get(g) + a;
-        posicionGladiadiores.put(g, nuevaUbicacion) ;
-        camino.get(nuevaUbicacion).aplicarEfecto(g);
+        if (nuevaUbicacion >= this.camino.size()) {
+            if (!g.tenesEsteEquipo(new Llave())) {
+                posicionGladiadiores.put(g, camino.size()/2);
+                camino.get(camino.size()/2).aplicarEfecto(g);
+            }
+        }
+        else {
+            posicionGladiadiores.put(g, nuevaUbicacion) ;
+            camino.get(nuevaUbicacion).aplicarEfecto(g);
+        }
     }
 
     public boolean estaEl(Gladiador g, int en) {
@@ -41,7 +50,7 @@ public class TableroB {
         ArrayList<Casilla> fila = new ArrayList<>();
         for (JsonObject dato: mapa) {
             Efecto efecto = EfectoFactory.crearEfecto(dato.get("efecto").toString().replaceAll("^\"|\"$", ""));
-            boolean esCamino = dato.get("esCamino").getAsBoolean();;
+            boolean esCamino = dato.get("esCamino").getAsBoolean();
             CaminoTipo tipo = CaminoFactory.crearTipo(esCamino);
             Casilla casilla = new Casilla(efecto, tipo);
             if (esCamino)

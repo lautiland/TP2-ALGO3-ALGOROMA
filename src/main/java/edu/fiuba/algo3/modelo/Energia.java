@@ -17,4 +17,12 @@ public class Energia {
     public boolean tenes(int puntos) {
         return this.puntos == puntos;
     }
+
+    public boolean tenesPuntosMayorA(int puntos) {
+        return this.puntos >= puntos;
+    }
+
+    public boolean tenesPuntosMenorA(int puntos) {
+        return this.puntos <= puntos;
+    }
 }

@@ -1,12 +1,13 @@
 package edu.fiuba.algo3.modelo.equipamiento;
 
 import edu.fiuba.algo3.modelo.Energia;
+import edu.fiuba.algo3.modelo.Gladiador;
 
 public class Casco extends Equipo {
 
     @Override
-    public void resistirAtaque(Energia e) {
-        e.restarPuntos(15);
+    public void resistirAtaque(Gladiador g) {
+        g.restarEnegia(15);
     }
 
     @Override

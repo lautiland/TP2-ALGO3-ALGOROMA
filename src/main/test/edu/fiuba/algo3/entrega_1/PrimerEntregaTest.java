@@ -36,9 +36,9 @@ public class PrimerEntregaTest {
     public void test02JugadorSaleDeLaCasillaInicial(){
         Posicion posicionInicial = new Posicion(0);
         Gladiador gladiador = new Gladiador();
-        ArrayList<Gladiador> gladiadores = new ArrayList<Gladiador>();
+        ArrayList<Gladiador> gladiadores = new ArrayList<>();
         gladiadores.add(gladiador);
-        Tablero tablero = new Tablero(gladiadores, new ArrayList<Fiera>());
+        Tablero tablero = new Tablero(gladiadores, new ArrayList<>());
 
        tablero.avanzar(gladiador, new Dado());
 
@@ -72,6 +72,27 @@ public class PrimerEntregaTest {
         //tablero.avanzar(gladiador, new Dado());
 
         //assertNotEquals(tablero.obtenerPosicionGladiador(gladiador), posicionInicial);
+    }
+
+    @Test
+    public void test03JugadorSinEnergiaNoJuega() throws IOException {
+        //Act
+        List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
+        ArrayList<Gladiador> gladiadores = new ArrayList<>();
+        Gladiador gladiador = new Gladiador();
+        gladiadores.add(gladiador);
+        TableroB tablero = new TableroB(gladiadores, mapa);
+
+        //Arrange
+        gladiador.jugar(tablero);
+
+        //para ver si esta en 7
+        assertTrue(tablero.estaEl(gladiador, 7));
+
+        gladiador.jugar(tablero);
+
+        //jugador no avanza, esta en la misma posicion
+        assertTrue(tablero.estaEl(gladiador, 7));
     }
 
 
@@ -147,15 +168,31 @@ public class PrimerEntregaTest {
 
         // Act
         for (int turno = 1; turno <= 8; turno++) {
-            gladiador.jugar();
+            gladiador.actualizarPuntosSegunNivel();
         }
 
         // Sube a semi senior
         assertTrue(gladiador.tenesElNivel(semiSenior));
 
-        gladiador.jugar();
+        gladiador.actualizarPuntosSegunNivel();
         //sube 5 puntos de los 20 iniciales
         assertTrue(gladiador.tenesPuntosDeEnegia(25));
+    }
+
+    @Test
+    public void test09GladiadorLlegaAMetaSinLlaveRetroceAMitadDeCamino() throws IOException {
+        //Act
+        List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
+        ArrayList<Gladiador> gladiadores = new ArrayList<>();
+        Gladiador gladiador = new Gladiador();
+        gladiadores.add(gladiador);
+        TableroB tablero = new TableroB(gladiadores, mapa);
+
+        //Arrange gladiador se mueve hasta el fin
+        tablero.mover(gladiador, 50);
+
+        //Assert el jugador vuelve a mitad de camino
+        assertTrue(tablero.estaEl(gladiador, 8));
     }
 
     @Test
@@ -194,7 +231,7 @@ public class PrimerEntregaTest {
         assertTrue(gladiador.tenesEsteEquipo(llave));
     }
 
-    //@Test
+    @Test
     public void leerArchivo() throws IOException {
         List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
@@ -210,6 +247,20 @@ public class PrimerEntregaTest {
 
         tablero.mover(gladiadores.get(0), -2);
         assertTrue(tablero.estaEl(gladiadores.get(0), 1));
+    }
+
+    @Test
+    public void jugarUnaRonda() throws IOException {
+        List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
+        List<Gladiador> gladiadores = new ArrayList<>();
+        gladiadores.add(new Gladiador());
+
+        TableroB tableroB = new TableroB(gladiadores, mapa);
+
+        for (Gladiador gladiador: gladiadores) {
+            gladiador.jugar(tableroB);
+        }
+
     }
 
 }

@@ -2,11 +2,15 @@ package edu.fiuba.algo3.modelo.nivel;
 
 import edu.fiuba.algo3.modelo.Energia;
 import edu.fiuba.algo3.modelo.Gladiador;
+import edu.fiuba.algo3.modelo.equipamiento.Equipo;
 
-public interface Nivel {
+public abstract class Nivel {
 
-    void actualizarPuntos(Energia e, int turnosJugados);
+    public abstract Nivel actualizarPuntos(Energia e, int turnosJugados);
 
-    void setGladiador(Gladiador g);
+
+    public boolean equals(Nivel n) {
+        return this.getClass() == n.getClass();
+    }
 
 }

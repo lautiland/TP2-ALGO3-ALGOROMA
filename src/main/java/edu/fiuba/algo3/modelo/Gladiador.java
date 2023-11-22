@@ -17,19 +17,13 @@ public class Gladiador {
 
     public Gladiador() {
         this.energia = new Energia();
-        this.setNivel(new Novato());
+        this.nivel = new Novato();
         this.equipo = new SinEquipo();
-    }
-
-    //esto usa el patron state, ver si se puede mejorar, sacar el SET
-    public void setNivel(Nivel n) {
-        this.nivel = n;
-        this.nivel.setGladiador(this);
     }
 
     public void jugar() {
         this.turnosJugados += 1;
-        this.nivel.actualizarPuntos(this.energia, this.turnosJugados);
+        this.nivel = this.nivel.actualizarPuntos(this.energia, this.turnosJugados);
     }
 
     public void actualizarEquipo() {
@@ -56,9 +50,8 @@ public class Gladiador {
         return this.energia.tenes(puntos);
     }
 
-    //mejorar
-    public Nivel getNivel() {
-        return this.nivel;
+    public boolean tenesElNivel(Nivel n) {
+        return this.nivel.equals(n);
     }
 
     public String obtenerNombre() {
@@ -66,9 +59,5 @@ public class Gladiador {
     }
 
     public void lesion() {
-    }
-
-    public void efecto() {
-        this.casilla.aplicarEfecto(this);
     }
 }

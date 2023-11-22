@@ -143,7 +143,7 @@ public class PrimerEntregaTest {
         SemiSenior semiSenior = new SemiSenior();
 
         //ver el nivel inicial
-        assertEquals(novato.getClass(), gladiador.getNivel().getClass());
+        assertTrue(gladiador.tenesElNivel(novato));
 
         // Act
         for (int turno = 1; turno <= 8; turno++) {
@@ -151,7 +151,7 @@ public class PrimerEntregaTest {
         }
 
         // Sube a semi senior
-        assertEquals(semiSenior.getClass(), gladiador.getNivel().getClass());
+        assertTrue(gladiador.tenesElNivel(semiSenior));
 
         gladiador.jugar();
         //sube 5 puntos de los 20 iniciales

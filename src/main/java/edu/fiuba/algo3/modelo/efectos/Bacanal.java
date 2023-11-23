@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.efectos;
 
 import edu.fiuba.algo3.modelo.Dado;
-import edu.fiuba.algo3.modelo.Efecto;
 import edu.fiuba.algo3.modelo.Gladiador;
 
 public class Bacanal implements Efecto {

@@ -1,10 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.*;
-
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.camino.CaminoFactory;
 import edu.fiuba.algo3.modelo.camino.CaminoTipo;
+import edu.fiuba.algo3.modelo.efectos.Efecto;
+import edu.fiuba.algo3.modelo.efectos.EfectoFactory;
 import edu.fiuba.algo3.modelo.equipamiento.Llave;
 
 public class TableroB {

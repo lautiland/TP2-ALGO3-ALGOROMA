@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.camino.CaminoTipo;
+import edu.fiuba.algo3.modelo.efectos.Efecto;
 
 public class Casilla {
 
@@ -15,10 +16,5 @@ public class Casilla {
 
     public void aplicarEfecto(Gladiador g) {
         this.efecto.aplicar(g);
-    }
-
-    //para la interfaz grafica
-    public void pintar() {
-        this.tipo.pintar();
     }
 }

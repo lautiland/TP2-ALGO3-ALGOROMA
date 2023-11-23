@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.camino;
 
-public abstract class CaminoTipo {
+public interface CaminoTipo {
 
-    public abstract void pintar();
 }

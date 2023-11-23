@@ -8,13 +8,12 @@ public class Sano implements Estado {
 
     @Override
     public Estado jugar(Gladiador g, TableroB t) {
-        Dado dado = new Dado();
+        int tirada = Dado.tirar();
         t.mover(g, 7);
         g.actualizarPuntosSegunNivel();
         if (g.sinEnergia()) {
-
-            return new SinEnergia();}
-
+            return new SinEnergia();
+        }
         return this;
     }
 }

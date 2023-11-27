@@ -1,18 +1,15 @@
-package edu.fiuba.algo3.modelo.efectos;
+package edu.fiuba.algo3.modelo.interactuable;
 
-import edu.fiuba.algo3.modelo.efectos.*;
+public class InteractuableFactory {
 
-public class EfectoFactory {
-
-    public static Efecto crearEfecto(String efecto) {
-
-        switch (efecto) {
+    public static Interactuable crearInteractuable(String interactuable) {
+        switch (interactuable) {
             case "Comida":
                 return new Comida();
             case "Equipamiento":
                 return new Equipamiento();
             case "Bacanal":
-                return new Bacanal(4);
+                return new Bacanal();
             case "Fiera":
                 return new Fiera();
             case "Lesion":

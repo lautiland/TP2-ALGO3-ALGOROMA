@@ -1,17 +1,17 @@
 package edu.fiuba.algo3.entrega_1;
 
-import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.camino.Camino;
-import edu.fiuba.algo3.modelo.efectos.*;
+import edu.fiuba.algo3.modelo.tablero.Camino;
+import edu.fiuba.algo3.modelo.tablero.Casilla;
+import edu.fiuba.algo3.modelo.excepciones.Ganador;
+import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
+import edu.fiuba.algo3.modelo.interactuable.*;
 import edu.fiuba.algo3.modelo.equipamiento.*;
-import edu.fiuba.algo3.modelo.nivel.Novato;
-import edu.fiuba.algo3.modelo.nivel.SemiSenior;
+import edu.fiuba.algo3.modelo.seniority.Novato;
+import edu.fiuba.algo3.modelo.seniority.SemiSenior;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,66 +30,44 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test02JugadorSaleDeLaCasillaInicial(){
-        Posicion posicionInicial = new Posicion(0);
-        Gladiador gladiador = new Gladiador("Pepe");
-        ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        gladiadores.add(gladiador);
-        Tablero tablero = new Tablero(gladiadores, new ArrayList<>());
-
-       tablero.avanzar(gladiador, new Dado());
-
-        assertNotEquals(tablero.obtenerPosicionGladiador(gladiador), posicionInicial);
-    }
-
-    @Test
-    public void test02ConTableroBJugadorSaleDeLaCasillaInicial() throws IOException {
+    public void test02JugadorSaleDeLaCasillaInicial() throws Ganador {
         //Arrange
-        List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        gladiadores.add(new Gladiador("Pepe"));
-        gladiadores.add(new Gladiador("Jose"));
-        TableroB tablero = new TableroB(gladiadores, mapa);
+        Gladiador gladiadorPepe = new Gladiador("Pepe");
+        gladiadores.add(gladiadorPepe);
+        Camino camino = new Camino(gladiadores);
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
 
         //Act
-        tablero.mover(gladiadores.get(0), 3);
+        camino.mover(gladiadorPepe, 2);
+
 
         //Assert
-        assertTrue(tablero.estaEl(gladiadores.get(0), 3));
+        assertTrue(camino.estaEl(gladiadorPepe, 2));
+
     }
 
     @Test
-    public void test03NoPuedeJugarUnTurnoSinEnergia(){
-        Posicion posicionInicial = new Posicion(0);
-        Gladiador gladiador = new Gladiador("Pepe");
-        ArrayList<Gladiador> gladiadores = new ArrayList<Gladiador>();
-        gladiadores.add(gladiador);
-        //Tablero tablero = new Tablero(gladiadores, new ArrayList<Fiera>(new Fiera()));
-
-        //tablero.avanzar(gladiador, new Dado());
-
-        //assertNotEquals(tablero.obtenerPosicionGladiador(gladiador), posicionInicial);
-    }
-
-    @Test
-    public void test03JugadorSinEnergiaNoJuega() throws IOException {
-        //Arrange, para este test, se debe poner t.mover a 7 en la clase Sano
-        List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
+    public void test03JugadorSinEnergiaNoJuega() throws Ganador {
+        //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        Gladiador gladiador = new Gladiador("Pepe");
-        gladiadores.add(gladiador);
-        TableroB tablero = new TableroB(gladiadores, mapa);
+        Gladiador gladiadorPepe = new Gladiador("Pepe");
+        gladiadores.add(gladiadorPepe);
+        Camino camino = new Camino(gladiadores);
+        for (int celda = 1; celda <= 30; celda++) {
+            camino.agregarCasilla(new Casilla(new Ninguno(), new Fiera()));
+        }
 
         //Act
-        gladiador.turnoEn(tablero);
+        gladiadorPepe.jugarTurno(camino);
+        assertTrue(gladiadorPepe.tenesPuntosDeEnegia(0));
 
-        //para ver si esta en 7
-        assertTrue(tablero.estaEl(gladiador, 7));
+        gladiadorPepe.jugarTurno(camino);
 
-        gladiador.turnoEn(tablero);
-
-        //Assert jugador no avanza, esta en la misma posicion
-        assertTrue(tablero.estaEl(gladiador, 7));
+        //Assert jugador no avanza, pero recibe 5 de energia por bono sin energia
+        assertTrue(gladiadorPepe.tenesPuntosDeEnegia(5));
     }
 
 
@@ -97,10 +75,11 @@ public class PrimerEntregaTest {
     public void test04RecibeComidaIncrementaEnergiaEn10() {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
-        Efecto premio = new Comida();
+        Gladiador gladiadorJuan = new Gladiador("Juan");
+        Interactuable comida = new Comida();
 
         //Act
-        premio.aplicar(gladiador);
+        comida.interactuarCon(gladiador);
 
         //Assert 20 iniciales + 10 por comer
         assertTrue(gladiador.tenesPuntosDeEnegia(30));
@@ -112,10 +91,10 @@ public class PrimerEntregaTest {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
         Casco casco = new Casco();
-        Efecto premio = new Equipamiento();
+        Interactuable premio = new Equipamiento();
 
         //Act
-        premio.aplicar(gladiador);
+        premio.interactuarCon(gladiador);
 
         // Assert
         assertTrue(gladiador.tenesEsteEquipo(casco));
@@ -125,12 +104,12 @@ public class PrimerEntregaTest {
     public void test06gladiadorRecibeLEscudoYEspada() {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
-        Efecto premio = new Equipamiento();
+        Interactuable premio = new Equipamiento();
 
         //Act
-        premio.aplicar(gladiador);
-        premio.aplicar(gladiador);
-        premio.aplicar(gladiador);
+        premio.interactuarCon(gladiador);
+        premio.interactuarCon(gladiador);
+        premio.interactuarCon(gladiador);
 
         // Assert
         assertTrue(gladiador.tenesEsteEquipo(new EscudoYEspada()));
@@ -141,11 +120,9 @@ public class PrimerEntregaTest {
 
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
-        Efecto efecto = EfectoFactory.crearEfecto("Equipamiento");
-        Casilla casilla = new Casilla(efecto, new Camino());
 
         //Act
-        casilla.aplicarEfecto(gladiador);
+        gladiador.actualizarEquipo();
         gladiador.esAtacado();
 
         //Assert
@@ -157,46 +134,48 @@ public class PrimerEntregaTest {
         // Arramge
         Gladiador gladiador = new Gladiador("Pepe");
         Novato novato = new Novato();
-        SemiSenior semiSenior = new SemiSenior();
+        SemiSenior semiSenior = new SemiSenior(8);
 
         //ver el nivel inicial
         assertTrue(gladiador.tenesElNivel(novato));
 
         // Act
         for (int turno = 1; turno <= 8; turno++) {
-            gladiador.actualizarPuntosSegunNivel();
+            gladiador.actualizarSeniority();
         }
 
         // Sube a semi senior
         assertTrue(gladiador.tenesElNivel(semiSenior));
 
-        gladiador.actualizarPuntosSegunNivel();
+        gladiador.actualizarSeniority();
 
         //Assert, sube 5 puntos de los 20 iniciales
         assertTrue(gladiador.tenesPuntosDeEnegia(25));
     }
 
     @Test
-    public void test09GladiadorLlegaAMetaSinLlaveRetroceAMitadDeCamino() throws IOException {
+    public void test09GladiadorLlegaAMetaSinLlaveRetroceAMitadDeCamino() throws Ganador {
         //Arrange
-        List<JsonObject> mapa = AlgoRoma.obtenerListaDatosDesdeJson("mapa.json");
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Gladiador gladiador = new Gladiador("Pepe");
         gladiadores.add(gladiador);
-        TableroB tablero = new TableroB(gladiadores, mapa);
+        Camino camino = new Camino(gladiadores);
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
 
         //Act gladiador se mueve hasta el fin
-        tablero.mover(gladiador, 50);
+        camino.mover(gladiador, 50);
 
         //Assert el jugador vuelve a mitad de camino
-        assertTrue(tablero.estaEl(gladiador, 8));
+        assertTrue(camino.estaEl(gladiador, 1));
     }
 
     @Test
-    public void test10gladiadorEsAtacadoYNoReciveDanioPorPoseerTodoElEquipo() {
+    public void test10gladiadorEsAtacadoYNoRecibeDanioPorPoseerTodoElEquipo() {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
-        Efecto obstaculo = new Fiera();
+        Interactuable obstaculo = new Fiera();
 
         //Act
         gladiador.actualizarEquipo();
@@ -204,7 +183,7 @@ public class PrimerEntregaTest {
         gladiador.actualizarEquipo();
         gladiador.actualizarEquipo();
 
-        obstaculo.aplicar(gladiador);
+        obstaculo.interactuarCon(gladiador);
 
         //Assert
         assertTrue(gladiador.tenesPuntosDeEnegia(20));
@@ -229,18 +208,56 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test12SinNadieGanaDespuesDe30RondasFinalizaElJuego() throws IOException {
+    public void test12SiNadieGanaDespuesDe30RondasFinalizaElJuego() throws Ganador, SinTurnos {
         //Arrange
-        AlgoRoma algoRoma = new AlgoRoma();
+        ArrayList<Gladiador> gladiadores = new ArrayList<>();
+        Turnos turnos = new Turnos();
+
+        // Act y Assert
+        for (int i = 1; i < 30; i++) {
+            // Realizar la ejecución del método 30 veces
+            turnos.ejecutar(gladiadores, null);
+        }
+
+        // Verificar que la excepción se lanza en la ejecución 30
+        assertThrows(SinTurnos.class, () -> turnos.ejecutar(gladiadores, null));
+    }
+
+    @Test
+    public void test13jugadorSanoCambiaDeEstadoALesionadoYVuelveASano() throws Ganador {
+        //Arrange, en dado retorna 1, para que avance de a 1
+        ArrayList<Gladiador> gladiadores = new ArrayList<>();
+        Gladiador pepe = new Gladiador("Pepe");
+        gladiadores.add(pepe);
+        Camino camino = new Camino(gladiadores);
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Lesion()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Lesion()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Lesion()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Lesion()));
 
         //Act
-        algoRoma.iniciarJuego();
-        int valorFin = algoRoma.jugar();
+        pepe.jugarTurno(camino);
+        pepe.jugarTurno(camino);
+        pepe.jugarTurno(camino);
+    }
 
-        //Assert cuando finaliza el juego, retorna 0
-        assertEquals(0, valorFin);
+    @Test
+    public void test14jugadorSanoCambiaDeEstadoSinEnergiaYVuelveASano() throws Ganador {
+        //Arrange, en dado retorna 1, para que avance de a 1
+        ArrayList<Gladiador> gladiadores = new ArrayList<>();
+        Gladiador pepe = new Gladiador("Pepe");
+        gladiadores.add(pepe);
+        Camino camino = new Camino(gladiadores);
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Fiera()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
+        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
+
+        //Act
+        gladiadores.get(0).jugarTurno(camino);
+        gladiadores.get(0).jugarTurno(camino);
+        gladiadores.get(0).jugarTurno(camino);
 
 
     }
-
 }

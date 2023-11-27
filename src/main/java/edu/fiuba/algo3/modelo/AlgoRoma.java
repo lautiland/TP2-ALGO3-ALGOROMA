@@ -4,70 +4,112 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import edu.fiuba.algo3.modelo.excepciones.Ganador;
+import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
+import edu.fiuba.algo3.modelo.observer.Observador;
+import edu.fiuba.algo3.modelo.tablero.Tablero;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class AlgoRoma {
+public class AlgoRoma implements Observador {
 
-    private TableroB tablero;
-    private List<Gladiador> gladiadores;
-
-    private int turnosJugados = 0;
-
-
-    public void iniciarJuego() throws IOException {
-        List<JsonObject> mapa = obtenerListaDatosDesdeJson("mapa.json");
-        this.gladiadores = new ArrayList<>();
-
-        gladiadores.add(new Gladiador("Pepe"));
+    private Tablero tablero;
+    private final List<Gladiador> gladiadores = new ArrayList<>();;
+    private final Turnos turnos = new Turnos();
 
 
-        tablero = new TableroB(gladiadores, mapa);
+    public void iniciarJuegoCompleto() throws IOException {
+        solicitarNombres();
+        List<JsonObject> mapaCamino = obtenerListaCaminoDesdeJson("mapa.json");
+        Object[] tamanio = obtenerTamanio("mapa.json");
+        assert tamanio != null;
+        this.tablero = new Tablero(gladiadores, mapaCamino, (Integer) tamanio[1], (Integer) tamanio[0]);
+    }
 
+    public void solicitarNombres() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Cuantos jugadores?: ");
+        int cantidad = scanner.nextInt();
+        scanner.nextLine();
+
+        for (int cant = 1; cant <= cantidad; cant++) {
+            System.out.println("Ingrese el nombre del jugador " + cant + ": ");
+            String nombre = scanner.nextLine();
+            this.gladiadores.add(new Gladiador(nombre, this));
+        }
     }
 
     public int jugar() {
-        boolean sinGanadores = true;
-        while (sinGanadores) {
-            turnosJugados += 1;
-            for (Gladiador gladiador: this.gladiadores) {
-                gladiador.turnoEn(this.tablero);
-            }
-
-            if (turnosJugados == 30) {
-                sinGanadores = false;
+        while (true) {
+            try {
+                this.turnos.ejecutar(this.gladiadores, this.tablero);
+            } catch (Ganador | SinTurnos e) {
+                break;
             }
         }
         return 0;
     }
 
-    //posibel ejemplo de como leer el json
-    public static List<JsonObject> obtenerListaDatosDesdeJson(String rutaArchivoJson) throws IOException {
-        List<JsonObject> listaDatos = new ArrayList<>();
+    public static List<JsonObject> obtenerListaCaminoDesdeJson(String rutaArchivoJson) throws IOException {
+        List<JsonObject> listaCamino = new ArrayList<>();
 
-        // Lee el archivo JSON
         try (Reader reader = new FileReader(rutaArchivoJson)) {
-            // Parsea el JSON a un objeto JsonElement
             JsonElement jsonElement = JsonParser.parseReader(reader);
 
-            // Accede a los elementos del JSON y agrega cada objeto a la lista
-            if (jsonElement.isJsonArray()) {
-                JsonArray jsonArray = jsonElement.getAsJsonArray();
+            if (jsonElement.isJsonObject()) {
+                JsonObject jsonObject = jsonElement.getAsJsonObject();
 
-                for (JsonElement elemento : jsonArray) {
-                    if (elemento.isJsonObject()) {
-                        JsonObject jsonObject = elemento.getAsJsonObject();
-                        listaDatos.add(jsonObject);
+                if (jsonObject.has("camino")) {
+                    JsonObject caminoObject = jsonObject.getAsJsonObject("camino");
+
+                    if (caminoObject.has("celdas")) {
+                        JsonArray celdasArray = caminoObject.getAsJsonArray("celdas");
+
+                        for (JsonElement celdaElement : celdasArray) {
+                            if (celdaElement.isJsonObject()) {
+                                JsonObject celdaObject = celdaElement.getAsJsonObject();
+                                listaCamino.add(celdaObject);
+                            }
+                        }
                     }
                 }
             }
         }
 
-        return listaDatos;
+        return listaCamino;
+    }
+    public static Object[] obtenerTamanio(String rutaArchivoJson) throws IOException {
+        try (Reader reader = new FileReader(rutaArchivoJson)) {
+            JsonElement jsonElement = JsonParser.parseReader(reader);
+
+            if (jsonElement.isJsonObject()) {
+                JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+                if (jsonObject.has("mapa")) {
+                    JsonObject mapaObject = jsonObject.getAsJsonObject("mapa");
+
+                    if (mapaObject.has("ancho") && mapaObject.has("largo")) {
+                        int ancho = mapaObject.getAsJsonPrimitive("ancho").getAsInt();
+                        int largo = mapaObject.getAsJsonPrimitive("largo").getAsInt();
+
+                        return new Object[]{ancho, largo};
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
+    @Override
+    public void eliminarJugador(Gladiador g) {
+        this.gladiadores.remove(g);
+        this.tablero.eliminarPuntero(g);
+        System.out.println(g.nombre + " Eliminado");
+    }
 }

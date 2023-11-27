@@ -5,50 +5,65 @@ import edu.fiuba.algo3.modelo.equipamiento.SinEquipo;
 import edu.fiuba.algo3.modelo.estado.Estado;
 import edu.fiuba.algo3.modelo.estado.Lesionado;
 import edu.fiuba.algo3.modelo.estado.Sano;
-import edu.fiuba.algo3.modelo.nivel.Nivel;
-import edu.fiuba.algo3.modelo.nivel.Novato;
+import edu.fiuba.algo3.modelo.observer.Observador;
+import edu.fiuba.algo3.modelo.seniority.Seniority;
+import edu.fiuba.algo3.modelo.seniority.Novato;
+import edu.fiuba.algo3.modelo.tablero.Camino;
 
 public class Gladiador {
 
-    private int energia = 20;
-    private Nivel nivel;
-    private Estado estado;
-
-    private String nombre;
-
-    //como no tiene efecto el historial de obtenciones de equipo por parte del jugador, simplemente tiene el ultimo equipo obtenido
-    private Equipo equipo;
-    private int turnosJugados = 0;
+    private final Energia energia = new Energia();
+    private Seniority seniority = new Novato();
+    private Estado estado = new Sano();
+    public String nombre;
+    private Equipo equipo = new SinEquipo();
+    private final Tiradas tiradas = new Tiradas();
 
     public Gladiador(String nombre) {
-        this.nivel = new Novato();
-        this.equipo = new SinEquipo();
-        this.estado = new Sano();
         this.nombre = nombre;
     }
 
-    public void turnoEn(TableroB t) {
-        this.estado = this.estado.jugar(this, t);
+    public Gladiador(String nombre, Observador o) {
+        this.nombre = nombre;
+        this.tiradas.enlazarObservador(o);
+    }
+
+    public void jugarTurno(Camino c) {
+        System.out.println("\n\nTurno " + this.nombre);
+        this.estado = this.estado.jugar(this, c);
+        this.tiradas.verificarLimite(this);
     }
 
     public void actualizarEquipo() {
         this.equipo = this.equipo.actualizar();
     }
 
-    public void beber(int puntosPerdidos) {
-        this.energia -= puntosPerdidos;
+    public void actualizarSeniority() {
+        this.seniority = this.seniority.actualizar(this);
     }
 
     public void esAtacado() {
         this.equipo.resistirAtaque(this);
     }
 
-    public void comer(int puntosGanados) {
-        this.energia += puntosGanados;
+    public void modificarEnergia(int puntos) {
+        this.energia.modificarPuntos(puntos); ;
     }
 
     public void esLesionado() {
         this.estado = new Lesionado();
+    }
+
+    public int tirarDado() {
+        return this.tiradas.tirarDado();
+    }
+
+    public Estado actualizarEstadoSinEnegia() {
+        return this.energia.atualizarSinEnergia(this.estado);
+    }
+
+    public Estado actualzarEstadoConEnergia() {
+        return this.energia.atualizarConEnergia(this.estado);
     }
 
     public boolean tenesEsteEquipo(Equipo e) {
@@ -56,36 +71,14 @@ public class Gladiador {
     }
 
     public boolean tenesPuntosDeEnegia(int puntos) {
-        return this.energia == puntos;
+        return this.energia.tenes(puntos);
     }
 
-    public boolean tenesElNivel(Nivel n) {
-        return this.nivel.equals(n);
+    public boolean tenesElNivel(Seniority n) {
+        return this.seniority.equals(n);
     }
 
-    public String obtenerNombre() {
-        return "nombre";
+    public void abrirPuerta(Camino c) {
+        this.equipo.abrirPuerta(this, c);
     }
-
-    public void actualizarPuntosSegunNivel() {
-        turnosJugados += 1;
-        this.nivel = this.nivel.actualizarPuntos(this, this.turnosJugados);
-    }
-
-    public void sumarEnergia(int cantidad) {
-        this.energia += cantidad;
-    }
-
-    public void restarEnegia(int cantidad) {
-        this.energia -= cantidad;
-    }
-
-    public boolean sinEnergia() {
-        return this.energia <= 0;
-    }
-
-    public boolean conEnergia() {
-        return this.energia >= 0;
-    }
-
 }

@@ -1,57 +1,50 @@
 package edu.fiuba.algo3.modelo.tablero;
 
 import java.util.*;
-import com.google.gson.JsonObject;
+
+import edu.fiuba.algo3.modelo.DataClassCelda;
+import edu.fiuba.algo3.modelo.DataClassTablero;
 import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.excepciones.Ganador;
 import edu.fiuba.algo3.modelo.interactuable.Interactuable;
 import edu.fiuba.algo3.modelo.interactuable.InteractuableFactory;
 
 public class Tablero {
 
     private final Celda[][] grillas;
-    private final List<Casilla> recorrido = new ArrayList<>();
-    private final int LARGO;
-    private final int ANCHO;
+    private final List<Casilla> casillasDelCamino = new ArrayList<>();
     private final Camino camino;
 
-    public Tablero(List<Gladiador> gladiadores, List<JsonObject> mapa, int largo, int ancho) {
-        this.ANCHO = ancho;
-        this.LARGO = largo;
-        this.grillas = new Celda[this.LARGO][this.ANCHO];
+    public Tablero(List<Gladiador> gladiadores, DataClassTablero mapa) {
+        this.grillas = new Celda[mapa.largo][mapa.ancho];
         this.camino = new Camino(gladiadores);
         this.crearCaminoEnTablero(mapa);
-        this.construirElResto();
+        this.construirElResto(mapa);
     }
 
     public void turnoDe(Gladiador g) {
         g.jugarTurno(this.camino);
     }
 
-    private void crearCaminoEnTablero(List<JsonObject> mapa) {
-        for (JsonObject dato: mapa) {
-            int x = dato.get("x").getAsInt();
-            int y = dato.get("y").getAsInt();
-            String premioString = dato.get("premio").toString().replaceAll("^\"|\"$", "");
-            String obstaculoString = dato.get("obstaculo").toString().replaceAll("^\"|\"$", "");
-            Interactuable premio = InteractuableFactory.crearInteractuable(premioString);
-            Interactuable obstaculo = InteractuableFactory.crearInteractuable(obstaculoString);
+    private void crearCaminoEnTablero(DataClassTablero mapa) {
+        for (DataClassCelda celdaCamino: mapa.camino) {
+            Interactuable premio = InteractuableFactory.crearInteractuable(celdaCamino.premio);
+            Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaCamino.obstaculo);
             Casilla casilla = new Casilla(premio, obstaculo);
-            this.recorrido.add(casilla);
+            this.casillasDelCamino.add(casilla);
             this.camino.agregarCasilla(casilla);
-            this.grillas[x][y] = casilla;
+            this.grillas[celdaCamino.x][celdaCamino.y] = casilla;
         }
     }
-    public void construirElResto() {
-        for (int y = 0; y < this.ANCHO; y++) {
-            for (int x = 0; x < this.LARGO; x++) {
+    public void construirElResto(DataClassTablero mapa) {
+        for (int y = 0; y < mapa.ancho; y++) {
+            for (int x = 0; x < mapa.largo; x++) {
                 if (this.grillas[x][y] == null)
                     this.grillas[x][y] = new CeldaSinCamino();
             }
         }
     }
 
-    public void eliminarPuntero(Gladiador g) {
-        this.camino.eliminarPuntero(g);
+    public void eliminarGladiador(Gladiador g) {
+        this.camino.eliminarGladiadorDeCamino(g);
     }
 }

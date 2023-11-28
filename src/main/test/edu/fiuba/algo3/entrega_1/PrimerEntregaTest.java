@@ -75,7 +75,6 @@ public class PrimerEntregaTest {
     public void test04RecibeComidaIncrementaEnergiaEn10() {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
-        Gladiador gladiadorJuan = new Gladiador("Juan");
         Interactuable comida = new Comida();
 
         //Act

@@ -1,19 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.observer.Observador;
+import edu.fiuba.algo3.modelo.excepciones.Eliminado;
 
 public class Tiradas {
 
     private int tiradas = 0;
-    private final int TIRADAS_MAXIMAS = 30;
-    private Observador observador;
-
-    public void enlazarObservador(Observador o) {
-        this.observador = o;
-    }
+    private final static int TIRADAS_MAXIMAS = 30;
 
     public int tirarDado() {
-        if (this.tiradas < this.TIRADAS_MAXIMAS) {
+        if (this.tiradas < TIRADAS_MAXIMAS) {
             this.tiradas += 1;
             return Dado.tirar();
         }
@@ -21,8 +16,9 @@ public class Tiradas {
     }
 
     public void verificarLimite(Gladiador g) {
-        if (this.tiradas >= this.TIRADAS_MAXIMAS) {
-            this.observador.eliminarJugador(g);
+        if (this.tiradas >= TIRADAS_MAXIMAS) {
+            System.out.println(g.nombre + " eliminado");
+            throw new Eliminado();
         }
     }
 }

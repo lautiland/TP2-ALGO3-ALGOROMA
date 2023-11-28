@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.equipamiento.SinEquipo;
 import edu.fiuba.algo3.modelo.estado.Estado;
 import edu.fiuba.algo3.modelo.estado.Lesionado;
 import edu.fiuba.algo3.modelo.estado.Sano;
-import edu.fiuba.algo3.modelo.observer.Observador;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
 import edu.fiuba.algo3.modelo.seniority.Novato;
 import edu.fiuba.algo3.modelo.tablero.Camino;
@@ -21,11 +20,6 @@ public class Gladiador {
 
     public Gladiador(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Gladiador(String nombre, Observador o) {
-        this.nombre = nombre;
-        this.tiradas.enlazarObservador(o);
     }
 
     public void jugarTurno(Camino c) {

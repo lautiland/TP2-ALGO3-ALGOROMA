@@ -179,7 +179,7 @@ public class PrimerEntregaTest {
     public void test10gladiadorEsAtacadoYNoRecibeDanioPorPoseerTodoElEquipo() {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
-        Interactuable obstaculo = new Fiera();
+        Interactuable obstaculo = InteractuableFactory.crearInteractuable("Fiera");
 
         //Act
         gladiador.actualizarEquipo();

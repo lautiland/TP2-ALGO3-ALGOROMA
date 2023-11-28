@@ -3,7 +3,6 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.tablero.Camino;
 import edu.fiuba.algo3.modelo.tablero.Casilla;
-import edu.fiuba.algo3.modelo.excepciones.Ganador;
 import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
 import edu.fiuba.algo3.modelo.interactuable.*;
 import edu.fiuba.algo3.modelo.equipamiento.*;
@@ -30,7 +29,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test02JugadorSaleDeLaCasillaInicial() throws Ganador {
+    public void test02JugadorSaleDeLaCasillaInicial() {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Gladiador gladiadorPepe = new Gladiador("Pepe");
@@ -50,7 +49,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test03JugadorSinEnergiaNoJuega() throws Ganador {
+    public void test03JugadorSinEnergiaNoJuega() {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Gladiador gladiadorPepe = new Gladiador("Pepe");
@@ -153,7 +152,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test09GladiadorLlegaAMetaSinLlaveRetroceAMitadDeCamino() throws Ganador {
+    public void test09GladiadorLlegaAMetaSinLlaveRetroceAMitadDeCamino() {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Gladiador gladiador = new Gladiador("Pepe");
@@ -207,7 +206,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test12SiNadieGanaDespuesDe30RondasFinalizaElJuego() throws Ganador, SinTurnos {
+    public void test12SiNadieGanaDespuesDe30RondasFinalizaElJuego() {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Turnos turnos = new Turnos();
@@ -223,7 +222,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test13jugadorSanoCambiaDeEstadoALesionadoYVuelveASano() throws Ganador {
+    public void test13jugadorSanoCambiaDeEstadoALesionadoYVuelveASano() {
         //Arrange, en dado retorna 1, para que avance de a 1
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Gladiador pepe = new Gladiador("Pepe");
@@ -241,7 +240,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test14jugadorSanoCambiaDeEstadoSinEnergiaYVuelveASano() throws Ganador {
+    public void test14jugadorSanoCambiaDeEstadoSinEnergiaYVuelveASano() {
         //Arrange, en dado retorna 1, para que avance de a 1
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Gladiador pepe = new Gladiador("Pepe");

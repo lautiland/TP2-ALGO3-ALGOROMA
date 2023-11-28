@@ -37,9 +37,11 @@ public class PrimerEntregaTest {
         Gladiador gladiadorPepe = new Gladiador("Pepe");
         gladiadores.add(gladiadorPepe);
         Camino camino = new Camino(gladiadores);
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
+        Interactuable premio = InteractuableFactory.crearInteractuable("Comida");
+        Interactuable obstaculo = InteractuableFactory.crearInteractuable("Lesion");
+        camino.agregarCasilla(new Casilla(premio, obstaculo));
+        camino.agregarCasilla(new Casilla(premio, obstaculo));
+        camino.agregarCasilla(new Casilla(premio, obstaculo));
 
         //Act
         camino.mover(gladiadorPepe, 2);
@@ -57,8 +59,10 @@ public class PrimerEntregaTest {
         Gladiador gladiadorPepe = new Gladiador("Pepe");
         gladiadores.add(gladiadorPepe);
         Camino camino = new Camino(gladiadores);
+        Interactuable premio = InteractuableFactory.crearInteractuable("Ninguno");
+        Interactuable obstaculo = InteractuableFactory.crearInteractuable("Fiera");
         for (int celda = 1; celda <= 30; celda++) {
-            camino.agregarCasilla(new Casilla(new Ninguno(), new Fiera()));
+            camino.agregarCasilla(new Casilla(premio, obstaculo));
         }
 
         //Act
@@ -76,8 +80,7 @@ public class PrimerEntregaTest {
     public void test04RecibeComidaIncrementaEnergiaEn10() {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
-        Gladiador gladiadorJuan = new Gladiador("Juan");
-        Interactuable comida = new Comida();
+        Interactuable comida = InteractuableFactory.crearInteractuable("Comida");
 
         //Act
         comida.interactuarCon(gladiador);
@@ -92,7 +95,7 @@ public class PrimerEntregaTest {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
         Casco casco = new Casco();
-        Interactuable premio = new Equipamiento();
+        Interactuable premio = InteractuableFactory.crearInteractuable("Equipamiento");
 
         //Act
         premio.interactuarCon(gladiador);
@@ -105,7 +108,7 @@ public class PrimerEntregaTest {
     public void test06gladiadorRecibeLEscudoYEspada() {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
-        Interactuable premio = new Equipamiento();
+        Interactuable premio = InteractuableFactory.crearInteractuable("Equipamiento");
 
         //Act
         premio.interactuarCon(gladiador);

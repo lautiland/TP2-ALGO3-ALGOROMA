@@ -1,12 +1,14 @@
 package edu.fiuba.algo3.testAdicionales;
 
 import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.interactuable.Interactuable;
-import edu.fiuba.algo3.modelo.interactuable.InteractuableFactory;
-import edu.fiuba.algo3.modelo.interactuable.Ninguno;
+import edu.fiuba.algo3.modelo.interactuable.*;
 import edu.fiuba.algo3.modelo.tablero.Casilla;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class InteractuableTest {

@@ -1,0 +1,108 @@
+{
+	"mapa": {
+		"ancho": 10,
+		"largo": 18
+	},
+	"camino": {
+		"celdas": [
+			{
+				"x": 1,
+				"y": 2,
+				"tipo": "Salida",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 1,
+				"y": 3,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 2,
+				"y": 6,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": "Comida"
+			},
+			{
+				"x": 2,
+				"y": 5,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 2,
+				"y": 4,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 2,
+				"y": 3,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 2,
+				"y": 2,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 2,
+				"y": 1,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 3,
+				"y": 1,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 4,
+				"y": 1,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 5,
+				"y": 1,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 6,
+				"y": 1,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": "Comida"
+			},
+			{
+				"x": 7,
+				"y": 1,
+				"tipo": "Camino",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			},
+			{
+				"x": 17,
+				"y": 1,
+				"tipo": "Llegada",
+				"obstaculo": "Bacanal",
+				"premio": ""
+			}
+		]
+	}
+}

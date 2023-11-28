@@ -18,7 +18,7 @@ public class AlgoRoma {
 
     public void iniciarJuegoCompleto() throws IOException {
         solicitarNombres();
-        DataClassTablero mapa = JsonReader.obtenerMapaDesdeJson("mapa.json");
+        DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson("mapa.json");
         assert mapa != null;
         this.tablero = new Tablero(gladiadores, mapa);
     }
@@ -27,7 +27,7 @@ public class AlgoRoma {
         this.gladiadores.add(new Gladiador("Pepe"));
         this.gladiadores.add(new Gladiador("Juan"));
         this.gladiadores.add(new Gladiador("Jose"));
-        DataClassTablero mapa = JsonReader.obtenerMapaDesdeJson("mapa.json");
+        DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson("mapa.json");
         assert mapa != null;
         this.tablero = new Tablero(gladiadores, mapa);
     }

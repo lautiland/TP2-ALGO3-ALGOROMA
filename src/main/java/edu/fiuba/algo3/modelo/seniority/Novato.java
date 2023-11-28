@@ -13,7 +13,7 @@ public class Novato extends Seniority {
         this.experiencia += 1;
         if (this.experiencia == 8) {
             System.out.print(", subiste de nivel a SemiSenior");
-            return new SemiSenior(this.experiencia);
+            return new SemiSenior();
         }
         return this;
 

@@ -68,10 +68,6 @@ public class Gladiador {
         return this.energia.tenes(puntos);
     }
 
-    public boolean tenesElNivel(Seniority n) {
-        return this.seniority.equals(n);
-    }
-
     public void abrirPuerta(Camino c) {
         this.equipo.abrirPuerta(this, c);
     }

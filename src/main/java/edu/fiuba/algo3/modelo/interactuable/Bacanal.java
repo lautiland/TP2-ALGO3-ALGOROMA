@@ -10,7 +10,7 @@ public class Bacanal implements Interactuable {
     @Override
     public void interactuarCon(Gladiador g) {
         System.out.println(", caiste en bacanal, tiras el dado nuevamente ");
-        int tirada = Dado.tirar();
+        int tirada = g.tirarDado();
         System.out.print("Tiraste "+ tirada + ", tomas " + tirada + " tragos, perdes " + PUNTOS_POR_TRAGO*tirada + " puntos ");
         g.modificarEnergia(-PUNTOS_POR_TRAGO*tirada);
     }

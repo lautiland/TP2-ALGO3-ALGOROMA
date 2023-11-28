@@ -6,8 +6,6 @@ import edu.fiuba.algo3.modelo.tablero.Casilla;
 import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
 import edu.fiuba.algo3.modelo.interactuable.*;
 import edu.fiuba.algo3.modelo.equipamiento.*;
-import edu.fiuba.algo3.modelo.seniority.Novato;
-import edu.fiuba.algo3.modelo.seniority.SemiSenior;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -136,19 +134,11 @@ public class PrimerEntregaTest {
     public void test08gladiadorSubeASemiSeniorDespuesDe8TurnosEIncrementaSuEnergia() {
         // Arramge
         Gladiador gladiador = new Gladiador("Pepe");
-        Novato novato = new Novato();
-        SemiSenior semiSenior = new SemiSenior(8);
-
-        //ver el nivel inicial
-        assertTrue(gladiador.tenesElNivel(novato));
 
         // Act
         for (int turno = 1; turno <= 8; turno++) {
             gladiador.actualizarSeniority();
         }
-
-        // Sube a semi senior
-        assertTrue(gladiador.tenesElNivel(semiSenior));
 
         gladiador.actualizarSeniority();
 

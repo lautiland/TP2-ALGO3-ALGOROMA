@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 
-public class JsonReader {
+public class JSONReader {
 
     public static DataClassTablero obtenerMapaDesdeJson(String rutaArchivoJson) throws IOException {
         try (Reader reader = new FileReader(rutaArchivoJson)) {

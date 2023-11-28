@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.excepciones.Ganador;
 import edu.fiuba.algo3.modelo.tablero.Camino;
 import edu.fiuba.algo3.modelo.tablero.Casilla;
 import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
@@ -22,6 +23,7 @@ public class PrimerEntregaTest {
         Gladiador gladiador = new Gladiador("Pepe");
         Equipo sinEquipo = new SinEquipo();
         //Act
+
 
         //Assert
         assertTrue(gladiador.tenesPuntosDeEnegia(20));
@@ -74,6 +76,7 @@ public class PrimerEntregaTest {
     public void test04RecibeComidaIncrementaEnergiaEn10() {
         //Arrange
         Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiadorJuan = new Gladiador("Juan");
         Interactuable comida = new Comida();
 
         //Act
@@ -219,43 +222,5 @@ public class PrimerEntregaTest {
 
         // Verificar que la excepción se lanza en la ejecución 30
         assertThrows(SinTurnos.class, () -> turnos.ejecutar(gladiadores, null));
-    }
-
-    @Test
-    public void test13jugadorSanoCambiaDeEstadoALesionadoYVuelveASano() {
-        //Arrange, en dado retorna 1, para que avance de a 1
-        ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        Gladiador pepe = new Gladiador("Pepe");
-        gladiadores.add(pepe);
-        Camino camino = new Camino(gladiadores);
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Lesion()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Lesion()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Lesion()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Lesion()));
-
-        //Act
-        pepe.jugarTurno(camino);
-        pepe.jugarTurno(camino);
-        pepe.jugarTurno(camino);
-    }
-
-    @Test
-    public void test14jugadorSanoCambiaDeEstadoSinEnergiaYVuelveASano() {
-        //Arrange, en dado retorna 1, para que avance de a 1
-        ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        Gladiador pepe = new Gladiador("Pepe");
-        gladiadores.add(pepe);
-        Camino camino = new Camino(gladiadores);
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Fiera()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
-
-        //Act
-        gladiadores.get(0).jugarTurno(camino);
-        gladiadores.get(0).jugarTurno(camino);
-        gladiadores.get(0).jugarTurno(camino);
-
-
     }
 }

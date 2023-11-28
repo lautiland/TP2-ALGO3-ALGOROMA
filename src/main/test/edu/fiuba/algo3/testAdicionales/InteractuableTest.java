@@ -32,19 +32,7 @@ public class InteractuableTest {
 
         // Assert
         verify(pepeMock, times(1)).esLesionado();
+
     }
 
-    @Test
-    public void test03GladiadorCaeEnCasillaYSeLesiona() {
-        // Arrange
-        Interactuable lesion = InteractuableFactory.crearInteractuable("Lesion");
-        Gladiador pepeMock = mock(Gladiador.class);
-        Casilla casilla = new Casilla(new Ninguno(), lesion);
-
-        // Act
-        casilla.interactuarCon(pepeMock);
-
-        // Assert
-        verify(pepeMock, times(1)).esLesionado();
-    }
 }

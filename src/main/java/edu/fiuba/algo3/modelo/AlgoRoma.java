@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class AlgoRoma {
 
     private Tablero tablero;
-    private final List<Gladiador> gladiadores = new ArrayList<>();;
+    private final List<Gladiador> gladiadores = new ArrayList<>();
     private final Turnos turnos = new Turnos();
 
 
@@ -24,9 +24,9 @@ public class AlgoRoma {
     }
 
     public void iniciarJuegoConTresGladiadoresPorDefecto() throws IOException {
-        this.gladiadores.add(new Gladiador("Pepe"));
-        this.gladiadores.add(new Gladiador("Juan"));
-        this.gladiadores.add(new Gladiador("Jose"));
+        this.gladiadores.add(new Gladiador("Pepe", new Dado()));
+        this.gladiadores.add(new Gladiador("Juan", new Dado()));
+        this.gladiadores.add(new Gladiador("Jose", new Dado()));
         DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson("mapa.json");
         assert mapa != null;
         this.tablero = new Tablero(gladiadores, mapa);
@@ -41,7 +41,7 @@ public class AlgoRoma {
         for (int cant = 1; cant <= cantidad; cant++) {
             System.out.println("Ingrese el nombre del jugador " + cant + ": ");
             String nombre = scanner.nextLine();
-            this.gladiadores.add(new Gladiador(nombre));
+            this.gladiadores.add(new Gladiador(nombre, new Dado()));
         }
     }
 

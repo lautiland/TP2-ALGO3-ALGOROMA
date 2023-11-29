@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.testUnitarios;
 
+import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.DataClassTablero;
 import edu.fiuba.algo3.modelo.Gladiador;
 import edu.fiuba.algo3.modelo.JSONReader;
@@ -18,7 +19,7 @@ public class TableroTest {
     public void test01UnJugadorEnTableroJuegaConMapaBacanalYQuedaEliminadoPorTomarseTodoElVino() throws IOException {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        Gladiador pepe = new Gladiador("Pepe");
+        Gladiador pepe = new Gladiador("Pepe", new Dado());
         gladiadores.add(pepe);
         DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson("mapaBacanal.json");
         assert mapa != null;

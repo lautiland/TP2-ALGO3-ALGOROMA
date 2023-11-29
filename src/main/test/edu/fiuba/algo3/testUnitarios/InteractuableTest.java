@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.testUnitarios;
 
 import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.interactuable.*;
+import edu.fiuba.algo3.modelo.interactuable.Interactuable;
+import edu.fiuba.algo3.modelo.interactuable.InteractuableFactory;
 import org.junit.jupiter.api.Test;
+
 import static org.mockito.Mockito.*;
 
 public class InteractuableTest {
@@ -30,7 +32,7 @@ public class InteractuableTest {
         lesion.interactuarCon(pepeMock);
 
         // Assert
-        verify(pepeMock, times(1)).esLesionado();
+        verify(pepeMock, times(1)).lesionar();
 
     }
 

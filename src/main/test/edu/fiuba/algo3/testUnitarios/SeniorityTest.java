@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.testUnitarios;
 
+import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.Gladiador;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SeniorityTest {
@@ -9,7 +11,7 @@ public class SeniorityTest {
     @Test
     public void test01gladiadorNovatoSubeDeNivelHastaSenior() {
         // Arramge
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Pepe", new Dado());
 
         // Act
         for (int turno = 1; turno <= 8; turno++) {

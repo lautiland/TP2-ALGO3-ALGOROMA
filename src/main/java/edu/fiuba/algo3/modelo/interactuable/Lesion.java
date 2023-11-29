@@ -6,6 +6,6 @@ public class Lesion implements Interactuable {
     @Override
     public void interactuarCon(Gladiador gladiador) {
         System.out.print(", te lesionaste");
-        gladiador.esLesionado();
+        gladiador.lesionar();
     }
 }

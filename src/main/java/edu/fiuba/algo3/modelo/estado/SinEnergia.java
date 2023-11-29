@@ -8,6 +8,6 @@ public class SinEnergia implements Estado {
     public Estado jugar(Gladiador gladiador) {
         System.out.print("No avanzas, estas sin energia, recibis bono de 5 puntos ");
         gladiador.modificarEnergia(5);
-        return gladiador.actualzarEstadoConEnergia();
+        return gladiador.actualizarEstado();
     }
 }

@@ -7,10 +7,16 @@ public class Tiradas {
     private int tiradas = 0;
     private final static int TIRADAS_MAXIMAS = 30;
 
+    private final Dado dado;
+
+    public Tiradas(Dado dado) {
+        this.dado = dado;
+    }
+
     public int tirarDado() {
         if (this.tiradas < TIRADAS_MAXIMAS) {
             this.tiradas += 1;
-            return Dado.tirar();
+            return this.dado.tirar();
         }
         return 0;
     }

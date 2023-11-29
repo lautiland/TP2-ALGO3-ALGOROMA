@@ -22,17 +22,7 @@ public class EnergiaTest {
         energia.modificarPuntos(-20);
 
         //Assert
-        assertTrue(energia.atualizarSinEnergia(estadoMock) instanceof SinEnergia);
-    }
-
-    @Test
-    public void testAtualizarConEnergia() {
-        //Arrange
-        Energia energia = new Energia();
-        Estado estadoMock = mock(Estado.class);
-
-        // Act y Arrange
-        assertTrue(energia.atualizarConEnergia(estadoMock) instanceof Sano);
+        assertTrue(energia.actualizarEstado(estadoMock) instanceof SinEnergia);
     }
 
     @Test
@@ -42,20 +32,24 @@ public class EnergiaTest {
         Estado estadoMock = mock(Estado.class);
 
         // Assert
-        assertSame(estadoMock, energia.atualizarSinEnergia(estadoMock));
+        assertSame(estadoMock, energia.actualizarEstado(estadoMock));
     }
 
     @Test
-    public void testAtualizarConEnergiaNoCambiaEstado() {
+    public void testAtualizarEstadoConEnergia() {
         // Arrange
         Energia energia = new Energia();
-        Estado estadoMock = mock(Estado.class);
+        Estado estadoSano = new Sano();
+        Estado estadoLesionado = new SinEnergia();
+
+        assertSame(estadoSano, energia.actualizarEstado(estadoSano));
+        assertSame(estadoLesionado, energia.actualizarEstado(estadoLesionado));
 
         //Act
         energia.modificarPuntos(-20);
 
         //Assert
-        assertSame(estadoMock, energia.atualizarConEnergia(estadoMock));
+        assertTrue(energia.actualizarEstado(estadoSano) instanceof SinEnergia);
     }
 }
 

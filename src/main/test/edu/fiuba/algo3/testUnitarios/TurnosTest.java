@@ -1,10 +1,9 @@
-package edu.fiuba.algo3.testAdicionales;
+package edu.fiuba.algo3.testUnitarios;
 
 import edu.fiuba.algo3.modelo.DataClassTablero;
 import edu.fiuba.algo3.modelo.Gladiador;
 import edu.fiuba.algo3.modelo.JSONReader;
 import edu.fiuba.algo3.modelo.Turnos;
-import edu.fiuba.algo3.modelo.excepciones.Eliminado;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.Test;
 

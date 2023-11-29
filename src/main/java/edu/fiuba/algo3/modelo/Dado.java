@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Dado {
 

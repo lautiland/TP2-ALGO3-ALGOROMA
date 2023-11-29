@@ -11,21 +11,21 @@ import edu.fiuba.algo3.modelo.tablero.Camino;
 
 public class Gladiador {
 
-    private final Energia energia = new Energia();
-    private Seniority seniority = new Novato();
+    public final String NOMBRE;
+    private final Energia ENERGIA = new Energia();
+    private final Tiradas TIRADAS = new Tiradas();
     private Estado estado = new Sano();
-    public String nombre;
+    private Seniority seniority = new Novato();
     private Equipo equipo = new SinEquipo();
-    private final Tiradas tiradas = new Tiradas();
 
     public Gladiador(String nombre) {
-        this.nombre = nombre;
+        this.NOMBRE = nombre;
     }
 
-    public void jugarTurno(Camino c) {
-        System.out.println("\n\nTurno " + this.nombre);
-        this.estado = this.estado.jugar(this, c);
-        this.tiradas.verificarLimite(this);
+    public void jugarTurno(Camino camino) {
+        System.out.println("\n\nTurno " + this.NOMBRE);
+        this.estado = this.estado.jugar(this, camino);
+        this.TIRADAS.verificarLimite(this);
     }
 
     public void actualizarEquipo() {
@@ -41,7 +41,7 @@ public class Gladiador {
     }
 
     public void modificarEnergia(int puntos) {
-        this.energia.modificarPuntos(puntos); ;
+        this.ENERGIA.modificarPuntos(puntos);
     }
 
     public void esLesionado() {
@@ -49,26 +49,26 @@ public class Gladiador {
     }
 
     public int tirarDado() {
-        return this.tiradas.tirarDado();
+        return this.TIRADAS.tirarDado();
     }
 
     public Estado actualizarEstadoSinEnegia() {
-        return this.energia.atualizarSinEnergia(this.estado);
+        return this.ENERGIA.atualizarSinEnergia(this.estado);
     }
 
     public Estado actualzarEstadoConEnergia() {
-        return this.energia.atualizarConEnergia(this.estado);
+        return this.ENERGIA.atualizarConEnergia(this.estado);
     }
 
-    public boolean tenesEsteEquipo(Equipo e) {
-        return this.equipo.equals(e);
+    public boolean tenesEsteEquipo(Equipo equipo) {
+        return this.equipo.equals(equipo);
     }
 
     public boolean tenesPuntosDeEnegia(int puntos) {
-        return this.energia.tenes(puntos);
+        return this.ENERGIA.tenes(puntos);
     }
 
-    public void abrirPuerta(Camino c) {
-        this.equipo.abrirPuerta(this, c);
+    public void abrirPuerta(Camino camino) {
+        this.equipo.abrirPuerta(this, camino);
     }
 }

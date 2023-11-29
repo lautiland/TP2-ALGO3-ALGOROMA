@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.seniority;
 
-import edu.fiuba.algo3.modelo.Energia;
 import edu.fiuba.algo3.modelo.Gladiador;
 
 public class Senior extends Seniority {
@@ -11,10 +10,10 @@ public class Senior extends Seniority {
     }
 
     @Override
-    public Seniority actualizar(Gladiador g) {
+    public Seniority actualizar(Gladiador gladiador) {
         this.experiencia += 1;
         System.out.print(", ganaste " + PUNTOS_DE_ENERGIA_GANADOS + " por senior");
-        g.modificarEnergia(PUNTOS_DE_ENERGIA_GANADOS);
+        gladiador.modificarEnergia(PUNTOS_DE_ENERGIA_GANADOS);
         return this;
     }
 }

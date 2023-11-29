@@ -8,12 +8,12 @@ public class Casilla implements Celda {
     private final Interactuable premio;
     private final Interactuable obstaculo;
 
-    public Casilla(Interactuable p, Interactuable o) {
-        this.premio = p;
-        this.obstaculo = o;
+    public Casilla(Interactuable premio, Interactuable obstaculo) {
+        this.premio = premio;
+        this.obstaculo = obstaculo;
     }
-    public void interactuarCon(Gladiador g) {
-        this.premio.interactuarCon(g);
-        this.obstaculo.interactuarCon(g);
+    public void interactuarCon(Gladiador gladiador) {
+        this.premio.interactuarCon(gladiador);
+        this.obstaculo.interactuarCon(gladiador);
     }
 }

@@ -45,7 +45,7 @@ public class AlgoRoma {
         }
     }
 
-    public int jugar() {
+    public void jugar() {
         while (true) {
             try {
                 this.turnos.ejecutar(this.gladiadores, this.tablero);
@@ -53,6 +53,5 @@ public class AlgoRoma {
                 break;
             }
         }
-        return 0;
     }
 }

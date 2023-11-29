@@ -15,9 +15,9 @@ public class Tiradas {
         return 0;
     }
 
-    public void verificarLimite(Gladiador g) {
+    public void verificarLimite(Gladiador gladiador) {
         if (this.tiradas >= TIRADAS_MAXIMAS) {
-            System.out.println(g.nombre + " eliminado");
+            System.out.println(gladiador.NOMBRE + " eliminado");
             throw new Eliminado();
         }
     }

@@ -17,7 +17,7 @@ public class PrimerEntregaTest {
     @Test
     public void test01JugadorEmpiezaConEnergiaYEquipamientoCorrespondiente(){
         //Arrange
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Atticus");
         Equipo sinEquipo = new SinEquipo();
         //Act
 
@@ -31,8 +31,8 @@ public class PrimerEntregaTest {
     public void test02JugadorSaleDeLaCasillaInicial() {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        Gladiador gladiadorPepe = new Gladiador("Pepe");
-        gladiadores.add(gladiadorPepe);
+        Gladiador gladiadorAtticus = new Gladiador("Atticus");
+        gladiadores.add(gladiadorAtticus);
         Camino camino = new Camino(gladiadores);
         Interactuable premio = InteractuableFactory.crearInteractuable("Comida");
         Interactuable obstaculo = InteractuableFactory.crearInteractuable("Lesion");
@@ -41,11 +41,11 @@ public class PrimerEntregaTest {
         camino.agregarCasilla(new Casilla(premio, obstaculo));
 
         //Act
-        camino.mover(gladiadorPepe, 2);
+        camino.mover(gladiadorAtticus, 2);
 
 
         //Assert
-        assertTrue(camino.estaEl(gladiadorPepe, 2));
+        assertTrue(camino.estaEl(gladiadorAtticus, 2));
 
     }
 
@@ -53,8 +53,8 @@ public class PrimerEntregaTest {
     public void test03JugadorSinEnergiaNoJuega() {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        Gladiador gladiadorPepe = new Gladiador("Pepe");
-        gladiadores.add(gladiadorPepe);
+        Gladiador gladiadorAtticus = new Gladiador("Atticus");
+        gladiadores.add(gladiadorAtticus);
         Camino camino = new Camino(gladiadores);
         Interactuable premio = InteractuableFactory.crearInteractuable("Ninguno");
         Interactuable obstaculo = InteractuableFactory.crearInteractuable("Fiera");
@@ -63,20 +63,20 @@ public class PrimerEntregaTest {
         }
 
         //Act
-        gladiadorPepe.jugarTurno(camino);
-        assertTrue(gladiadorPepe.tenesPuntosDeEnegia(0));
+        gladiadorAtticus.jugarTurno(camino);
+        assertTrue(gladiadorAtticus.tenesPuntosDeEnegia(0));
 
-        gladiadorPepe.jugarTurno(camino);
+        gladiadorAtticus.jugarTurno(camino);
 
         //Assert jugador no avanza, pero recibe 5 de energia por bono sin energia
-        assertTrue(gladiadorPepe.tenesPuntosDeEnegia(5));
+        assertTrue(gladiadorAtticus.tenesPuntosDeEnegia(5));
     }
 
 
     @Test
     public void test04RecibeComidaIncrementaEnergiaEn10() {
         //Arrange
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Atticus");
         Interactuable comida = InteractuableFactory.crearInteractuable("Comida");
 
         //Act
@@ -90,7 +90,7 @@ public class PrimerEntregaTest {
     @Test
     public void test05gladiadorRecibeCasco() {
         //Arrange
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Atticus");
         Casco casco = new Casco();
         Interactuable premio = InteractuableFactory.crearInteractuable("Equipamiento");
 
@@ -104,7 +104,7 @@ public class PrimerEntregaTest {
     @Test
     public void test06gladiadorRecibeLEscudoYEspada() {
         //Arrange
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Atticus");
         Interactuable premio = InteractuableFactory.crearInteractuable("Equipamiento");
 
         //Act
@@ -120,7 +120,7 @@ public class PrimerEntregaTest {
     public void test07gladiadorEsAtacadoYPierde15Puntos() {
 
         //Arrange
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Atticus");
 
         //Act
         gladiador.actualizarEquipo();
@@ -133,7 +133,7 @@ public class PrimerEntregaTest {
     @Test
     public void test08gladiadorSubeASemiSeniorDespuesDe8TurnosEIncrementaSuEnergia() {
         // Arramge
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Atticus");
 
         // Act
         for (int turno = 1; turno <= 8; turno++) {
@@ -150,7 +150,7 @@ public class PrimerEntregaTest {
     public void test09GladiadorLlegaAMetaSinLlaveRetroceAMitadDeCamino() {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Atticus");
         gladiadores.add(gladiador);
         Camino camino = new Camino(gladiadores);
         camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
@@ -167,7 +167,7 @@ public class PrimerEntregaTest {
     @Test
     public void test10gladiadorEsAtacadoYNoRecibeDanioPorPoseerTodoElEquipo() {
         //Arrange
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Atticus");
         Interactuable obstaculo = InteractuableFactory.crearInteractuable("Fiera");
 
         //Act
@@ -185,7 +185,7 @@ public class PrimerEntregaTest {
     @Test
     public void test11gladiadorTieneLlaveYRecibeOtroPremioNoCambiaNada() {
         //Arrange
-        Gladiador gladiador = new Gladiador("Pepe");
+        Gladiador gladiador = new Gladiador("Atticus");
         Llave llave = new Llave();
 
         //Act

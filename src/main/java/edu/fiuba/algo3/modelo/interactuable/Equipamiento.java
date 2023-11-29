@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Gladiador;
 public class Equipamiento implements Interactuable {
 
     @Override
-    public void interactuarCon(Gladiador g) {
-        g.actualizarEquipo();
+    public void interactuarCon(Gladiador gladiador) {
+        gladiador.actualizarEquipo();
     }
 }

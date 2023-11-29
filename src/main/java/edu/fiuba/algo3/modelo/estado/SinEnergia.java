@@ -5,9 +5,9 @@ import edu.fiuba.algo3.modelo.Gladiador;
 public class SinEnergia implements Estado {
 
     @Override
-    public Estado jugar(Gladiador g) {
+    public Estado jugar(Gladiador gladiador) {
         System.out.print("No avanzas, estas sin energia, recibis bono de 5 puntos ");
-        g.modificarEnergia(5);
-        return g.actualzarEstadoConEnergia();
+        gladiador.modificarEnergia(5);
+        return gladiador.actualzarEstadoConEnergia();
     }
 }

@@ -9,10 +9,10 @@ public class SemiSenior extends Seniority {
         this.experiencia = 8;
     }
 
-    public Seniority actualizar(Gladiador g) {
+    public Seniority actualizar(Gladiador gladiador) {
         this.experiencia += 1;
         System.out.print(", ganaste " + PUNTOS_DE_ENERGIA_GANADOS + " por ser SemiSenior");
-        g.modificarEnergia(PUNTOS_DE_ENERGIA_GANADOS);
+        gladiador.modificarEnergia(PUNTOS_DE_ENERGIA_GANADOS);
         if (this.experiencia == 12) {
             System.out.print(", subiste de nivel a Senior");
             return new Senior();

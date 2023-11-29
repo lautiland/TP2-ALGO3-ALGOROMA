@@ -17,18 +17,18 @@ public class Camino {
         inicializarPosicionesDeGladiadores(gladiadores);
     }
 
-    public void agregarCasilla(Casilla c) {
-        this.sendero.add(c);
+    public void agregarCasilla(Casilla camino) {
+        this.sendero.add(camino);
     }
 
-    public void mover(Gladiador gladiador, int casillas) {
+    public void mover(Gladiador gladiador, int numeroCasillas) {
         int numeroDeCasillaActualDelGladiador = this.gladiadoresANumeroDeCasilla.get(gladiador);
-        int nuevaUbicacion = numeroDeCasillaActualDelGladiador + casillas;
+        int nuevaUbicacion = numeroDeCasillaActualDelGladiador + numeroCasillas;
         this.desplazarGladiadorEInteractuar(gladiador, nuevaUbicacion);
     }
 
-    public boolean estaEl(Gladiador g, int enCasillaNumero) {
-        return this.gladiadoresANumeroDeCasilla.get(g) == enCasillaNumero;
+    public boolean estaEl(Gladiador gladiador, int enCasillaNumero) {
+        return this.gladiadoresANumeroDeCasilla.get(gladiador) == enCasillaNumero;
     }
 
     private void inicializarPosicionesDeGladiadores(List<Gladiador> gladiadores) {
@@ -47,12 +47,12 @@ public class Camino {
         }
 
     }
-    public void moverAMitad(Gladiador g) {
-        this.desplazarGladiadorEInteractuar(g, this.sendero.size()/2);
+    public void moverAMitad(Gladiador gladiador) {
+        this.desplazarGladiadorEInteractuar(gladiador, this.sendero.size()/2);
     }
 
-    public void eliminarGladiadorDeCamino(Gladiador g) {
-        this.gladiadoresANumeroDeCasilla.remove(g);
+    public void eliminarGladiadorDeCamino(Gladiador gladiador) {
+        this.gladiadoresANumeroDeCasilla.remove(gladiador);
     }
 }
 

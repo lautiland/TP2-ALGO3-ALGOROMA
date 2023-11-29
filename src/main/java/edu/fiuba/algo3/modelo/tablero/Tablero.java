@@ -20,8 +20,8 @@ public class Tablero {
         this.construirElResto(mapa);
     }
 
-    public void turnoDe(Gladiador g) {
-        g.jugarTurno(this.camino);
+    public void turnoDe(Gladiador gladiador) {
+        gladiador.jugarTurno(this.camino);
     }
 
     private void crearCaminoEnTablero(DataClassTablero mapa) {
@@ -42,7 +42,7 @@ public class Tablero {
         }
     }
 
-    public void eliminarGladiador(Gladiador g) {
-        this.camino.eliminarGladiadorDeCamino(g);
+    public void eliminarGladiador(Gladiador gladiador) {
+        this.camino.eliminarGladiadorDeCamino(gladiador);
     }
 }

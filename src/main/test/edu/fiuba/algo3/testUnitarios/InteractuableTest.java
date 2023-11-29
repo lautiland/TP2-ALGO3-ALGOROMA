@@ -1,8 +1,7 @@
-package edu.fiuba.algo3.testAdicionales;
+package edu.fiuba.algo3.testUnitarios;
 
 import edu.fiuba.algo3.modelo.Gladiador;
 import edu.fiuba.algo3.modelo.interactuable.*;
-import edu.fiuba.algo3.modelo.tablero.Casilla;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 

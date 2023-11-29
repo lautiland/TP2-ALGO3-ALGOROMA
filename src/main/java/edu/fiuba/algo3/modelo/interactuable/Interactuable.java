@@ -4,6 +4,6 @@ import edu.fiuba.algo3.modelo.Gladiador;
 
 public interface Interactuable {
 
-    void interactuarCon(Gladiador g);
+    void interactuarCon(Gladiador gladiador);
 
 }

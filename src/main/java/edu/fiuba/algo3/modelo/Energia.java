@@ -8,18 +8,18 @@ public class Energia {
 
     private int puntos = 20;
 
-    public Estado atualizarSinEnergia(Estado e) {
+    public Estado atualizarSinEnergia(Estado estado) {
         if (this.puntos <= 0) {
             return new SinEnergia();
         }
-        return e;
+        return estado;
     }
 
-    public Estado atualizarConEnergia(Estado e) {
+    public Estado atualizarConEnergia(Estado estado) {
         if (this.puntos > 0) {
             return new Sano();
         }
-        return e;
+        return estado;
     }
 
     public void modificarPuntos(int cantidad) {

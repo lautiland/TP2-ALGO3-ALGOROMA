@@ -11,7 +11,11 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Matias Vallejos** - [MatiasTK - Github](https://github.com/MatiasTK)
 * **Damian Lima** - [Damlima - Github](https://github.com/Damlima)
 
-Corrector: **{Corrector}**
+Corrector: **Diego Sánchez y Joaquin Rivero**
+
+## Informe
+
+El informe del trabajo práctico puede encontrarse en el link a continuación: [Informe](https://www.overleaf.com/project/6567a55cc72db212dfee7018)
 
 ## Aplicación
 

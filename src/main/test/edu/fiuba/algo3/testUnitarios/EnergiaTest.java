@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.testAdicionales;
+package edu.fiuba.algo3.testUnitarios;
 
 import edu.fiuba.algo3.modelo.Energia;
 import edu.fiuba.algo3.modelo.estado.Estado;

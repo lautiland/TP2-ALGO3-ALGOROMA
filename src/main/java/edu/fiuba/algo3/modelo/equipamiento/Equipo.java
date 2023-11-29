@@ -10,7 +10,7 @@ public abstract class Equipo {
     public abstract Equipo actualizar();
 
     public void abrirPuerta(Gladiador gladiador, Camino camino) {
-        System.out.print(gladiador.nombre + " no tiene llave, vuelve a mitad de camino");
+        System.out.print(gladiador.NOMBRE + " no tiene llave, vuelve a mitad de camino");
         camino.moverAMitad(gladiador);
     }
 

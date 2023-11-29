@@ -19,7 +19,7 @@ public class Llave extends Equipo {
 
     @Override
     public void abrirPuerta (Gladiador gladiador, Camino camino) {
-        System.out.print("\n"+ gladiador.nombre + " GANASTE!!!, llegaste y abriste la puerta del monte Vesubio!!!!");
+        System.out.print("\n"+ gladiador.NOMBRE + " GANASTE!!!, llegaste y abriste la puerta del monte Vesubio!!!!");
         throw new Ganador();
     }
 

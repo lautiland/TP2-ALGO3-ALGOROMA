@@ -57,10 +57,6 @@ public class Gladiador {
         return this.ENERGIA.actualizarEstado(this.estado);
     }
 
-    public boolean tenesEsteEquipo(Equipamiento equipamiento) {
-        return this.equipamiento.equals(equipamiento);
-    }
-
     public boolean tenesPuntosDeEnegia(int puntos) {
         return this.ENERGIA.tenes(puntos);
     }

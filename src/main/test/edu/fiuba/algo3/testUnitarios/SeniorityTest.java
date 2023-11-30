@@ -14,12 +14,12 @@ public class SeniorityTest {
         Gladiador gladiador = new Gladiador("Marcus", new Dado());
 
         // Act
-        for (int turno = 1; turno <= 8; turno++) {
+        for (int turno = 1; turno < 8; turno++) {
             gladiador.actualizarSeniority();
         }
         //sube a semisenior, empieza a sumar de a 5
 
-        for (int turno = 9; turno <= 12; turno++) {
+        for (int turno = 9; turno < 12; turno++) {
             gladiador.actualizarSeniority();
         }
         //sube a senior, empieza a sumar de a 10

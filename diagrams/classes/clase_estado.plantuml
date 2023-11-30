@@ -4,12 +4,24 @@ skinparam groupInheritance 1
 skinparam linetype polyline
 
 interface Estado{
-    + jugar( :Gladiador, :Camino)
+    + jugar( :Gladiador, :Camino) : Estado
+}
+
+class Sano{
+    + jugar( :Gladiador, :Camino) : Estado
+}
+
+class SinEnergia{
+    + jugar( :Gladiador, :Camino) : Estado
+}
+
+class Lesionado{
+    + jugar( :Gladiador, :Camino) : Estado
 }
 
 
 Estado <|.. Sano
-Estado <|.. SinEnergia
+Estado <|... SinEnergia
 Estado <|.. Lesionado
 
 @enduml

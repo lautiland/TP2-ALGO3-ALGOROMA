@@ -4,19 +4,43 @@ skinparam linetype polyline
 
 
 class InteractuableFactory {
-    + crearInteractuable( :String) :Interactuable
+    + {static} crearInteractuable( :String) : Interactuable
+}
+
+class Ninguno {
+    + interactuarCon( :Gladiador)
+}
+
+class Bacanal {
+    + interactuarCon( :Gladiador)
+}
+
+class Lesion {
+    + interactuarCon( :Gladiador)
+}
+
+class Fiera {
+    + interactuarCon( :Gladiador)
+}
+
+class Equipamiento {
+    + interactuarCon( :Gladiador)
+}
+
+class Comida {
+    + interactuarCon( :Gladiador)
 }
 
 interface Interactuable{
     + interactuarCon( :Gladiador)
 }
 
-InteractuableFactory .u.> Ninguno
+InteractuableFactory ..u.> Ninguno
 InteractuableFactory .u.> Bacanal
-InteractuableFactory .u.> Lesion
-InteractuableFactory .u.> Fiera
+InteractuableFactory ..u.> Lesion
+InteractuableFactory ..u.> Fiera
 InteractuableFactory .u.> Equipamiento
-InteractuableFactory .u.> Comida
+InteractuableFactory ..u.> Comida
 
 Interactuable <|.. Bacanal
 Interactuable <|.. Lesion

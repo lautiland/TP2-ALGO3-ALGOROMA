@@ -7,8 +7,29 @@ interface Seniority {
     + actualizar(): Seniority
 }
 
-Seniority <|.. Novato
+class Novato {
+    + Novato()
+    + actualizar(): Seniority
+}
+
+class SemiSenior {
+    + {static} PUNTOS_DE_ENERGIA_GANADOS : int
+    + SemiSenior()
+    + actualizar(): Seniority
+}
+
+note bottom: PUNTOS_DE_ENERGIA_GANADOS = 5
+
+class Senior {
+    + {static} PUNTOS_DE_ENERGIA_GANADOS : int
+    + Senior()
+    + actualizar(): Seniority
+}
+
+note bottom: PUNTOS_DE_ENERGIA_GANADOS = 10
+
 Seniority <|.. SemiSenior
+Seniority <|.. Novato
 Seniority <|.. Senior
 
 @enduml

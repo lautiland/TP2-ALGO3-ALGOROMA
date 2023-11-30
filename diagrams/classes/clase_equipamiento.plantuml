@@ -21,18 +21,33 @@ Class Equipamiento{
 }
 
 class SinEquipamiento{
+    + actualizar() : Equipamiento
+    + resistirAtaque( :Gladiador)
+    + abrirPuerta( :Gladiador, :Camino)
 }
 
 class Casco{
+    + actualizar() : Equipamiento
+    + resistirAtaque( :Gladiador)
+    + abrirPuerta( :Gladiador, :Camino)
 }
 
 class Armadura{
+    + actualizar() : Equipamiento
+    + resistirAtaque( :Gladiador)
+    + abrirPuerta( :Gladiador, :Camino)
 }
 
-class EscudoYEspada {
+class EscudoYEspada{
+    + actualizar() : Equipamiento
+    + resistirAtaque( :Gladiador)
+    + abrirPuerta( :Gladiador, :Camino)
 }
 
 class Llave {
+    + actualizar() : Equipamiento
+    + resistirAtaque( :Gladiador)
+    + abrirPuerta( :Gladiador, :Camino)
 }
 
 

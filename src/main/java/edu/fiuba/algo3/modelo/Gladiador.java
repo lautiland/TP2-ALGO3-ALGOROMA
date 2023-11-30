@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.equipamiento.Equipo;
-import edu.fiuba.algo3.modelo.equipamiento.SinEquipo;
+import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
+import edu.fiuba.algo3.modelo.equipamiento.SinEquipamiento;
 import edu.fiuba.algo3.modelo.estado.Estado;
 import edu.fiuba.algo3.modelo.estado.Lesionado;
 import edu.fiuba.algo3.modelo.estado.Sano;
@@ -16,7 +16,7 @@ public class Gladiador {
     private final Tiradas TIRADAS;
     private Estado estado = new Sano();
     private Seniority seniority = new Novato();
-    private Equipo equipo = new SinEquipo();
+    private Equipamiento equipamiento = new SinEquipamiento();
 
     public Gladiador(String nombre, Dado dado) {
         this.TIRADAS = new Tiradas(dado);
@@ -30,7 +30,7 @@ public class Gladiador {
     }
 
     public void actualizarEquipo() {
-        this.equipo = this.equipo.actualizar();
+        this.equipamiento = this.equipamiento.actualizar();
     }
 
     public void actualizarSeniority() {
@@ -38,7 +38,7 @@ public class Gladiador {
     }
 
     public void recibirAtaque() {
-        this.equipo.resistirAtaque(this);
+        this.equipamiento.resistirAtaque(this);
     }
 
     public void modificarEnergia(int puntos) {
@@ -57,8 +57,8 @@ public class Gladiador {
         return this.ENERGIA.actualizarEstado(this.estado);
     }
 
-    public boolean tenesEsteEquipo(Equipo equipo) {
-        return this.equipo.equals(equipo);
+    public boolean tenesEsteEquipo(Equipamiento equipamiento) {
+        return this.equipamiento.equals(equipamiento);
     }
 
     public boolean tenesPuntosDeEnegia(int puntos) {
@@ -66,6 +66,6 @@ public class Gladiador {
     }
 
     public void abrirPuerta(Camino camino) {
-        this.equipo.abrirPuerta(this, camino);
+        this.equipamiento.abrirPuerta(this, camino);
     }
 }

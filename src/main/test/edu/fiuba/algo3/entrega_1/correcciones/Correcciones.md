@@ -1,8 +1,8 @@
 # Correcciones de la primer entrega
 
 - `GladiadorTest` debería estar dentro de la carpeta `entrega_1`, quizás también cambiarle el nombre?
-- `assertEquals(casco.getClass(), equipo.getClass())` se podría poner el equals dentro de la clase casco - resuelto
-- Esta bien en el equipamiento que tenga un `actualizarEquipo()` y devuelva el nuevo equipo a utilizar.
+- `assertEquals(casco.getClass(), equipamiento.getClass())` se podría poner el equals dentro de la clase casco - resuelto
+- Esta bien en el equipamiento que tenga un `actualizarEquipo()` y devuelva el nuevo equipamiento a utilizar.
 - Relacionado con el item de arriba en el `Vacio` utilizamos el _Null Pattern_ según el profe, el cual esta bien, es importante remarcar el porque lo usamos en el informe.
 - En cuanto a _getters_ dijo que esta bien que en un inicio si tenemos dudas tengamos getters innecesarios y vayamos removiéndolos a medida que avanzamos en el TP
 - `assertEquals(5, gladiador.getEnergia().getPuntos());` esta mal, tiene mucho acoplamiento y rompe ley de Demeter, solución: `assertEquals(new Energia(5), gladiador.getEnergia())- solucionado

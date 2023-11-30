@@ -23,12 +23,12 @@ public class PrimerEntregaTest {
     public void test01JugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() {
         //Arrange
         Gladiador gladiador = new Gladiador("Atticus", new Dado());
-        Equipo sinEquipo = new SinEquipo();
+        Equipamiento sinEquipamiento = new SinEquipamiento();
         //Act
 
         //Assert
         assertTrue(gladiador.tenesPuntosDeEnegia(20));
-        assertTrue(gladiador.tenesEsteEquipo(sinEquipo));
+        assertTrue(gladiador.tenesEsteEquipo(sinEquipamiento));
     }
 
     @Test

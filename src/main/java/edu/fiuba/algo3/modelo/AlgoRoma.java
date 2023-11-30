@@ -23,15 +23,6 @@ public class AlgoRoma {
         this.tablero = new Tablero(gladiadores, mapa);
     }
 
-    public void iniciarJuegoConTresGladiadoresPorDefecto() throws IOException {
-        this.gladiadores.add(new Gladiador("Pepe", new Dado()));
-        this.gladiadores.add(new Gladiador("Juan", new Dado()));
-        this.gladiadores.add(new Gladiador("Jose", new Dado()));
-        DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson("mapa.json");
-        assert mapa != null;
-        this.tablero = new Tablero(gladiadores, mapa);
-    }
-
     public void solicitarNombres() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Cuantos jugadores?: ");

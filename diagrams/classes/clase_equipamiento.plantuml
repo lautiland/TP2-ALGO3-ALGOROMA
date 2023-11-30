@@ -3,24 +3,24 @@
 skinparam groupInheritance 1
 skinparam linetype ortho
 
-Equipo <|-- SinEquipo
-Equipo <|-- Casco
-Equipo <|-- Armadura
-Equipo <|-- EscudoYEspada
-Equipo <|-- Llave
+Equipamiento <|-- SinEquipamiento
+Equipamiento <|-- Casco
+Equipamiento <|-- Armadura
+Equipamiento <|-- EscudoYEspada
+Equipamiento <|-- Llave
 
-SinEquipo ..> Casco
+SinEquipamiento ..> Casco
 Casco ..> Armadura
 Armadura ..> EscudoYEspada
 EscudoYEspada ..> Llave
 
-Class Equipo{
-    + {abstract} actualizar() : Equipo
+Class Equipamiento{
+    + {abstract} actualizar() : Equipamiento
     + {abstract} resistirAtaque( :Gladiador)
     + {abstract} abrirPuerta( :Gladiador, :Camino)
 }
 
-class SinEquipo{
+class SinEquipamiento{
 }
 
 class Casco{

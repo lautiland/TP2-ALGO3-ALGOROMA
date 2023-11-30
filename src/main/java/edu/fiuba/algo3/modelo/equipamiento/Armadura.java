@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.equipamiento;
 
 import edu.fiuba.algo3.modelo.Gladiador;
 
-public class Armadura extends Equipo {
+public class Armadura extends Equipamiento {
 
     @Override
     public void resistirAtaque(Gladiador gladiador) {
@@ -11,7 +11,7 @@ public class Armadura extends Equipo {
     }
 
     @Override
-    public Equipo actualizar() {
+    public Equipamiento actualizar() {
         System.out.print(", recibiste Escudo y espada");
         return new EscudoYEspada();
     }

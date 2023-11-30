@@ -8,7 +8,7 @@ public class Comida implements Interactuable {
 
     @Override
     public void interactuarCon(Gladiador gladiador) {
-        System.out.print(", encontraste pizza, ganas " + PUNTOS_DE_ENERGIA_GANADOS + " puntos");
+        System.out.print(", encontraste moretum, ganas " + PUNTOS_DE_ENERGIA_GANADOS + " puntos");
         gladiador.modificarEnergia(PUNTOS_DE_ENERGIA_GANADOS);
     }
 }

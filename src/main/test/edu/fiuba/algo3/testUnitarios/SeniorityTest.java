@@ -11,7 +11,7 @@ public class SeniorityTest {
     @Test
     public void test01gladiadorNovatoSubeDeNivelHastaSenior() {
         // Arramge
-        Gladiador gladiador = new Gladiador("Pepe", new Dado());
+        Gladiador gladiador = new Gladiador("Marcus", new Dado());
 
         // Act
         for (int turno = 1; turno <= 8; turno++) {

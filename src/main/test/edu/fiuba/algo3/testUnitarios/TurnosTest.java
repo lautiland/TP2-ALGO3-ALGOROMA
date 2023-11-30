@@ -16,15 +16,15 @@ public class TurnosTest {
 
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Turnos turnos = new Turnos();
-        Gladiador pepe = new Gladiador("Pepe", new Dado());
-        gladiadores.add(pepe);
+        Gladiador gladiador = new Gladiador("Marcus", new Dado());
+        gladiadores.add(gladiador);
         DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson("mapaBacanal.json");
         assert mapa != null;
 
         Tablero tablero = new Tablero(gladiadores, mapa);
 
         for (int i = 0; i < 25; i++) {
-            pepe.modificarEnergia(50);// para que no pierda energia por los tragos
+            gladiador.modificarEnergia(50);// para que no pierda energia por los tragos
             turnos.ejecutar(gladiadores, tablero);
         }
 

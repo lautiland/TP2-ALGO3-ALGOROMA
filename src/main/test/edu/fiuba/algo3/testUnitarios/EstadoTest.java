@@ -22,11 +22,11 @@ public class EstadoTest {
     @Test
     public void test01DeLesionadoSePasaASano() {
         //Act
-        Gladiador pepe = new Gladiador("Pepe", new Dado());
+        Gladiador gladiador = new Gladiador("Augustus", new Dado());
         Estado lesionado = new Lesionado();
 
         //Arrange
-        Estado nuevoEstado = lesionado.jugar(pepe);
+        Estado nuevoEstado = lesionado.jugar(gladiador);
 
         //Assert
         assertTrue(nuevoEstado instanceof Sano);
@@ -36,8 +36,8 @@ public class EstadoTest {
     public void test02NoSeJuegaSiEstaLesionado() {
         Dado dadoMock = mock(Dado.class, "Dado");
         when(dadoMock.tirar()).thenReturn(1);
-        Gladiador pepe = new Gladiador("Pepe", dadoMock);
-        Camino camino = new Camino(List.of(pepe));
+        Gladiador gladiador = new Gladiador("Augustus", dadoMock);
+        Camino camino = new Camino(List.of(gladiador));
         Interactuable sinInteractuable = InteractuableFactory.crearInteractuable("Ninguno");
         Interactuable obstaculo = InteractuableFactory.crearInteractuable("Lesion");
         camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
@@ -45,11 +45,11 @@ public class EstadoTest {
         camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
         camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
 
-        pepe.jugarTurno(camino);
+        gladiador.jugarTurno(camino);
 
-        assertTrue(camino.estaEl(pepe, 1));
-        pepe.jugarTurno(camino);
-        pepe.jugarTurno(camino);
-        assertTrue(camino.estaEl(pepe, 2));
+        assertTrue(camino.estaEl(gladiador, 1));
+        gladiador.jugarTurno(camino);
+        gladiador.jugarTurno(camino);
+        assertTrue(camino.estaEl(gladiador, 2));
     }
 }

@@ -13,26 +13,26 @@ public class InteractuableTest {
     public void test01GladiadorCaeEnBacanalYModificaSuEnergia() {
         // Arrange
         Interactuable bacanal = InteractuableFactory.crearInteractuable("Bacanal");
-        Gladiador pepeMock = mock(Gladiador.class);
+        Gladiador gladiadorMock = mock(Gladiador.class);
 
         // Act
-        bacanal.interactuarCon(pepeMock);
+        bacanal.interactuarCon(gladiadorMock);
 
         // Assert
-        verify(pepeMock, times(1)).modificarEnergia(anyInt());
+        verify(gladiadorMock, times(1)).modificarEnergia(anyInt());
     }
 
     @Test
     public void test02GladiadorPateaUnaPiedraYSeLesiona() {
         // Arrange
         Interactuable lesion = InteractuableFactory.crearInteractuable("Lesion");
-        Gladiador pepeMock = mock(Gladiador.class);
+        Gladiador gladiadorMock = mock(Gladiador.class);
 
         // Act
-        lesion.interactuarCon(pepeMock);
+        lesion.interactuarCon(gladiadorMock);
 
         // Assert
-        verify(pepeMock, times(1)).lesionar();
+        verify(gladiadorMock, times(1)).lesionar();
 
     }
 

@@ -14,7 +14,7 @@ public class Tablero {
     private final Camino camino;
 
     public Tablero(List<Gladiador> gladiadores, DataClassTablero mapa) {
-        this.grillas = new Celda[mapa.largo][mapa.ancho];
+        this.grillas = new Celda[mapa.LARGO][mapa.ANCHO];
         this.camino = new Camino(gladiadores);
         this.crearCaminoEnTablero(mapa);
         this.construirElResto(mapa);
@@ -30,14 +30,14 @@ public class Tablero {
             Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaCamino.obstaculo);
             Casilla casilla = new Casilla(premio, obstaculo);
             this.camino.agregarCasilla(casilla);
-            this.grillas[celdaCamino.x][celdaCamino.y] = casilla;
+            this.grillas[celdaCamino.X][celdaCamino.Y] = casilla;
         }
     }
     private void construirElResto(DataClassTablero mapa) {
-        for (int y = 0; y < mapa.ancho; y++) {
-            for (int x = 0; x < mapa.largo; x++) {
+        for (int y = 0; y < mapa.ANCHO; y++) {
+            for (int x = 0; x < mapa.LARGO; x++) {
                 if (this.grillas[x][y] == null)
-                    this.grillas[x][y] = new CeldaSinCamino();
+                    this.grillas[x][y] = new CeldaSinCasilla();
             }
         }
     }

@@ -20,28 +20,28 @@ public class ExepcionesTest {
     public void test01CuandoAlquienGanaSeLanzaUnaExecepcion() {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        Gladiador pepe = new Gladiador("Pepe", new Dado());
+        Gladiador gladiador = new Gladiador("Ignacius", new Dado());
         for (int i = 1; i < 5; i++)
-            pepe.actualizarEquipo();
-        gladiadores.add(pepe);
+            gladiador.actualizarEquipo();
+        gladiadores.add(gladiador);
         Camino camino = new Camino(gladiadores);
         camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
         camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
         camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
 
         //Act y Assert gladiador se mueve hasta el fin, gana porque tiene llave
-        assertThrows(Ganador.class, () -> camino.mover(pepe, 50));
+        assertThrows(Ganador.class, () -> camino.mover(gladiador, 50));
     }
 
     @Test
     public void test02CuandoUnJugadorSePasaDelLimiteDeTiradasSeLanzaUnaExcepcion() {
         Tiradas tiradas = new Tiradas(new Dado());
-        Gladiador pepe = new Gladiador("Pepe", new Dado());
+        Gladiador gladiador = new Gladiador("Ignacius", new Dado());
         for (int i = 0; i < 31; i++) {
             tiradas.tirarDado();
         }
 
         // Verificar que la excepción se lanza en la ejecución 30
-        assertThrows(Eliminado.class, () -> tiradas.verificarLimite(pepe));
+        assertThrows(Eliminado.class, () -> tiradas.verificarLimite(gladiador));
     }
 }

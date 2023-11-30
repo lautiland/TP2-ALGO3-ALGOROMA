@@ -1,0 +1,28 @@
+@startuml
+!theme plain
+skinparam linetype polyline
+
+
+class InteractuableFactory {
+    + crearInteractuable( :String) :Interactuable
+}
+
+interface Interactuable{
+    + interactuarCon( :Gladiador)
+}
+
+InteractuableFactory .u.> Ninguno
+InteractuableFactory .u.> Bacanal
+InteractuableFactory .u.> Lesion
+InteractuableFactory .u.> Fiera
+InteractuableFactory .u.> Equipamiento
+InteractuableFactory .u.> Comida
+
+Interactuable <|.. Bacanal
+Interactuable <|.. Lesion
+Interactuable <|.. Comida
+Interactuable <|.. Ninguno
+Interactuable <|.. Fiera
+Interactuable <|.. Equipamiento
+
+@enduml

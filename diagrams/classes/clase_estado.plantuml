@@ -1,0 +1,15 @@
+@startuml
+!theme plain
+skinparam groupInheritance 1
+skinparam linetype polyline
+
+interface Estado{
+    + jugar( :Gladiador, :Camino)
+}
+
+
+Estado <|.. Sano
+Estado <|.. SinEnergia
+Estado <|.. Lesionado
+
+@enduml

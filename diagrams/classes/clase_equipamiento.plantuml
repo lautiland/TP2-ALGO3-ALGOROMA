@@ -1,0 +1,39 @@
+@startuml
+!theme plain
+skinparam groupInheritance 1
+skinparam linetype ortho
+
+Equipo <|-- SinEquipo
+Equipo <|-- Casco
+Equipo <|-- Armadura
+Equipo <|-- EscudoYEspada
+Equipo <|-- Llave
+
+SinEquipo ..> Casco
+Casco ..> Armadura
+Armadura ..> EscudoYEspada
+EscudoYEspada ..> Llave
+
+Class Equipo{
+    + {abstract} actualizar() : Equipo
+    + {abstract} resistirAtaque( :Gladiador)
+    + {abstract} abrirPuerta( :Gladiador, :Camino)
+}
+
+class SinEquipo{
+}
+
+class Casco{
+}
+
+class Armadura{
+}
+
+class EscudoYEspada {
+}
+
+class Llave {
+}
+
+
+@enduml

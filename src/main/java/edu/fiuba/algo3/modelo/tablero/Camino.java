@@ -14,7 +14,9 @@ public class Camino {
 
 
     public Camino(List<Gladiador> gladiadores) {
-        inicializarPosicionesDeGladiadores(gladiadores);
+        for (Gladiador gladiador: gladiadores) {
+            gladiadoresANumeroDeCasilla.put(gladiador, 0);
+        }
     }
 
     public void agregarCasilla(Casilla camino) {
@@ -29,12 +31,6 @@ public class Camino {
 
     public boolean estaEl(Gladiador gladiador, int enCasillaNumero) {
         return this.gladiadoresANumeroDeCasilla.get(gladiador) == enCasillaNumero;
-    }
-
-    private void inicializarPosicionesDeGladiadores(List<Gladiador> gladiadores) {
-        for (Gladiador gladiador: gladiadores) {
-            gladiadoresANumeroDeCasilla.put(gladiador, 0);
-        }
     }
 
     private void desplazarGladiadorEInteractuar(Gladiador gladiador, int nuevaUbicacion) {

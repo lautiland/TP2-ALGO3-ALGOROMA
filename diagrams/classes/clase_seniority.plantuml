@@ -1,0 +1,14 @@
+@startuml
+!theme plain
+skinparam groupInheritance 1
+
+interface Seniority {
+    # experiencia : int
+    + actualizar(): Seniority
+}
+
+Seniority <|.. Novato
+Seniority <|.. SemiSenior
+Seniority <|.. Senior
+
+@enduml

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Gladiador;
 public class SemiSenior extends Seniority {
 
     private static final int PUNTOS_DE_ENERGIA_GANADOS = 5;
+
     public SemiSenior() {
         this.experiencia = 8;
     }
@@ -15,7 +16,7 @@ public class SemiSenior extends Seniority {
         gladiador.modificarEnergia(PUNTOS_DE_ENERGIA_GANADOS);
         if (this.experiencia == 12) {
             System.out.print(", subiste de nivel a Senior");
-            return new Senior();
+            return new Senior().actualizar(gladiador);
         }
         return this;
     }

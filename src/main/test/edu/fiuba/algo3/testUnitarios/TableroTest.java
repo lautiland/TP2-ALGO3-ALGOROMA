@@ -22,7 +22,6 @@ public class TableroTest {
         Gladiador gladiador = new Gladiador("Marcus", new Dado());
         gladiadores.add(gladiador);
         DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson("mapaBacanal.json");
-        assert mapa != null;
 
         Tablero tablero = new Tablero(gladiadores, mapa);
 

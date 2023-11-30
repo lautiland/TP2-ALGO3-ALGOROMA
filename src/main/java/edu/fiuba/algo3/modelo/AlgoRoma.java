@@ -16,10 +16,9 @@ public class AlgoRoma {
     private final Turnos turnos = new Turnos();
 
 
-    public void iniciarJuegoCompleto() throws IOException {
+    public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
         solicitarNombres();
-        DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson("mapa.json");
-        assert mapa != null;
+        DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson(rutaDelMapa);
         this.tablero = new Tablero(gladiadores, mapa);
     }
 

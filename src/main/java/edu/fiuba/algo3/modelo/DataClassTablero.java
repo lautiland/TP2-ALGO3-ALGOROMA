@@ -5,13 +5,28 @@ import java.util.List;
 
 public class DataClassTablero {
 
-    public final int ANCHO;
-    public final int LARGO;
-
-    public final List<DataClassCelda> camino = new ArrayList<>();
+    private final int ANCHO;
+    private final int LARGO;
+    private final List<DataClassCelda> camino = new ArrayList<>();
 
     public DataClassTablero(int ancho, int largo) {
         this.ANCHO = ancho;
         this.LARGO = largo;
+    }
+
+    public int getLARGO() {
+        return LARGO;
+    }
+
+    public int getANCHO() {
+        return ANCHO;
+    }
+
+    public List<DataClassCelda> getCamino() {
+        return camino;
+    }
+
+    public void agregarCelda(DataClassCelda celda) {
+        this.camino.add(celda);
     }
 }

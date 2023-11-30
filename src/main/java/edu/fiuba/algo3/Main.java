@@ -9,7 +9,7 @@ public class Main {
         //App.main(args);
         AlgoRoma algoRoma = new AlgoRoma();
         try {
-            algoRoma.iniciarJuegoCompleto();
+            algoRoma.iniciarJuegoCompleto("mapa.json");
             algoRoma.jugar();
         } catch (IOException e) {
             System.out.println("Error");

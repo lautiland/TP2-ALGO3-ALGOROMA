@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.excepciones.Ganador;
 import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 
@@ -14,7 +13,6 @@ public class AlgoRoma {
     private Tablero tablero;
     private final List<Gladiador> gladiadores = new ArrayList<>();
     private final Turnos turnos = new Turnos();
-
 
     public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
         solicitarNombres();
@@ -39,7 +37,7 @@ public class AlgoRoma {
         while (true) {
             try {
                 this.turnos.ejecutar(this.gladiadores, this.tablero);
-            } catch (Ganador | SinTurnos e) {
+            } catch (SinTurnos e) {
                 break;
             }
         }

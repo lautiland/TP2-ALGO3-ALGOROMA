@@ -32,6 +32,13 @@ public class Tablero {
             this.camino.agregarCasilla(casilla);
             this.grillas[celdaCamino.getX()][celdaCamino.getY()] = casilla;
         }
+        DataClassCelda celdaLlegada = mapa.getLlegada();
+        Interactuable premio = InteractuableFactory.crearInteractuable("Llegada");
+        Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaLlegada.getObstaculo());
+        Casilla casilla = new Casilla(premio, obstaculo);
+        this.camino.agregarCasilla(casilla);
+        this.grillas[celdaLlegada.getX()][celdaLlegada.getY()] = casilla;
+
     }
 
     private void construirElResto(DataClassTablero mapa) {
@@ -43,7 +50,7 @@ public class Tablero {
         }
     }
 
-    public void eliminarGladiador(Gladiador gladiador) {
-        this.camino.eliminarGladiadorDeCamino(gladiador);
+    public boolean tieneGanador() {
+        return this.camino.tieneGanador();
     }
 }

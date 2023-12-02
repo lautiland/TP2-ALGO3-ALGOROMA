@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.excepciones.Eliminado;
+import edu.fiuba.algo3.modelo.tablero.Camino;
 
 public class Tiradas {
 
@@ -21,10 +21,10 @@ public class Tiradas {
         return 0;
     }
 
-    public void verificarLimite(Gladiador gladiador) {
+    public void verificarLimite(Gladiador gladiador, Camino camino) {
         if (this.tiradas >= TIRADAS_MAXIMAS) {
             System.out.println(gladiador.NOMBRE + " eliminado");
-            throw new Eliminado();
+            camino.eliminarGladiadorDeCamino(gladiador);
         }
     }
 }

@@ -12,8 +12,8 @@ public class Casilla implements Celda {
         this.premio = premio;
         this.obstaculo = obstaculo;
     }
-    public void interactuarCon(Gladiador gladiador) {
-        this.premio.interactuarCon(gladiador);
-        this.obstaculo.interactuarCon(gladiador);
+    public void interactuarCon(Gladiador gladiador, Camino camino) {
+        this.premio.interactuarCon(gladiador, camino);
+        this.obstaculo.interactuarCon(gladiador, camino);
     }
 }

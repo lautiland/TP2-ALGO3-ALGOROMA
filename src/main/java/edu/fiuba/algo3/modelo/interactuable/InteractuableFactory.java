@@ -14,6 +14,8 @@ public class InteractuableFactory {
                 return new Fiera();
             case "Lesion":
                 return new Lesion();
+            case "Llegada":
+                return new Llegada();
             default:
                 return new Ninguno();
         }

@@ -26,7 +26,7 @@ public class Gladiador {
     public void jugarTurno(Camino camino) {
         System.out.println("\n\nTurno " + this.NOMBRE);
         this.estado = this.estado.jugar(this, camino);
-        this.TIRADAS.verificarLimite(this);
+        this.TIRADAS.verificarLimite(this, camino);
     }
 
     public void actualizarEquipo() {
@@ -61,7 +61,7 @@ public class Gladiador {
         return this.ENERGIA.tenes(puntos);
     }
 
-    public void abrirPuerta(Camino camino) {
-        this.equipamiento.abrirPuerta(this, camino);
+    public boolean abrirPuerta(Camino camino) {
+        return this.equipamiento.abrirPuerta(this, camino);
     }
 }

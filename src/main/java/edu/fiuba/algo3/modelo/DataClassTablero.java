@@ -23,7 +23,11 @@ public class DataClassTablero {
     }
 
     public List<DataClassCelda> getCamino() {
-        return camino;
+        return camino.subList(0, camino.size() - 1);
+    }
+
+    public DataClassCelda getLlegada() {
+        return camino.get(camino.size() - 1);
     }
 
     public void agregarCelda(DataClassCelda celda) {

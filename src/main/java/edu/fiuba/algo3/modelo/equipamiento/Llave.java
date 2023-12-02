@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.equipamiento;
 
 import edu.fiuba.algo3.modelo.tablero.Camino;
 import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.excepciones.Ganador;
 
 public class Llave extends Equipamiento {
     @Override
@@ -18,9 +17,9 @@ public class Llave extends Equipamiento {
     }
 
     @Override
-    public void abrirPuerta (Gladiador gladiador, Camino camino) {
+    public boolean abrirPuerta (Gladiador gladiador, Camino camino) {
         System.out.print("\n"+ gladiador.NOMBRE + " GANASTE!!!, la casa al pie del monte Vesubio es tuya!!!!");
-        throw new Ganador();
+        return true;
     }
 
 }

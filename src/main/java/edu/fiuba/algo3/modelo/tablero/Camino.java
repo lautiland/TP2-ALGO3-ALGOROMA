@@ -11,6 +11,7 @@ public class Camino {
 
     private final List<Casilla> sendero = new ArrayList<>();
     private final Map<Gladiador, Integer> gladiadoresANumeroDeCasilla = new HashMap<>();
+    private boolean premioReclamado = false;
 
 
     public Camino(List<Gladiador> gladiadores) {
@@ -26,6 +27,9 @@ public class Camino {
     public void mover(Gladiador gladiador, int numeroCasillas) {
         int numeroDeCasillaActualDelGladiador = this.gladiadoresANumeroDeCasilla.get(gladiador);
         int nuevaUbicacion = numeroDeCasillaActualDelGladiador + numeroCasillas;
+        if (nuevaUbicacion > this.sendero.size()) {
+            nuevaUbicacion = this.sendero.size();
+        }
         this.desplazarGladiadorEInteractuar(gladiador, nuevaUbicacion);
     }
 
@@ -34,13 +38,9 @@ public class Camino {
     }
 
     private void desplazarGladiadorEInteractuar(Gladiador gladiador, int nuevaUbicacion) {
-        try {
-            Casilla casilla = this.sendero.get(nuevaUbicacion);
-            gladiadoresANumeroDeCasilla.put(gladiador, nuevaUbicacion);
-            casilla.interactuarCon(gladiador);
-        } catch (IndexOutOfBoundsException e) {
-            gladiador.abrirPuerta(this);
-        }
+        Casilla casilla = this.sendero.get(nuevaUbicacion);
+        gladiadoresANumeroDeCasilla.put(gladiador, nuevaUbicacion);
+        casilla.interactuarCon(gladiador, this);
 
     }
     public void moverAMitad(Gladiador gladiador) {
@@ -50,5 +50,15 @@ public class Camino {
     public void eliminarGladiadorDeCamino(Gladiador gladiador) {
         this.gladiadoresANumeroDeCasilla.remove(gladiador);
     }
+
+    public void reclamarPremio() {
+        this.premioReclamado = true;
+    }
+
+    public boolean tieneGanador() {
+        return this.premioReclamado;
+    }
+
+
 }
 

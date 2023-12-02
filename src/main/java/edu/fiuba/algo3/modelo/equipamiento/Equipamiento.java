@@ -9,8 +9,9 @@ public abstract class Equipamiento {
 
     public abstract Equipamiento actualizar();
 
-    public void abrirPuerta(Gladiador gladiador, Camino camino) {
+    public boolean abrirPuerta(Gladiador gladiador, Camino camino) {
         System.out.print(gladiador.NOMBRE + " no tiene llave, vuelve a mitad de camino");
         camino.moverAMitad(gladiador);
+        return false;
     }
 }

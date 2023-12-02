@@ -1,19 +1,14 @@
 package edu.fiuba.algo3.testUnitarios;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TurnosTest {
 
     @Test
     public void test01TurnosEliminaUnJugadorCuandoEsteSuperaElLimiteDetiradas() throws IOException {
-
+        /* Ya lo puse en otro test, no hay limite de tiradas solo hay turnos maximos.
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Turnos turnos = new Turnos();
         Gladiador gladiador = new Gladiador("Marcus", new Dado());
@@ -28,6 +23,6 @@ public class TurnosTest {
         }
 
 
-        assertTrue(gladiadores.isEmpty());
+        assertTrue(gladiadores.isEmpty());*/
     }
 }

@@ -1,23 +1,16 @@
 package edu.fiuba.algo3.testUnitarios;
 
-import edu.fiuba.algo3.modelo.Dado;
-import edu.fiuba.algo3.modelo.DataClassTablero;
-import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.JSONReader;
-import edu.fiuba.algo3.modelo.excepciones.Eliminado;
-import edu.fiuba.algo3.modelo.tablero.Tablero;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TableroTest {
 
     @Test
     public void test01UnJugadorEnTableroJuegaConMapaBacanalYQuedaEliminadoPorTomarseTodoElVino() throws IOException {
-        //Arrange
+       /* Los jugadores no se eliminan por tomar vino, si se quedan sin turnos termina el juego.
+       Nota: una vez se terminan los turnos NINGUN jugador sigue jugando por lo cual nunca se "elimina" a alguien simplemente se queda infinitamente sin avanzar si no tiene energia.
+       //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Gladiador gladiador = new Gladiador("Marcus", new Dado());
         gladiadores.add(gladiador);
@@ -31,6 +24,6 @@ public class TableroTest {
         }
 
 
-        assertThrows(Eliminado.class, () -> tablero.turnoDe(gladiador));
+        assertThrows(Eliminado.class, () -> tablero.turnoDe(gladiador));*/
     }
 }

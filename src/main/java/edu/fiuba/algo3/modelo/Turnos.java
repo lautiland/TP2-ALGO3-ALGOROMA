@@ -12,6 +12,9 @@ public class Turnos {
     private int turnosActuales = 0;
 
     public void ejecutar(List<Gladiador> gladiadores, Tablero tablero) {
+        if (turnosActuales >= TURNOS_MAXIMOS)
+            throw new SinTurnos();
+
         this.turnosActuales += 1;
         Iterator<Gladiador> iterator = gladiadores.iterator();
         while (iterator.hasNext() && !tablero.tieneGanador()) {

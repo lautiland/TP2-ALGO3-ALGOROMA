@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
 import edu.fiuba.algo3.modelo.interactuable.Interactuable;
 import edu.fiuba.algo3.modelo.interactuable.InteractuableFactory;
+import edu.fiuba.algo3.modelo.interactuable.Llegada;
 import edu.fiuba.algo3.modelo.interactuable.Ninguno;
 import edu.fiuba.algo3.modelo.tablero.Camino;
 import edu.fiuba.algo3.modelo.tablero.Casilla;
@@ -193,7 +194,7 @@ public class PrimerEntregaTest {
         Camino camino = new Camino(List.of(gladiador));
         camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
         camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
+        camino.agregarCasilla(new Casilla(new Llegada(), new Ninguno()));
 
         //Act gladiador se mueve hasta el fin
         gladiador.jugarTurno(camino);

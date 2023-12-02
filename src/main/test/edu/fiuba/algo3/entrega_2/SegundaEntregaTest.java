@@ -21,10 +21,10 @@ public class SegundaEntregaTest {
     @Test
     public void test14ElJSONDeLosObstaculosEsValido() throws IOException {
         DataClassTablero DataTablero = JSONReader.obtenerMapaDesdeJson("mapa.json");
-        assertEquals(39, DataTablero.getCamino().size());
+        assertEquals(38, DataTablero.getCamino().size());
 
         DataClassCelda primerCelda = DataTablero.getCamino().get(0);
-        DataClassCelda ultimaCelda = DataTablero.getCamino().get(38);
+        DataClassCelda ultimaCelda = DataTablero.getLlegada();
         DataClassCelda celdaConDosObstaculos = DataTablero.getCamino().get(26);
 
         assertEquals(1, primerCelda.getX());
@@ -45,7 +45,6 @@ public class SegundaEntregaTest {
 
     @Test
     public void test17ElJuegoSeCreaAcordeAlJSON() {
-
     }
 }
 

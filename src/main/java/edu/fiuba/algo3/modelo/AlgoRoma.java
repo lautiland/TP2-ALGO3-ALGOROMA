@@ -1,12 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class AlgoRoma {
 
@@ -15,31 +13,19 @@ public class AlgoRoma {
     private final Turnos turnos = new Turnos();
 
     public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
-        solicitarNombres();
         DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson(rutaDelMapa);
         this.tablero = new Tablero(gladiadores, mapa);
     }
 
-    public void solicitarNombres() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Cuantos jugadores?: ");
-        int cantidad = scanner.nextInt();
-        scanner.nextLine();
-
-        for (int cant = 1; cant <= cantidad; cant++) {
-            System.out.println("Ingrese el nombre del jugador " + cant + ": ");
-            String nombre = scanner.nextLine();
-            this.gladiadores.add(new Gladiador(nombre, new Dado()));
-        }
+    public void agregarGladiador(Gladiador gladiador) {
+        this.gladiadores.add(gladiador);
     }
 
-    public void jugar() {
-        while (true) {
-            try {
-                this.turnos.ejecutar(this.gladiadores, this.tablero);
-            } catch (SinTurnos e) {
-                break;
-            }
-        }
+    public void jugarTurno() {
+        this.turnos.ejecutar(this.gladiadores, this.tablero);
+    }
+
+    public Gladiador obtenerGanador() {
+        return this.tablero.obtenerGanador();
     }
 }

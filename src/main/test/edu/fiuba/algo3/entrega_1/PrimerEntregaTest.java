@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.Gladiador;
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.Turnos;
 import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
 import edu.fiuba.algo3.modelo.interactuable.Interactuable;
@@ -18,19 +19,20 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class PrimerEntregaTest {
-
     private Dado dadoMock;
     private Interactuable sinInteraccion;
+    private static Logger loggerMock;
 
     @BeforeEach
-    public void setUp() {
+    public void beforeEach() {
         dadoMock = mock(Dado.class);
         when(dadoMock.tirar()).thenReturn(1);
         sinInteraccion = InteractuableFactory.crearInteractuable("Ninguno");
+        loggerMock = mock(Logger.class);
+        new Logger(loggerMock);
     }
 
     @Test
@@ -47,6 +49,7 @@ public class PrimerEntregaTest {
         gladiador.jugarTurno(camino);
 
         //Assert
+        verify(loggerMock).info("El gladiador ahora tiene 0 puntos de energía");
         assertTrue(gladiador.tenesPuntosDeEnegia(0));
     }
 
@@ -64,6 +67,7 @@ public class PrimerEntregaTest {
         gladiadorAtticus.jugarTurno(camino);
 
         //Assert
+        verify(loggerMock, atLeastOnce()).info("Gladiador Atticus tira el dado, avanza 1 casillas");
         assertTrue(camino.estaEl(gladiadorAtticus, 2));
     }
 
@@ -84,6 +88,8 @@ public class PrimerEntregaTest {
         gladiadorAtticus.jugarTurno(camino);
 
         //Assert jugador no avanza, pero recibe 5 de energia por bono sin energia
+        verify(loggerMock).info("El gladiador Atticus no avanza, esta sin energia, recibe bono de 5 puntos");
+        verify(loggerMock).info("El gladiador ahora tiene 5 puntos de energía");
         assertTrue(camino.estaEl(gladiadorAtticus, 1));
         assertTrue(gladiadorAtticus.tenesPuntosDeEnegia(5));
     }
@@ -102,6 +108,8 @@ public class PrimerEntregaTest {
         gladiador.jugarTurno(camino);
 
         //Assert 20 iniciales + 10 por comer
+        verify(loggerMock).info("El gladiador Atticus encontró moretum, ganas 10 puntos");
+        verify(loggerMock).info("El gladiador ahora tiene 30 puntos de energía");
         assertTrue(gladiador.tenesPuntosDeEnegia(30));
     }
 
@@ -124,6 +132,7 @@ public class PrimerEntregaTest {
         gladiador.jugarTurno(camino);
 
         // Assert
+        verify(loggerMock).info("El gladiador recibe casco");
         assertTrue(gladiador.tenesPuntosDeEnegia(5));
     }
 
@@ -147,6 +156,7 @@ public class PrimerEntregaTest {
         gladiador.jugarTurno(camino);
 
         // Assert
+        verify(loggerMock).info("El gladiador recibe un escudo y una espada");
         assertTrue(gladiador.tenesPuntosDeEnegia(18));
     }
 
@@ -166,6 +176,8 @@ public class PrimerEntregaTest {
         gladiador.jugarTurno(camino);
 
         //Assert
+        verify(loggerMock).info("El gladiador Atticus encontró una fiera");
+        verify(loggerMock).info("El gladiador Atticus tiene un casco, pierde 15 puntos de energia");
         assertTrue(gladiador.tenesPuntosDeEnegia(5));
     }
 
@@ -184,6 +196,8 @@ public class PrimerEntregaTest {
         }
 
         //Assert, sube 5 puntos de los 20 iniciales
+        verify(loggerMock).info("El gladiador Atticus subió de nivel a SemiSenior");
+        verify(loggerMock).info("El gladiador Atticus consigue 5 puntos de energia por ser SemiSenior");
         assertTrue(gladiador.tenesPuntosDeEnegia(25));
     }
 
@@ -202,6 +216,8 @@ public class PrimerEntregaTest {
         gladiador.jugarTurno(camino);
 
         //Assert el jugador vuelve a mitad de camino
+        verify(loggerMock, atLeastOnce()).info("El gladiador Atticus llegó a la meta");
+        verify(loggerMock, atLeastOnce()).info("El gladiador Atticus no tiene llave, vuelve a mitad de camino");
         assertTrue(camino.estaEl(gladiador, 1));
     }
 
@@ -227,6 +243,8 @@ public class PrimerEntregaTest {
         gladiador.jugarTurno(camino);
 
         //Assert
+        verify(loggerMock).info("El gladiador recibe una llave");
+        verify(loggerMock).info("El gladiador Atticus tiene la llave, no pierde energia");
         assertTrue(gladiador.tenesPuntosDeEnegia(20));
     }
 
@@ -257,6 +275,8 @@ public class PrimerEntregaTest {
 
 
         //Assert
+        verify(loggerMock).info("El gladiador recibe una llave");
+        verify(loggerMock).info("El gladiador cayo en una casilla de mejora pero ya esta al máximo");
         assertTrue(gladiador.tenesPuntosDeEnegia(20));
     }
 
@@ -274,5 +294,6 @@ public class PrimerEntregaTest {
 
         // Verificar que la excepción se lanza en la ejecución 30
         assertThrows(SinTurnos.class, () -> turnos.ejecutar(gladiadores, null));
+        verify(loggerMock).error("Se han acabado los turnos, no hay ganador");
     }
 }

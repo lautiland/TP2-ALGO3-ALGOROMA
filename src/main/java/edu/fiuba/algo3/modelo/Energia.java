@@ -16,7 +16,7 @@ public class Energia {
 
     public void modificarPuntos(int cantidad) {
         this.puntos += cantidad;
-        System.out.print(" (" + this.puntos + ")");
+        Logger.getInstance().info("El gladiador ahora tiene " + this.puntos + " puntos de energía");
     }
 
     public boolean tenes(int puntos) {

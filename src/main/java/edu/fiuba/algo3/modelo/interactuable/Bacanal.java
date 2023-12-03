@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.interactuable;
 
 import edu.fiuba.algo3.modelo.Gladiador;
+import edu.fiuba.algo3.modelo.Logger;
 import edu.fiuba.algo3.modelo.tablero.Camino;
 
 public class Bacanal implements Interactuable {
@@ -9,9 +10,9 @@ public class Bacanal implements Interactuable {
 
     @Override
     public void interactuarCon(Gladiador gladiador, Camino camino) {
-        System.out.println(", caiste en bacanal, tiras el dado nuevamente ");
+        Logger.getInstance().info("Gladiador " + gladiador.getNombre() + " cayó en una Bacanal");
         int tirada = gladiador.calcularMovimientos();
-        System.out.print("Tiraste " + tirada + ", tomas " + tirada + " tragos, perdes " + PUNTOS_POR_TRAGO * tirada + " puntos ");
+        Logger.getInstance().info("Tiraste " + tirada + ", tomas " + tirada + " tragos, perdes " + PUNTOS_POR_TRAGO * tirada + " puntos ");
         gladiador.modificarEnergia(-PUNTOS_POR_TRAGO * tirada);
     }
 }

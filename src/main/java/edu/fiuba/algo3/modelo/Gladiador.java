@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.tablero.Camino;
 
 public class Gladiador {
 
-    public final String NOMBRE;
+    private final String NOMBRE;
     private final Energia ENERGIA = new Energia();
     private final Tiradas TIRADAS;
     private Estado estado = new Sano();
@@ -24,7 +24,7 @@ public class Gladiador {
     }
 
     public void jugarTurno(Camino camino) {
-        System.out.println("\n\nTurno " + this.NOMBRE);
+        Logger.getInstance().info("Es el turno de " + this.NOMBRE);
         this.estado = this.estado.jugar(this, camino);
         this.TIRADAS.verificarLimite(this, camino);
     }
@@ -55,6 +55,10 @@ public class Gladiador {
 
     public Estado actualizarEstado() {
         return this.ENERGIA.actualizarEstado(this.estado);
+    }
+
+    public String getNombre() {
+        return this.NOMBRE;
     }
 
     public boolean tenesPuntosDeEnegia(int puntos) {

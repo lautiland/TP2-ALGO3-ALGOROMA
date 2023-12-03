@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.parser.DataClassTablero;
+import edu.fiuba.algo3.modelo.parser.JuegoParser;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
 
 import java.io.IOException;
@@ -13,7 +15,8 @@ public class AlgoRoma {
     private final Turnos turnos = new Turnos();
 
     public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
-        DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson(rutaDelMapa);
+        JuegoParser parser = new JuegoParser();
+        DataClassTablero mapa = parser.parsear(rutaDelMapa, "json");
         this.tablero = new Tablero(gladiadores, mapa);
     }
 

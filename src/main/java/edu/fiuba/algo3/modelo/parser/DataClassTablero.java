@@ -1,25 +1,17 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.parser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataClassTablero {
 
-    private final int ANCHO;
-    private final int LARGO;
-    private final List<DataClassCelda> camino = new ArrayList<>();
+    public final int ANCHO;
+    public final int LARGO;
+    public final List<DataClassCelda> camino = new ArrayList<>();
 
     public DataClassTablero(int ancho, int largo) {
         this.ANCHO = ancho;
         this.LARGO = largo;
-    }
-
-    public int getLARGO() {
-        return LARGO;
-    }
-
-    public int getANCHO() {
-        return ANCHO;
     }
 
     public List<DataClassCelda> getCamino() {

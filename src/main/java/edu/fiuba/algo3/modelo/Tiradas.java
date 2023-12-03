@@ -23,7 +23,7 @@ public class Tiradas {
 
     public void verificarLimite(Gladiador gladiador, Camino camino) {
         if (this.tiradas >= TIRADAS_MAXIMAS) {
-            System.out.println(gladiador.NOMBRE + " eliminado");
+            Logger.getInstance().info("Gladiador " + gladiador.getNombre() + " ha llegado al limite de tiradas");
             camino.eliminarGladiadorDeCamino(gladiador);
         }
     }

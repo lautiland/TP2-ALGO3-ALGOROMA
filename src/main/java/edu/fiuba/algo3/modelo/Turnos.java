@@ -12,8 +12,10 @@ public class Turnos {
     private int turnosActuales = 0;
 
     public void ejecutar(List<Gladiador> gladiadores, Tablero tablero) {
-        if (turnosActuales >= TURNOS_MAXIMOS)
+        if (turnosActuales >= TURNOS_MAXIMOS) {
+            Logger.getInstance().error("Se han acabado los turnos, no hay ganador");
             throw new SinTurnos();
+        }
 
         this.turnosActuales += 1;
         Iterator<Gladiador> iterator = gladiadores.iterator();
@@ -23,7 +25,7 @@ public class Turnos {
         }
 
         if (this.turnosActuales >= TURNOS_MAXIMOS) {
-            System.out.println("Nadie Gano");
+            Logger.getInstance().error("Se han acabado los turnos, no hay ganador");
             throw new SinTurnos();
         }
     }

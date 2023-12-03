@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo.estado;
 
 import edu.fiuba.algo3.modelo.Gladiador;
+import edu.fiuba.algo3.modelo.Logger;
 
 public class Lesionado implements Estado {
     @Override
     public Estado jugar(Gladiador gladiador) {
-        System.out.print(gladiador.NOMBRE + " estas lesionado, perdes el turno");
+        Logger.getInstance().info("El gladiador " + gladiador.getNombre() + " no avanza, esta lesionado");
         return new Sano();
     }
 }

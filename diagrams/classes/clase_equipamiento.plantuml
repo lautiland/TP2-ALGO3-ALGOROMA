@@ -17,37 +17,37 @@ EscudoYEspada ..> Llave
 Class Equipamiento{
     + {abstract} actualizar() : Equipamiento
     + {abstract} resistirAtaque( :Gladiador)
-    + {abstract} abrirPuerta( :Gladiador, :Camino)
+    + {abstract} abrirPuerta( :Gladiador, :Camino) : boolean
 }
 
 class SinEquipamiento{
     + actualizar() : Equipamiento
     + resistirAtaque( :Gladiador)
-    + abrirPuerta( :Gladiador, :Camino)
+    + abrirPuerta( :Gladiador, :Camino) : boolean
 }
 
 class Casco{
     + actualizar() : Equipamiento
     + resistirAtaque( :Gladiador)
-    + abrirPuerta( :Gladiador, :Camino)
+    + abrirPuerta( :Gladiador, :Camino) : boolean
 }
 
 class Armadura{
     + actualizar() : Equipamiento
     + resistirAtaque( :Gladiador)
-    + abrirPuerta( :Gladiador, :Camino)
+    + abrirPuerta( :Gladiador, :Camino) : boolean
 }
 
 class EscudoYEspada{
     + actualizar() : Equipamiento
     + resistirAtaque( :Gladiador)
-    + abrirPuerta( :Gladiador, :Camino)
+    + abrirPuerta( :Gladiador, :Camino) : boolean
 }
 
 class Llave {
     + actualizar() : Equipamiento
     + resistirAtaque( :Gladiador)
-    + abrirPuerta( :Gladiador, :Camino)
+    + abrirPuerta( :Gladiador, :Camino) : boolean
 }
 
 

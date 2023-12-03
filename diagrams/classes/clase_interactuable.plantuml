@@ -1,6 +1,6 @@
 @startuml
 !theme plain
-skinparam linetype polyline
+skinparam linetype ortho
 
 
 class InteractuableFactory {
@@ -31,16 +31,21 @@ class Comida {
     + interactuarCon( :Gladiador)
 }
 
+class Llegada {
+    + interactuarCon( :Gladiador)
+}
+
 interface Interactuable{
     + interactuarCon( :Gladiador)
 }
 
-InteractuableFactory ..u.> Ninguno
+InteractuableFactory .u.> Ninguno
 InteractuableFactory .u.> Bacanal
-InteractuableFactory ..u.> Lesion
-InteractuableFactory ..u.> Fiera
+InteractuableFactory .u.> Lesion
+InteractuableFactory .u.> Fiera
 InteractuableFactory .u.> Equipamiento
-InteractuableFactory ..u.> Comida
+InteractuableFactory .u.> Comida
+InteractuableFactory .u.> Llegada
 
 Interactuable <|.. Bacanal
 Interactuable <|.. Lesion
@@ -48,5 +53,6 @@ Interactuable <|.. Comida
 Interactuable <|.. Ninguno
 Interactuable <|.. Fiera
 Interactuable <|.. Equipamiento
+Interactuable <|.. Llegada
 
 @enduml

@@ -1,0 +1,41 @@
+@startuml
+!theme plain
+skinparam linetype polyline
+
+class Turnos {
+    - {static} TURNOS_MAXIMOS: int
+    - turnosActuales: int
+}
+class Gladiador {
+    - NOMBRE: String
+}
+interface Estado
+interface Equipamiento
+class Energia {
+    - puntos: int
+}
+interface Celda
+interface Interactuable
+interface Seniority {
+    # experiencia: int
+}
+class Tiradas {
+    - tiradas: int
+    - {static} TIRADAS_MAXIMAS: int
+}
+
+AlgoRoma --> Tablero
+AlgoRoma --> "2..n" Gladiador
+Gladiador --> Energia
+Gladiador --> Tiradas
+Tiradas --> Dado
+Gladiador --> Estado
+Gladiador --> Equipamiento
+Gladiador --> Seniority
+AlgoRoma -r-> Turnos
+Tablero --> Camino
+Tablero -r-> "1..n" Celda
+Camino --> "1..n" Casilla
+Casilla --> "0..2" Interactuable
+
+@enduml

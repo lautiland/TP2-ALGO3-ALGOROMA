@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.parser;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -6,8 +6,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import edu.fiuba.algo3.modelo.excepciones.JSONInvalido;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.Reader;
 
 public class JSONReader {
@@ -49,8 +47,7 @@ public class JSONReader {
         return jsonObject;
     }
 
-    public static DataClassTablero obtenerMapaDesdeJson(String rutaArchivoJson) throws IOException {
-        Reader reader = new FileReader(rutaArchivoJson);
+    public static DataClassTablero obtenerMapaDesdeJson(Reader reader) {
         JsonElement jsonElement = JsonParser.parseReader(reader);
 
         JsonObject jsonObject = validarJSON(jsonElement);

@@ -7,9 +7,4 @@ public abstract class Seniority {
     protected int experiencia;
 
     public abstract Seniority actualizar(Gladiador gladiador);
-
-    public boolean equals(Seniority seniority) {
-        return this.getClass() == seniority.getClass();
-    }
-
 }

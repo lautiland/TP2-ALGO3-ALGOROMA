@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.parser;
 
+import edu.fiuba.algo3.modelo.Logger;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -10,11 +12,10 @@ public class JuegoParser {
             if (formato.equals("json")) {
                 return JSONReader.obtenerMapaDesdeJson(reader);
             } else {
-                System.out.println("Formato no soportado"); //TODO: Usar el logger a futuro aca
+                Logger.getInstance().error("Formato no soportado: " + formato);
             }
         } catch (IOException e) {
-            System.out.println("No se pudo abrir el archivo"); //TODO: Usar el logger a futuro aca
-            e.printStackTrace(); //TODO: reemplazar logger.error(e.getMessage()) a futuro
+            Logger.getInstance().error("No se pudo abrir el archivo: " + e.getMessage());
             throw e;
         }
         return null;

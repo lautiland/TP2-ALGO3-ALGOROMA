@@ -53,6 +53,7 @@ public class Camino {
         this.desplazarGladiadorEInteractuar(gladiador, this.sendero.size() / 2);
     }
 
+    // Todo: Remover, no se usa?
     public void eliminarGladiadorDeCamino(Gladiador gladiador) {
         this.gladiadoresANumeroDeCasilla.remove(gladiador);
     }

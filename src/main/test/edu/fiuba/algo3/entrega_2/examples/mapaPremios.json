@@ -1,0 +1,66 @@
+{
+  "mapa": {
+    "ancho": 10,
+    "largo": 18
+  },
+  "camino": {
+    "celdas": [
+      {
+        "x": 1,
+        "y": 7,
+        "tipo": "Salida",
+        "obstaculo": "",
+        "premio": ""
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "",
+        "premio": "Comida"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "",
+        "premio": "Equipamiento"
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "",
+        "premio": "Equipamiento"
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "",
+        "premio": "Equipamiento"
+      },
+      {
+        "x": 6,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "",
+        "premio": "Equipamiento"
+      },
+      {
+        "x": 7,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "",
+        "premio": "Equipamiento"
+      },
+      {
+        "x": 8,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "",
+        "premio": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "mapa": {
+    "ancho": 10,
+    "largo": 18
+  },
+  "camino": {
+    "celdas": [
+      {
+        "x": 1,
+        "y": 7,
+        "tipo": "Salida",
+        "obstaculo": "",
+        "premio": ""
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "Bacanal",
+        "premio": ""
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "Lesion",
+        "premio": ""
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "Fiera",
+        "premio": ""
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "tipo": "Camino",
+        "obstaculo": "",
+        "premio": ""
+      }
+    ]
+  }
+}

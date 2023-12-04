@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.excepciones.JuegoSinGladiadores;
 import edu.fiuba.algo3.modelo.parser.DataClassTablero;
 import edu.fiuba.algo3.modelo.parser.JuegoParser;
 import edu.fiuba.algo3.modelo.tablero.Tablero;
@@ -15,6 +16,11 @@ public class AlgoRoma {
     private final Turnos turnos = new Turnos();
 
     public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
+        if (gladiadores.isEmpty()) {
+            Logger.getInstance().error("No hay gladiadores para iniciar el juego, agregue gladiadores primero");
+            throw new JuegoSinGladiadores();
+        }
+
         JuegoParser parser = new JuegoParser();
         DataClassTablero mapa = parser.parsear(rutaDelMapa, "json");
         this.tablero = new Tablero(gladiadores, mapa);

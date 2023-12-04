@@ -1,15 +1,32 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.modelo.AlgoRoma;
+import edu.fiuba.algo3.modelo.Dado;
+import edu.fiuba.algo3.modelo.Gladiador;
+import edu.fiuba.algo3.modelo.Logger;
+import edu.fiuba.algo3.modelo.excepciones.JuegoSinGladiadores;
 import edu.fiuba.algo3.modelo.parser.DataClassCelda;
 import edu.fiuba.algo3.modelo.parser.DataClassTablero;
 import edu.fiuba.algo3.modelo.parser.JuegoParser;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class SegundaEntregaTest {
+    private Dado dadoMock;
+    private static Logger loggerMock;
+
+    @BeforeEach
+    public void beforeEach() {
+        dadoMock = mock(Dado.class);
+        when(dadoMock.tirar()).thenReturn(1);
+        loggerMock = mock(Logger.class);
+        new Logger(loggerMock);
+    }
 
     @Test
     public void test13ElJSONDelMapaEsValido() throws IOException {
@@ -45,8 +62,106 @@ public class SegundaEntregaTest {
         assertEquals("Comida", celdaConDosObstaculos.premio);
     }
 
+
     @Test
-    public void test17ElJuegoSeCreaAcordeAlJSON() {
+    public void test15ElJuegoParseaLosObstaculosCorrectamente() throws IOException {
+        AlgoRoma algoRoma = new AlgoRoma();
+        Gladiador gladiador = new Gladiador("Atticus", dadoMock);
+        algoRoma.agregarGladiador(gladiador);
+        algoRoma.iniciarJuegoCompleto("src/main/test/edu/fiuba/algo3/entrega_2/examples/mapaObstaculos.json");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("Gladiador Atticus cayó en una Bacanal");
+        verify(loggerMock).info("Tiraste 1, tomas 1 tragos, perdes 5 puntos ");
+        assertTrue(gladiador.tenesPuntosDeEnegia(15));
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador Atticus se lesiono");
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador Atticus no avanza, esta lesionado");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador Atticus encontró una fiera");
+        assertTrue(gladiador.tenesPuntosDeEnegia(-5));
+    }
+
+    @Test
+    public void test16ElJuegoParseaLosPremiosCorrectamente() throws IOException {
+        AlgoRoma algoRoma = new AlgoRoma();
+        Gladiador gladiador = new Gladiador("Atticus", dadoMock);
+        algoRoma.agregarGladiador(gladiador);
+        algoRoma.iniciarJuegoCompleto("src/main/test/edu/fiuba/algo3/entrega_2/examples/mapaPremios.json");
+
+        algoRoma.jugarTurno();
+        assertTrue(gladiador.tenesPuntosDeEnegia(30));
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador recibe casco");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador recibe una armadura");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador recibe un escudo y una espada");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador recibe una llave");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador cayo en una casilla de mejora pero ya esta al máximo");
+    }
+
+    @Test
+    public void test17ElJuegoSeCreaAcordeAlJSON() throws IOException {
+        AlgoRoma algoRoma = new AlgoRoma();
+        Gladiador gladiador = new Gladiador("Atticus", dadoMock);
+        algoRoma.agregarGladiador(gladiador);
+        algoRoma.iniciarJuegoCompleto("src/main/test/edu/fiuba/algo3/entrega_2/examples/mapaCompleto.json");
+
+        algoRoma.jugarTurno();
+        assertTrue(gladiador.tenesPuntosDeEnegia(25));
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador recibe casco");
+        verify(loggerMock).info("El gladiador Atticus se lesiono");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador Atticus no avanza, esta lesionado");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador recibe una armadura"); // Se aplica primero el premio luego el obstaculo!
+        verify(loggerMock).info("El gladiador Atticus encontró una fiera");
+        assertTrue(gladiador.tenesPuntosDeEnegia(15));
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador recibe un escudo y una espada");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador recibe una llave");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock, atLeastOnce()).info("Gladiador Atticus tira el dado, avanza 1 casillas");
+
+        algoRoma.jugarTurno();
+        verify(loggerMock).info("El gladiador Atticus abrió la puerta con la llave");
+
+        assertEquals(gladiador, algoRoma.obtenerGanador());
+    }
+
+    @Test
+    public void test18VerificarLogger() {
+        Gladiador gladiador = new Gladiador("Atticus", dadoMock);
+        AlgoRoma algoRoma = new AlgoRoma();
+
+        verify(loggerMock, never()).info(anyString());
+        verify(loggerMock, never()).error(anyString());
+
+
+        gladiador.modificarEnergia(10);
+        verify(loggerMock).info("El gladiador ahora tiene 30 puntos de energía");
+
+        assertThrows(JuegoSinGladiadores.class, () -> algoRoma.iniciarJuegoCompleto("mapa.json"));
+        verify(loggerMock).error("No hay gladiadores para iniciar el juego, agregue gladiadores primero");
     }
 }
 

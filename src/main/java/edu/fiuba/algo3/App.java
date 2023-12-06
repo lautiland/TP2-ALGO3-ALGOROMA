@@ -1,12 +1,10 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.controller.InicioController;
+import edu.fiuba.algo3.model.AlgoRoma;
+import edu.fiuba.algo3.view.InicioView;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import com.google.gson.Gson;
 
 /**
  * JavaFX App
@@ -15,21 +13,18 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+        stage.setTitle("AlgoRoma");
+        stage.setMaximized(true);
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
+        AlgoRoma model = new AlgoRoma();
+        InicioView inicio = new InicioView();
+        InicioController controller = new InicioController(model, inicio);
+
+        stage.setScene(inicio.getScene());
         stage.show();
     }
 
     public static void main(String[] args) {
         launch();
     }
-
-
-
-
-
 }

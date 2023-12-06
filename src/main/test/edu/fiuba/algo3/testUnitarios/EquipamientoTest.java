@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.testUnitarios;
 
-import edu.fiuba.algo3.modelo.Dado;
-import edu.fiuba.algo3.modelo.Gladiador;
+import edu.fiuba.algo3.model.Dado;
+import edu.fiuba.algo3.model.Gladiador;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

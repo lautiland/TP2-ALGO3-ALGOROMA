@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.AlgoRoma;
-import edu.fiuba.algo3.modelo.Dado;
-import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.Logger;
-import edu.fiuba.algo3.modelo.excepciones.JuegoSinGladiadores;
-import edu.fiuba.algo3.modelo.parser.DataClassCelda;
-import edu.fiuba.algo3.modelo.parser.DataClassTablero;
-import edu.fiuba.algo3.modelo.parser.JuegoParser;
+import edu.fiuba.algo3.model.AlgoRoma;
+import edu.fiuba.algo3.model.Dado;
+import edu.fiuba.algo3.model.Gladiador;
+import edu.fiuba.algo3.model.Logger;
+import edu.fiuba.algo3.model.excepciones.JuegoSinGladiadores;
+import edu.fiuba.algo3.model.parser.DataClassCelda;
+import edu.fiuba.algo3.model.parser.DataClassTablero;
+import edu.fiuba.algo3.model.parser.JuegoParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

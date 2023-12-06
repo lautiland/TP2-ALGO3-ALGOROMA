@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.testUnitarios;
 
-import edu.fiuba.algo3.modelo.Logger;
-import edu.fiuba.algo3.modelo.parser.JuegoParser;
+import edu.fiuba.algo3.model.Logger;
+import edu.fiuba.algo3.model.parser.JuegoParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

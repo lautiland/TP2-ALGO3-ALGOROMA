@@ -1,14 +1,14 @@
 package edu.fiuba.algo3.testUnitarios;
 
-import edu.fiuba.algo3.modelo.Dado;
-import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.estado.Estado;
-import edu.fiuba.algo3.modelo.estado.Lesionado;
-import edu.fiuba.algo3.modelo.estado.Sano;
-import edu.fiuba.algo3.modelo.interactuable.Interactuable;
-import edu.fiuba.algo3.modelo.interactuable.InteractuableFactory;
-import edu.fiuba.algo3.modelo.tablero.Camino;
-import edu.fiuba.algo3.modelo.tablero.Casilla;
+import edu.fiuba.algo3.model.Dado;
+import edu.fiuba.algo3.model.Gladiador;
+import edu.fiuba.algo3.model.estado.Estado;
+import edu.fiuba.algo3.model.estado.Lesionado;
+import edu.fiuba.algo3.model.estado.Sano;
+import edu.fiuba.algo3.model.interactuable.Interactuable;
+import edu.fiuba.algo3.model.interactuable.InteractuableFactory;
+import edu.fiuba.algo3.model.tablero.Camino;
+import edu.fiuba.algo3.model.tablero.Casilla;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

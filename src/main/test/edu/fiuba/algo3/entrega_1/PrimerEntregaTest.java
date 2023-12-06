@@ -1,16 +1,16 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Dado;
-import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.Logger;
-import edu.fiuba.algo3.modelo.Turnos;
-import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
-import edu.fiuba.algo3.modelo.interactuable.Interactuable;
-import edu.fiuba.algo3.modelo.interactuable.InteractuableFactory;
-import edu.fiuba.algo3.modelo.interactuable.Llegada;
-import edu.fiuba.algo3.modelo.interactuable.Ninguno;
-import edu.fiuba.algo3.modelo.tablero.Camino;
-import edu.fiuba.algo3.modelo.tablero.Casilla;
+import edu.fiuba.algo3.model.Dado;
+import edu.fiuba.algo3.model.Gladiador;
+import edu.fiuba.algo3.model.Logger;
+import edu.fiuba.algo3.model.Turnos;
+import edu.fiuba.algo3.model.excepciones.SinTurnos;
+import edu.fiuba.algo3.model.interactuable.Interactuable;
+import edu.fiuba.algo3.model.interactuable.InteractuableFactory;
+import edu.fiuba.algo3.model.interactuable.Llegada;
+import edu.fiuba.algo3.model.interactuable.Ninguno;
+import edu.fiuba.algo3.model.tablero.Camino;
+import edu.fiuba.algo3.model.tablero.Casilla;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

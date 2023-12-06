@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.modelo.AlgoRoma;
-import edu.fiuba.algo3.modelo.Dado;
-import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.excepciones.SinTurnos;
+import edu.fiuba.algo3.model.AlgoRoma;
+import edu.fiuba.algo3.model.Dado;
+import edu.fiuba.algo3.model.Gladiador;
+import edu.fiuba.algo3.model.excepciones.SinTurnos;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

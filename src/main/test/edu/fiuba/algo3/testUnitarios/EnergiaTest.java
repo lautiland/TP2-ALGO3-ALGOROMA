@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.testUnitarios;
 
-import edu.fiuba.algo3.modelo.Energia;
-import edu.fiuba.algo3.modelo.estado.Estado;
-import edu.fiuba.algo3.modelo.estado.Sano;
-import edu.fiuba.algo3.modelo.estado.SinEnergia;
+import edu.fiuba.algo3.model.Energia;
+import edu.fiuba.algo3.model.estado.Estado;
+import edu.fiuba.algo3.model.estado.Sano;
+import edu.fiuba.algo3.model.estado.SinEnergia;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertSame;

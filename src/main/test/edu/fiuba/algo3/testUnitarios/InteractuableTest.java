@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.testUnitarios;
 
-import edu.fiuba.algo3.modelo.Gladiador;
-import edu.fiuba.algo3.modelo.interactuable.Interactuable;
-import edu.fiuba.algo3.modelo.interactuable.InteractuableFactory;
-import edu.fiuba.algo3.modelo.tablero.Camino;
+import edu.fiuba.algo3.model.Gladiador;
+import edu.fiuba.algo3.model.interactuable.Interactuable;
+import edu.fiuba.algo3.model.interactuable.InteractuableFactory;
+import edu.fiuba.algo3.model.tablero.Camino;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;

@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.testUnitarios;
 
-import edu.fiuba.algo3.modelo.excepciones.JSONInvalido;
-import edu.fiuba.algo3.modelo.parser.DataClassCelda;
-import edu.fiuba.algo3.modelo.parser.DataClassTablero;
-import edu.fiuba.algo3.modelo.parser.JSONReader;
+import edu.fiuba.algo3.model.excepciones.JSONInvalido;
+import edu.fiuba.algo3.model.parser.DataClassCelda;
+import edu.fiuba.algo3.model.parser.DataClassTablero;
+import edu.fiuba.algo3.model.parser.JSONReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;

@@ -4,7 +4,10 @@ import edu.fiuba.algo3.controller.InicioController;
 import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.view.InicioView;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 /**
  * JavaFX App
@@ -14,10 +17,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle("AlgoRoma");
-        stage.setMaximized(true);
+        Image icon = new Image(Objects.requireNonNull(getClass().getResource("/icono.png")).toExternalForm());
+        stage.getIcons().add(icon);
 
         AlgoRoma model = new AlgoRoma();
-        InicioView inicio = new InicioView();
+        InicioView inicio = new InicioView(stage);
         InicioController controller = new InicioController(model, inicio);
 
         stage.setScene(inicio.getScene());

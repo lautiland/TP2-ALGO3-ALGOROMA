@@ -12,6 +12,8 @@ import static org.mockito.Mockito.mock;
 
 public class EnergiaTest {
 
+    private static final int ENERGIA_A_REDUCIR = -20;
+
     @Test
     public void test01AtualizarSinEnergia() {
         // Arrange
@@ -19,7 +21,7 @@ public class EnergiaTest {
         Estado estadoMock = mock(Estado.class);
 
         //Act
-        energia.modificarPuntos(-20);
+        energia.modificarPuntos(ENERGIA_A_REDUCIR);
 
         //Assert
         assertTrue(energia.actualizarEstado(estadoMock) instanceof SinEnergia);
@@ -46,7 +48,7 @@ public class EnergiaTest {
         assertSame(estadoLesionado, energia.actualizarEstado(estadoLesionado));
 
         //Act
-        energia.modificarPuntos(-20);
+        energia.modificarPuntos(ENERGIA_A_REDUCIR);
 
         //Assert
         assertTrue(energia.actualizarEstado(estadoSano) instanceof SinEnergia);

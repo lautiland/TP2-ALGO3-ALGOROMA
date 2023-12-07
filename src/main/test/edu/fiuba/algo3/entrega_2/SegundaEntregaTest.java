@@ -17,13 +17,32 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class SegundaEntregaTest {
+    private static final int TABLERO_LARGO = 18;
+    private static final int TABLERO_ANCHO = 10;
+    private static final int TABLERO_CANTIDAD_ELEMENTOS = 38;
+    private static final int ELEMENTO_CON_LESION_COMIDA = 26;
+    private static final int ULTIMA_CELDA_X = 17;
+    private static final int CELDA_RANDOM_X = 13;
+    private static final int PRIMER_CELDA_X = 1;
+    private static final int ULTIMA_CELDA_Y = 1;
+    private static final String SIN_INTERACTUABLE = "";
+    private static final int PRIMER_CELDA_Y = 7;
+    private static final int CELDA_RANDOM_Y = 9;
+    private static final String CELDA_RANDOM_OBSTACULO = "Lesion";
+    private static final String CELDA_RANDOM_PREMIO = "Comida";
+    private static final int PUNTOS_DESPUES_UN_TRAGO = 15;
+    private static final int PUNTOS_DESPUES_UN_TRAGO_FIERA = -5;
+    private static final int PUNTOS_DESPUES_COMIDA = 30;
+    private static final int PUNTOS_DESPUES_COMIDA_BACANAL = 25;
+
+    private static final int PUNTOS_DESPUES_COMIDA_BACANAL_ARMADURA_FIERA = 15;
     private Dado dadoMock;
     private static Logger loggerMock;
 
     @BeforeEach
     public void beforeEach() {
         dadoMock = mock(Dado.class);
-        when(dadoMock.tirar()).thenReturn(1);
+        when(dadoMock.tirar()).thenReturn(PRIMER_CELDA_X);
         loggerMock = mock(Logger.class);
         new Logger(loggerMock);
     }
@@ -32,34 +51,34 @@ public class SegundaEntregaTest {
     public void test13ElJSONDelMapaEsValido() throws IOException {
         JuegoParser juegoParser = new JuegoParser();
         DataClassTablero DataTablero = juegoParser.parsear("mapa.json", "json");
-        assertEquals(10, DataTablero.ANCHO);
-        assertEquals(18, DataTablero.LARGO);
+        assertEquals(TABLERO_ANCHO, DataTablero.ANCHO);
+        assertEquals(TABLERO_LARGO, DataTablero.LARGO);
     }
 
     @Test
     public void test14ElJSONDeLosObstaculosEsValido() throws IOException {
         JuegoParser juegoParser = new JuegoParser();
         DataClassTablero DataTablero = juegoParser.parsear("mapa.json", "json");
-        assertEquals(38, DataTablero.getCamino().size());
+        assertEquals(TABLERO_CANTIDAD_ELEMENTOS, DataTablero.getCamino().size());
 
         DataClassCelda primerCelda = DataTablero.getCamino().get(0);
         DataClassCelda ultimaCelda = DataTablero.getLlegada();
-        DataClassCelda celdaConDosObstaculos = DataTablero.getCamino().get(26);
+        DataClassCelda celdaConDosObstaculos = DataTablero.getCamino().get(ELEMENTO_CON_LESION_COMIDA);
 
-        assertEquals(1, primerCelda.X);
-        assertEquals(7, primerCelda.Y);
-        assertEquals("", primerCelda.obstaculo);
-        assertEquals("", primerCelda.premio);
+        assertEquals(PRIMER_CELDA_X, primerCelda.X);
+        assertEquals(PRIMER_CELDA_Y, primerCelda.Y);
+        assertEquals(SIN_INTERACTUABLE, primerCelda.obstaculo);
+        assertEquals(SIN_INTERACTUABLE, primerCelda.premio);
 
-        assertEquals(17, ultimaCelda.X);
-        assertEquals(1, ultimaCelda.Y);
-        assertEquals("", ultimaCelda.obstaculo);
-        assertEquals("", ultimaCelda.premio);
+        assertEquals(ULTIMA_CELDA_X, ultimaCelda.X);
+        assertEquals(ULTIMA_CELDA_Y, ultimaCelda.Y);
+        assertEquals(SIN_INTERACTUABLE, ultimaCelda.obstaculo);
+        assertEquals(SIN_INTERACTUABLE, ultimaCelda.premio);
 
-        assertEquals(13, celdaConDosObstaculos.X);
-        assertEquals(9, celdaConDosObstaculos.Y);
-        assertEquals("Lesion", celdaConDosObstaculos.obstaculo);
-        assertEquals("Comida", celdaConDosObstaculos.premio);
+        assertEquals(CELDA_RANDOM_X, celdaConDosObstaculos.X);
+        assertEquals(CELDA_RANDOM_Y, celdaConDosObstaculos.Y);
+        assertEquals(CELDA_RANDOM_OBSTACULO, celdaConDosObstaculos.obstaculo);
+        assertEquals(CELDA_RANDOM_PREMIO, celdaConDosObstaculos.premio);
     }
 
 
@@ -73,7 +92,7 @@ public class SegundaEntregaTest {
         algoRoma.jugarTurno();
         verify(loggerMock).info("Gladiador Atticus cayó en una Bacanal");
         verify(loggerMock).info("Tiraste 1, tomas 1 tragos, perdes 5 puntos ");
-        assertTrue(gladiador.tenesPuntosDeEnegia(15));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_UN_TRAGO));
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador Atticus se lesiono");
@@ -82,7 +101,7 @@ public class SegundaEntregaTest {
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador Atticus encontró una fiera");
-        assertTrue(gladiador.tenesPuntosDeEnegia(-5));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_UN_TRAGO_FIERA));
     }
 
     @Test
@@ -93,7 +112,7 @@ public class SegundaEntregaTest {
         algoRoma.iniciarJuegoCompleto("src/main/test/edu/fiuba/algo3/entrega_2/examples/mapaPremios.json");
 
         algoRoma.jugarTurno();
-        assertTrue(gladiador.tenesPuntosDeEnegia(30));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_COMIDA));
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador recibe casco");
@@ -119,7 +138,7 @@ public class SegundaEntregaTest {
         algoRoma.iniciarJuegoCompleto("src/main/test/edu/fiuba/algo3/entrega_2/examples/mapaCompleto.json");
 
         algoRoma.jugarTurno();
-        assertTrue(gladiador.tenesPuntosDeEnegia(25));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_COMIDA_BACANAL));
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador recibe casco");
@@ -131,7 +150,7 @@ public class SegundaEntregaTest {
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador recibe una armadura"); // Se aplica primero el premio luego el obstaculo!
         verify(loggerMock).info("El gladiador Atticus encontró una fiera");
-        assertTrue(gladiador.tenesPuntosDeEnegia(15));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_COMIDA_BACANAL_ARMADURA_FIERA));
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador recibe un escudo y una espada");

@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 public class ModelDependenciesTest {
-    private final String MODEL = "..modelo..";
-    private final String JAVA_LANG = "java..";
-    private final String JUNIT = "org.junit..";
-    private final String GSON = "com.google.gson..";
+    private static final String MODEL = "..modelo..";
+    private static final String JAVA_LANG = "java..";
+    private static final String JUNIT = "org.junit..";
+    private static final String GSON = "com.google.gson..";
 
     @Test
     public void elModeloSoloPuedeReferenciarClasesDelModeloAdemasJavaAdemasJunit() {

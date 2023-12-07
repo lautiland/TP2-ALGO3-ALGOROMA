@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.view.InicioView;
 import edu.fiuba.algo3.view.SeleccionView;
 import javafx.application.Platform;
@@ -9,11 +8,9 @@ import javafx.stage.Stage;
 
 public class InicioController {
     private final Stage stage;
-    private InicioView view;
 
     public InicioController(InicioView view, Stage stage) {
         this.stage = stage;
-        this.view = view;
 
         view.getIniciar().setOnAction(this::handleIniciarButton);
         view.getSalida().setOnAction(this::handleSalidaButton);

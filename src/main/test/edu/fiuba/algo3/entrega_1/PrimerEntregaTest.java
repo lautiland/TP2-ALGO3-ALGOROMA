@@ -22,6 +22,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class PrimerEntregaTest {
+    private static final int PUNTOS_DESPUES_COMER = 30;
+    private static final int PUNTOS_ATAQUE_FIERA_ESCUDO_ESPADA = 18;
+    private static final int PUNTOS_DESPUES_BONUS_SEMISENIOR = 25;
+    private static final int PUNTOS_ENERGIA_INICIALES = 20;
     private Dado dadoMock;
     private Interactuable sinInteraccion;
     private static Logger loggerMock;
@@ -110,7 +114,7 @@ public class PrimerEntregaTest {
         //Assert 20 iniciales + 10 por comer
         verify(loggerMock).info("El gladiador Atticus encontró moretum, ganas 10 puntos");
         verify(loggerMock).info("El gladiador ahora tiene 30 puntos de energía");
-        assertTrue(gladiador.tenesPuntosDeEnegia(30));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_COMER));
     }
 
 
@@ -157,7 +161,7 @@ public class PrimerEntregaTest {
 
         // Assert
         verify(loggerMock).info("El gladiador recibe un escudo y una espada");
-        assertTrue(gladiador.tenesPuntosDeEnegia(18));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_ATAQUE_FIERA_ESCUDO_ESPADA));
     }
 
     @Test
@@ -183,7 +187,7 @@ public class PrimerEntregaTest {
 
     @Test
     public void test08gladiadorSubeASemiSeniorDespuesDe8TurnosEIncrementaSuEnergia() {
-        // Arramge
+        // Arrange
         Gladiador gladiador = new Gladiador("Atticus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
         for (int i = 0; i < 9; i++) {
@@ -198,7 +202,7 @@ public class PrimerEntregaTest {
         //Assert, sube 5 puntos de los 20 iniciales
         verify(loggerMock).info("El gladiador Atticus subió de nivel a SemiSenior");
         verify(loggerMock).info("El gladiador Atticus consigue 5 puntos de energia por ser SemiSenior");
-        assertTrue(gladiador.tenesPuntosDeEnegia(25));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_BONUS_SEMISENIOR));
     }
 
     @Test
@@ -245,7 +249,7 @@ public class PrimerEntregaTest {
         //Assert
         verify(loggerMock).info("El gladiador recibe una llave");
         verify(loggerMock).info("El gladiador Atticus tiene la llave, no pierde energia");
-        assertTrue(gladiador.tenesPuntosDeEnegia(20));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_ENERGIA_INICIALES));
     }
 
     @Test
@@ -277,7 +281,7 @@ public class PrimerEntregaTest {
         //Assert
         verify(loggerMock).info("El gladiador recibe una llave");
         verify(loggerMock).info("El gladiador cayo en una casilla de mejora pero ya esta al máximo");
-        assertTrue(gladiador.tenesPuntosDeEnegia(20));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_ENERGIA_INICIALES));
     }
 
     @Test
@@ -287,7 +291,7 @@ public class PrimerEntregaTest {
         Turnos turnos = new Turnos();
 
         // Act y Assert
-        for (int i = 1; i < 30; i++) {
+        for (int i = 1; i < PUNTOS_DESPUES_COMER; i++) {
             // Realizar la ejecución del método 30 veces
             turnos.ejecutar(gladiadores, null);
         }

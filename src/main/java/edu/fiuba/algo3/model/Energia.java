@@ -5,7 +5,12 @@ import edu.fiuba.algo3.model.estado.SinEnergia;
 
 public class Energia {
 
-    private int puntos = 20;
+    private static final int PUNTOS_INICIALES = 20;
+    private int puntos;
+
+    public Energia() {
+        this.puntos = PUNTOS_INICIALES;
+    }
 
     public Estado actualizarEstado(Estado estado) {
         if (this.puntos <= 0) {

@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EquipamientoTest {
 
+    private static final int PUNTOS_FINALES_ATAQUE_CON_ESCUDO_ESPADA = 18;
+    private static final int PUNTOS_FINALES_ATAQUE_CON_ARMADURA = 10;
+
     @Test
     public void test01ArmaduraResta10PuntosDeEnergia() {
         //Arrange
@@ -19,7 +22,7 @@ public class EquipamientoTest {
         gladiador.recibirAtaque();
 
         //Assert, gladiador inicia con 20 puntos
-        assertTrue(gladiador.tenesPuntosDeEnegia(10));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_FINALES_ATAQUE_CON_ARMADURA));
 
     }
 
@@ -35,7 +38,7 @@ public class EquipamientoTest {
         gladiador.recibirAtaque();
 
         //Assert, gladiador inicia con 20 puntos
-        assertTrue(gladiador.tenesPuntosDeEnegia(18));
+        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_FINALES_ATAQUE_CON_ESCUDO_ESPADA));
 
     }
 }

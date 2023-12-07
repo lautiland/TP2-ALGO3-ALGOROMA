@@ -1,7 +1,6 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.controller.InicioController;
-import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.view.InicioView;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -21,7 +20,7 @@ public class App extends Application {
         stage.getIcons().add(icon);
 
         InicioView inicio = new InicioView(stage);
-        InicioController controller = new InicioController(inicio, stage);
+        new InicioController(inicio, stage);
 
         stage.setScene(inicio.getScene());
         stage.show();

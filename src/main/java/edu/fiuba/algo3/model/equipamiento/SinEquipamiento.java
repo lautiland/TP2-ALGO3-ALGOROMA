@@ -5,10 +5,12 @@ import edu.fiuba.algo3.model.Logger;
 
 public class SinEquipamiento extends Equipamiento {
 
+    private static final int DANIO_PUNTOS = -20;
+
     @Override
     public void resistirAtaque(Gladiador gladiador) {
         Logger.getInstance().info("El gladiador" + gladiador.getNombre() + " no tiene equipamiento, pierde 20 puntos de energia");
-        gladiador.modificarEnergia(-20);
+        gladiador.modificarEnergia(DANIO_PUNTOS);
     }
 
     @Override

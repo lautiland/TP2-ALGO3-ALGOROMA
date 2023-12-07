@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class SeleccionController {
     private final Stage stage;
-    private SeleccionView view;
+    private final SeleccionView view;
 
     public SeleccionController(SeleccionView view, Stage stage) {
         this.stage = stage;

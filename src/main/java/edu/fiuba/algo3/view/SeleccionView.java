@@ -1,26 +1,23 @@
 package edu.fiuba.algo3.view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.image.ImageView;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.geometry.Pos;
-
-import java.util.Objects;
 
 
 public class SeleccionView {
+    private static final int SPACING = 20;
     private final Scene scene;
     private Button salida;
 
     public SeleccionView(Stage stage) {
-        VBox layout = new VBox(20);
+        VBox layout = new VBox(SPACING);
         layout.setAlignment(Pos.CENTER);
 
         Text ejemplo = new Text("Acá va la interfaz de la creación de jugadores");

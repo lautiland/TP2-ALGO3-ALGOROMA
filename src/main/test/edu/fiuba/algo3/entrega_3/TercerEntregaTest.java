@@ -14,6 +14,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TercerEntregaTest {
+    private static final int TURNOS_MAXIMOS = 30;
+
     @Test
     public void test19ElJugadorGanaUnaPartida() throws IOException {
         AlgoRoma juego = new AlgoRoma();
@@ -52,7 +54,7 @@ public class TercerEntregaTest {
         juego.iniciarJuegoCompleto("mapa.json");
 
         assertThrows(SinTurnos.class, () -> {
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < TURNOS_MAXIMOS; i++) {
                 juego.jugarTurno();
             }
         });

@@ -16,7 +16,8 @@ import java.util.Objects;
 
 
 public class InicioView {
-    private Scene scene;
+    private final Scene scene;
+    private Button iniciar;
     private Button salida;
 
     public InicioView(Stage stage) {
@@ -43,19 +44,19 @@ public class InicioView {
 
     private void configurarBotones(VBox layout) {
 
-        Button start = new Button("Iniciar");
-        start.setPrefSize(100, 25);
-        start.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 16;");
+        iniciar = new Button("Iniciar");
+        iniciar.setPrefSize(100, 25);
+        iniciar.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 16;");
 
         salida = new Button("Salir");
         salida.setPrefSize(100, 25);
         salida.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 16;");
 
         Font customFont = Font.loadFont(getClass().getResourceAsStream("/TimesNewRoman.ttf"), 14);
-        start.setFont(customFont);
+        iniciar.setFont(customFont);
         salida.setFont(customFont);
 
-        layout.getChildren().addAll(start, salida);
+        layout.getChildren().addAll(iniciar, salida);
     }
 
     private void configurarBackground(VBox layout, Stage stage) {
@@ -76,5 +77,9 @@ public class InicioView {
 
     public Button getSalida() {
         return salida;
+    }
+
+    public Button getIniciar() {
+        return iniciar;
     }
 }

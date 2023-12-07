@@ -20,9 +20,8 @@ public class App extends Application {
         Image icon = new Image(Objects.requireNonNull(getClass().getResource("/icono.png")).toExternalForm());
         stage.getIcons().add(icon);
 
-        AlgoRoma model = new AlgoRoma();
         InicioView inicio = new InicioView(stage);
-        InicioController controller = new InicioController(model, inicio);
+        InicioController controller = new InicioController(inicio, stage);
 
         stage.setScene(inicio.getScene());
         stage.show();

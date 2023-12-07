@@ -3,41 +3,69 @@ package edu.fiuba.algo3.view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
-public class SeleccionView {
-    private static final int SPACING = 20;
+public class SeleccionView extends View {
     private final Scene scene;
-    private Button salida;
 
     public SeleccionView(Stage stage) {
         VBox layout = new VBox(SPACING);
         layout.setAlignment(Pos.CENTER);
 
-        Text ejemplo = new Text("Acá va la interfaz de la creación de jugadores");
-        VBox.setMargin(ejemplo, new Insets(0, 0, 50, 0));
-        Font titleFont = Font.loadFont(getClass().getResourceAsStream("/TimesNewRoman.ttf"), 14);
-        ejemplo.setFont(titleFont);
-        ejemplo.setFill(Color.BLACK);
-        layout.getChildren().add(ejemplo);
-
-
-        //acá va el código de la vista de selección de jugadores (configuración de botones, background, etc)
+        configurarContenido(layout);
+        configurarBackground(layout, stage);
 
         scene = new Scene(layout, 800, 600);
     }
 
-    public Scene getScene() {
-        return scene;
+    public void configurarContenido(VBox layout) {
+        VBox contenido = new VBox(SPACING);
+        contenido.setAlignment(Pos.CENTER);
+
+        configurarTexto(contenido);
+        configurarBotones(contenido);
+
+        layout.getChildren().add(contenido);
     }
 
-    public Button getSalida() {
-        return salida;
+    public void configurarTexto(VBox layout) {
+        Text texto = new Text("Seleccione la cantidad de jugadores");
+        VBox.setMargin(texto, new Insets(0, 0, 10, 0));
+        Font titleFont = Font.loadFont(getClass().getResourceAsStream(BTN_FONT), 25);
+        texto.setFont(titleFont);
+        texto.setFill(Color.WHITE);
+        //agrego sombra al texto para mejor visibilidad
+        DropShadow sombra = new DropShadow();
+        sombra.setColor(Color.BLACK);
+        sombra.setRadius(9);
+        sombra.setOffsetX(3);
+        sombra.setOffsetY(3);
+        texto.setEffect(sombra);
+        layout.getChildren().add(texto);
+    }
+
+    public void configurarBotones(VBox layout) {
+
+        HBox botonesBox = new HBox(SPACING);
+        botonesBox.setAlignment(Pos.CENTER);
+
+        for (int i = 2; i <= 6; i++) {
+            ToggleButton boton = new ToggleButton(Integer.toString(i));
+            configurarBoton(boton);
+            botonesBox.getChildren().add(boton);
+        }
+
+        layout.getChildren().add(botonesBox);
+    }
+
+    public Scene getScene() {
+        return scene;
     }
 }

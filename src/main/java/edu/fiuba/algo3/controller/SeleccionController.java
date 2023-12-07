@@ -12,6 +12,8 @@ public class SeleccionController {
         this.stage = stage;
         this.view = view;
 
+        //aca se deberia setear el handler para el boton de seleccion de jugadores
+
         AlgoRoma modelo = new AlgoRoma();
 
     }

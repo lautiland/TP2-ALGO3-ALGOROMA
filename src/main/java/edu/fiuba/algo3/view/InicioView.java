@@ -17,10 +17,10 @@ import java.util.Objects;
 
 public class InicioView {
     private static final int SPACING = 20;
-    private static final String TITULO_FONT = "Gelio.ttf";
+    private static final String TITULO_FONT = "/Gelio.ttf";
     private static final int TITULO_MB = 50;
     private static final int TITULO_FS = 120;
-    private static final String BTN_FONT = "TimesNewRoman.ttf";
+    private static final String BTN_FONT = "/TimesNewRoman.ttf";
     private static final int BTN_WIDTH = 100;
     private static final int BTN_HEIGHT = 25;
     private static final int BTN_FS = 14;

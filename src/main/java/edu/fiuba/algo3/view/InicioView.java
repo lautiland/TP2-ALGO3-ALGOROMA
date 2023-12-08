@@ -1,10 +1,13 @@
 package edu.fiuba.algo3.view;
 
+import edu.fiuba.algo3.controller.BotonIniciarHandler;
+import edu.fiuba.algo3.controller.BotonSalirHandler;
+import edu.fiuba.algo3.model.AlgoRoma;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.*;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -14,10 +17,14 @@ public class InicioView extends View {
     private final Scene scene;
     private Button iniciar;
     private Button salida;
+    private final Stage stage;
+    AlgoRoma juego;
 
-    public InicioView(Stage stage) {
+    public InicioView(Stage stage, AlgoRoma juego) {
         VBox layout = new VBox(SPACING);
         layout.setAlignment(Pos.CENTER);
+        this.stage = stage;
+        this.juego = juego;
 
         configurarTitulo(layout);
         configurarBotones(layout);
@@ -45,18 +52,13 @@ public class InicioView extends View {
         salida = new Button("Salir");
         configurarBoton(salida);
 
+        iniciar.setOnAction(new BotonIniciarHandler(stage, juego));
+        salida.setOnAction(new BotonSalirHandler());
+
         layout.getChildren().addAll(iniciar, salida);
     }
 
     public Scene getScene() {
         return scene;
-    }
-
-    public Button getSalida() {
-        return salida;
-    }
-
-    public Button getIniciar() {
-        return iniciar;
     }
 }

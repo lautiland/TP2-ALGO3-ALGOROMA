@@ -12,6 +12,7 @@ public class Tablero {
 
     private final Celda[][] grilla;
     private final Camino camino;
+    private DataClassCelda salida;
 
     public Tablero(List<Gladiador> gladiadores, DataClassTablero mapa) {
         this.grilla = new Celda[mapa.LARGO][mapa.ANCHO];
@@ -25,6 +26,7 @@ public class Tablero {
     }
 
     private void crearCaminoEnTablero(DataClassTablero mapa) {
+        this.salida = mapa.getCamino().get(0);
         for (DataClassCelda celdaCamino : mapa.getCamino()) {
             Interactuable premio = InteractuableFactory.crearInteractuable(celdaCamino.premio);
             Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaCamino.obstaculo);
@@ -56,7 +58,12 @@ public class Tablero {
     public Gladiador obtenerGanador() {
         return this.camino.obtenerGanador();
     }
+
     public Celda[][] obtenerGrilla() {
         return this.grilla;
+    }
+
+    public DataClassCelda obtenerSalida() {
+        return this.salida;
     }
 }

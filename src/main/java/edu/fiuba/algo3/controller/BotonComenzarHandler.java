@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
+import edu.fiuba.algo3.model.Dado;
+import edu.fiuba.algo3.model.Gladiador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -23,6 +25,7 @@ public class BotonComenzarHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         for (TextField input : inputs) {
             String nombre = input.getText();
+            juego.agregarGladiador(new Gladiador(nombre, new Dado()));
         }
     }
 }

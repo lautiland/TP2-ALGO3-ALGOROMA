@@ -18,6 +18,7 @@ public class App extends Application {
         stage.setTitle("AlgoRoma");
         Image icon = new Image(Objects.requireNonNull(getClass().getResource("/icono.png")).toExternalForm());
         stage.getIcons().add(icon);
+        stage.setResizable(false);
 
         AlgoRoma algoRoma = new AlgoRoma();
         InicioView inicio = new InicioView(stage, algoRoma);

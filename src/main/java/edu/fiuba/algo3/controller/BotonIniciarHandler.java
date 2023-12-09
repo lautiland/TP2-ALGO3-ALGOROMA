@@ -4,7 +4,6 @@ import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.view.SeleccionView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class BotonIniciarHandler implements EventHandler<ActionEvent> {
@@ -18,6 +17,7 @@ public class BotonIniciarHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        stage.setScene(new Scene(new SeleccionView(stage, juego), 800, 600));
+        SeleccionView seleccion = new SeleccionView(stage, juego);
+        stage.setScene(seleccion.getScene());
     }
 }

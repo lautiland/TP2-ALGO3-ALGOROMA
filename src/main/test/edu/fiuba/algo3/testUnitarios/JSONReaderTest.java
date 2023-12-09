@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class JSONReaderTest {
     private static final int INDICE_CAMINO_LESION_COMIDA = 26;
 
-    private static final int MAPA_ANCHO = 10;
-    private static final int MAPA_LARGO = 18;
+    private static final int MAPA_ANCHO = 11;
+    private static final int MAPA_LARGO = 19;
     private static final int MAPA_CANTIDAD_CELDAS = 38;
     private static final String SIN_INTERACTUABLE = "";
     private static final int PRIMER_CELDA_X = 1;

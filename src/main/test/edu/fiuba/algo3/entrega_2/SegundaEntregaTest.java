@@ -17,8 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class SegundaEntregaTest {
-    private static final int TABLERO_LARGO = 18;
-    private static final int TABLERO_ANCHO = 10;
+    private static final int TABLERO_LARGO = 19;
+    private static final int TABLERO_ANCHO = 11;
     private static final int TABLERO_CANTIDAD_ELEMENTOS = 38;
     private static final int ELEMENTO_CON_LESION_COMIDA = 26;
     private static final int ULTIMA_CELDA_X = 17;

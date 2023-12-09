@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.view;
 
 import edu.fiuba.algo3.controller.BotonIniciarTableroHandler;
+import edu.fiuba.algo3.model.AlgoRoma;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,11 +18,13 @@ public class JugadoresView extends View {
 
     private final Scene scene;
     private final ArrayList<TextField> inputs = new ArrayList<>();
+    private final AlgoRoma juego;
 
-    public JugadoresView(Stage stage, int cantidadJugdores) {
+    public JugadoresView(Stage stage, int cantidadJugdores, AlgoRoma juego) {
         VBox layout = new VBox(SPACING);
         layout.setAlignment(Pos.CENTER);
 
+        this.juego = juego;
         configurarTitulo(layout);
         configurarInputs(layout, cantidadJugdores);
         configurarBotonComenzar(layout, stage);
@@ -29,11 +32,13 @@ public class JugadoresView extends View {
 
         scene = new Scene(layout, WIDTH, HEIGHT);
     }
+
     private void configurarTitulo(VBox layout) {
-        Label titulo = new Label("Elije a los jugadores");
+        Label titulo = new Label("Elige a los jugadores");
         configurarTitulo(titulo, TXT_FONT, TITULO_FS);
         layout.getChildren().add(titulo);
     }
+
     private void configurarInputs(VBox layout, int cantidadJugadores) {
         for (int i = 0; i < cantidadJugadores; i++) {
             Label jugador = new Label("Gladiador " + (i + 1));
@@ -50,6 +55,7 @@ public class JugadoresView extends View {
             layout.getChildren().add(inputContainer);
         }
     }
+
     private void configurarTextField(TextField textField) {
         textField.setFont(Font.loadFont(getClass().getResourceAsStream(TXT_FONT), BTN_FS));
         textField.setStyle("-fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
@@ -57,13 +63,15 @@ public class JugadoresView extends View {
         textField.setMaxWidth(150);
         textField.setMaxHeight(BTN_HEIGHT);
     }
+
     private void configurarBotonComenzar(VBox layout, Stage stage) {
         Button comenzar = new Button("Comenzar");
         configurarBoton(comenzar);
-        comenzar.setOnAction(new BotonIniciarTableroHandler(inputs, stage));
+        comenzar.setOnAction(new BotonIniciarTableroHandler(inputs, stage, juego));
 
         layout.getChildren().add(comenzar);
     }
+
     public Scene getScene() {
         return scene;
     }

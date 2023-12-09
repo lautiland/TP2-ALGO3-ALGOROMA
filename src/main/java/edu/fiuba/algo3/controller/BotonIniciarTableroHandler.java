@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.model.Dado;
-import edu.fiuba.algo3.model.Gladiador;
 import edu.fiuba.algo3.view.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,23 +14,24 @@ public class BotonIniciarTableroHandler implements EventHandler<ActionEvent> {
     private final Stage stage;
     private final ArrayList<TextField> inputs;
 
-    public BotonIniciarTableroHandler(ArrayList<TextField> inputs, Stage stage) {
+    private final AlgoRoma juego;
+
+    public BotonIniciarTableroHandler(ArrayList<TextField> inputs, Stage stage, AlgoRoma juego) {
         this.stage = stage;
         this.inputs = inputs;
+        this.juego = juego;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        ArrayList<Gladiador> gladiadores = new ArrayList<>();
         for (TextField input : inputs) {
             String nombre = input.getText();
-            gladiadores.add(new Gladiador(nombre, new Dado()));
+            juego.agregarGladiador(nombre);
         }
-        AlgoRoma juego = new AlgoRoma();
         try {
-            juego.iniciarJuegoCompleto("mapa.json", gladiadores);
+            juego.iniciarJuegoCompleto("mapa.json");
         } catch (IOException e) {
-            System.out.println("Error al cargar el mapa");
+            throw new RuntimeException(e);
         }
         TableroView tablero = new TableroView(stage, juego);
         stage.setScene(tablero.getScene());

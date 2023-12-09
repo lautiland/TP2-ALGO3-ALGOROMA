@@ -15,12 +15,6 @@ public class AlgoRoma {
     private final List<Gladiador> gladiadores = new ArrayList<>();
     private final Turnos turnos = new Turnos();
 
-    public void iniciarJuegoCompleto(String rutaDelMapa, ArrayList<Gladiador> gladiadores) throws IOException {
-        for (Gladiador gladiador : gladiadores) {
-            this.agregarGladiador(gladiador);
-        }
-        this.iniciarJuegoCompleto(rutaDelMapa);
-    }
     public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
         if (gladiadores.isEmpty()) {
             Logger.getInstance().error("No hay gladiadores para iniciar el juego, agregue gladiadores primero");
@@ -32,8 +26,14 @@ public class AlgoRoma {
         this.tablero = new Tablero(gladiadores, mapa);
     }
 
+    // TODO: Sacar si no se usa?
     public void agregarGladiador(Gladiador gladiador) {
         this.gladiadores.add(gladiador);
+    }
+
+    public void agregarGladiador(String nombre) {
+        Logger.getInstance().info("Se agrego el gladiador " + nombre);
+        this.gladiadores.add(new Gladiador(nombre, new Dado()));
     }
 
     public void jugarTurno() {
@@ -43,6 +43,7 @@ public class AlgoRoma {
     public Gladiador obtenerGanador() {
         return this.tablero.obtenerGanador();
     }
+
     public Tablero obtenerTablero() {
         return this.tablero;
     }

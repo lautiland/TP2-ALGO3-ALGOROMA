@@ -1,6 +1,5 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.view.InicioView;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -20,8 +19,7 @@ public class App extends Application {
         stage.getIcons().add(icon);
         stage.setResizable(false);
 
-        AlgoRoma algoRoma = new AlgoRoma();
-        InicioView inicio = new InicioView(stage, algoRoma);
+        InicioView inicio = new InicioView(stage);
 
         stage.setScene(inicio.getScene());
         stage.show();

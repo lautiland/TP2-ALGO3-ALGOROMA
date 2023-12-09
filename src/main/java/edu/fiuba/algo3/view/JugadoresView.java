@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.view;
 
-import edu.fiuba.algo3.controller.BotonComenzarHandler;
-import edu.fiuba.algo3.model.AlgoRoma;
+import edu.fiuba.algo3.controller.BotonIniciarTableroHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,10 +16,9 @@ import java.util.ArrayList;
 public class JugadoresView extends View {
 
     private final Scene scene;
-    private final AlgoRoma juego;
     private final ArrayList<TextField> inputs = new ArrayList<>();
 
-    public JugadoresView(Stage stage, int cantidadJugdores, AlgoRoma juego) {
+    public JugadoresView(Stage stage, int cantidadJugdores) {
         VBox layout = new VBox(SPACING);
         layout.setAlignment(Pos.CENTER);
 
@@ -28,8 +26,6 @@ public class JugadoresView extends View {
         configurarInputs(layout, cantidadJugdores);
         configurarBotonComenzar(layout, stage);
         configurarBackground(layout);
-
-        this.juego = juego;
 
         scene = new Scene(layout, WIDTH, HEIGHT);
     }
@@ -64,7 +60,7 @@ public class JugadoresView extends View {
     private void configurarBotonComenzar(VBox layout, Stage stage) {
         Button comenzar = new Button("Comenzar");
         configurarBoton(comenzar);
-        comenzar.setOnAction(new BotonComenzarHandler(inputs, stage, juego));
+        comenzar.setOnAction(new BotonIniciarTableroHandler(inputs, stage));
 
         layout.getChildren().add(comenzar);
     }

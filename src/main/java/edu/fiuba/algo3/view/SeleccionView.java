@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.view;
 
 import edu.fiuba.algo3.controller.BotonCantidadJugadorHandler;
-import edu.fiuba.algo3.model.AlgoRoma;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,16 +12,13 @@ import javafx.stage.Stage;
 public class SeleccionView extends View {
 
     private final Scene scene;
-    private final AlgoRoma juego;
 
-    public SeleccionView(Stage stage, AlgoRoma juego) {
+    public SeleccionView(Stage stage) {
         VBox layout = new VBox(SPACING);
         layout.setAlignment(Pos.CENTER);
 
         configurarContenido(stage, layout);
         configurarBackground(layout);
-
-        this.juego = juego;
 
         scene = new Scene(layout, WIDTH, HEIGHT);
     }
@@ -47,7 +43,7 @@ public class SeleccionView extends View {
         for (int i = 2; i <= 6; i++) {
             Button boton = new Button(Integer.toString(i));
             configurarBoton(boton);
-            boton.setOnAction(new BotonCantidadJugadorHandler(stage, i, juego));
+            boton.setOnAction(new BotonCantidadJugadorHandler(stage, i));
             layout.getChildren().add(boton);
         }
     }

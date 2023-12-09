@@ -10,11 +10,11 @@ import java.util.List;
 
 public class Tablero {
 
-    private final Celda[][] grillas;
+    private final Celda[][] grilla;
     private final Camino camino;
 
     public Tablero(List<Gladiador> gladiadores, DataClassTablero mapa) {
-        this.grillas = new Celda[mapa.LARGO][mapa.ANCHO];
+        this.grilla = new Celda[mapa.LARGO][mapa.ANCHO];
         this.camino = new Camino(gladiadores);
         this.crearCaminoEnTablero(mapa);
         this.construirElResto(mapa);
@@ -30,21 +30,21 @@ public class Tablero {
             Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaCamino.obstaculo);
             Casilla casilla = new Casilla(premio, obstaculo);
             this.camino.agregarCasilla(casilla);
-            this.grillas[celdaCamino.X][celdaCamino.Y] = casilla;
+            this.grilla[celdaCamino.X][celdaCamino.Y] = casilla;
         }
         DataClassCelda celdaLlegada = mapa.getLlegada();
         Interactuable premio = InteractuableFactory.crearInteractuable("Llegada");
         Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaLlegada.obstaculo);
         Casilla casilla = new Casilla(premio, obstaculo);
         this.camino.agregarCasilla(casilla);
-        this.grillas[celdaLlegada.X][celdaLlegada.Y] = casilla;
+        this.grilla[celdaLlegada.X][celdaLlegada.Y] = casilla;
     }
 
     private void construirElResto(DataClassTablero mapa) {
         for (int y = 0; y < mapa.ANCHO; y++) {
             for (int x = 0; x < mapa.LARGO; x++) {
-                if (this.grillas[x][y] == null)
-                    this.grillas[x][y] = new CeldaSinCasilla();
+                if (this.grilla[x][y] == null)
+                    this.grilla[x][y] = new CeldaSinCasilla();
             }
         }
     }
@@ -55,5 +55,8 @@ public class Tablero {
 
     public Gladiador obtenerGanador() {
         return this.camino.obtenerGanador();
+    }
+    public Celda[][] obtenerGrilla() {
+        return this.grilla;
     }
 }

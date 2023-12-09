@@ -19,6 +19,7 @@ public class View {
     protected static final int BTN_WIDTH = 100;
     protected static final int BTN_HEIGHT = 25;
     protected static final int BTN_FS = 14;
+    protected static final int CELL_SIZE = 35;
     protected static final int WIDTH = 800;
     protected static final int HEIGHT = 600;
     protected static final String BACKGROUND = "/coliseo.jpg";

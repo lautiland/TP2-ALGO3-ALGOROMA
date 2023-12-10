@@ -5,6 +5,8 @@ import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.tablero.Tablero;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -25,12 +27,22 @@ public class TableroView extends View {
 
         this.juego = juego;
 
+        Label jugadorActual = new Label("Jugador actual: " + juego.obtenerJugadorActual().getNombre());
+        jugadorActual.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+        layout.getChildren().add(jugadorActual);
+
         //configurarTituloTurno(layout, juego);
         configurarTablero(layout, juego.obtenerTablero());
         //configurarBotonTirarDados(layout, stage, juego);
         configurarBackground(layout);
-
         agregarGladiador();
+
+        Button tirarDados = new Button("Tirar dados");
+        // tirarDados.setOnAction(new BotonTirarDadosEventHandler(stage, juego, this));
+        tirarDados.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold");
+        tirarDados.setPrefWidth(200);
+        tirarDados.setPrefHeight(50);
+        layout.getChildren().add(tirarDados);
 
         scene = new Scene(layout, WIDTH, HEIGHT);
     }

@@ -13,13 +13,17 @@ public class Turnos {
     private final Queue<Gladiador> gladiadoresSinJugar = new ArrayDeque<>();
     private Gladiador jugadorActual;
 
+    public Turnos(Gladiador jugadorActual) {
+        this.jugadorActual = jugadorActual;
+    }
+
     public void ejecutar(List<Gladiador> gladiadores, Tablero tablero) {
         if (gladiadoresSinJugar.isEmpty()) {
             gladiadoresSinJugar.addAll(gladiadores);
             turnosActuales++;
         }
         jugadorActual = gladiadoresSinJugar.poll();
-        tablero.turnoDe(jugadorActual); // No es nunca null
+        tablero.turnoDe(jugadorActual); // Solo es null cuando se recibe asi
         if (this.turnosActuales >= TURNOS_MAXIMOS) {
             Logger.getInstance().error("Se han acabado los turnos, no hay ganador");
             throw new SinTurnos();

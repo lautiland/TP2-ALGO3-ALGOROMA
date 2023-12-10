@@ -13,7 +13,7 @@ public class AlgoRoma {
 
     private Tablero tablero;
     private final List<Gladiador> gladiadores = new ArrayList<>();
-    private final Turnos turnos = new Turnos();
+    private Turnos turnos;
 
     public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
         if (gladiadores.isEmpty()) {
@@ -24,6 +24,7 @@ public class AlgoRoma {
         JuegoParser parser = new JuegoParser();
         DataClassTablero mapa = parser.parsear(rutaDelMapa, "json");
         this.tablero = new Tablero(gladiadores, mapa);
+        this.turnos = new Turnos(gladiadores.get(0));
     }
 
     // TODO: Sacar si no se usa?

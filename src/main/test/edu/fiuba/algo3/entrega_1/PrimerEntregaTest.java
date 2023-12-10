@@ -290,7 +290,7 @@ public class PrimerEntregaTest {
     public void test12SiNadieGanaDespuesDe30RondasFinalizaElJuego() {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
-        Turnos turnos = new Turnos();
+        Turnos turnos = new Turnos(null);
         Tablero tableroMock = mock(Tablero.class);
 
         // Act y Assert

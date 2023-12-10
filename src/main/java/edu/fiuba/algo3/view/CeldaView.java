@@ -33,29 +33,22 @@ public class CeldaView extends View {
         stackPane.getChildren().addAll(background);
 
         ImageView premio = new ImageView();
-        premio.setFitWidth(CELL_SIZE);
-        premio.setFitHeight(CELL_SIZE);
+        premio.setFitWidth(24);
+        premio.setFitHeight(24);
         premio.setImage(new Image(Objects.requireNonNull(CeldaView.class.getResource("/" + celda.nombrePremio().toLowerCase() + ".png")).toExternalForm()));
         stackPane.getChildren().addAll(premio);
 
         ImageView obstaculo = new ImageView();
-        obstaculo.setFitWidth(CELL_SIZE);
-        obstaculo.setFitHeight(CELL_SIZE);
+        obstaculo.setFitWidth(24);
+        obstaculo.setFitHeight(24);
         obstaculo.setImage(new Image(Objects.requireNonNull(CeldaView.class.getResource("/" + celda.nombreObstaculo().toLowerCase() + ".png")).toExternalForm()));
         stackPane.getChildren().addAll(obstaculo);
 
+        StackPane.setAlignment(premio, Pos.TOP_LEFT);
+        StackPane.setAlignment(obstaculo, Pos.BOTTOM_RIGHT);
+
         layout.getChildren().addAll(stackPane);
+
         return layout;
     }
-
-/*    public static ImageView agregarInteractuables(Celda celda) {
-        if (celda.nombrePremio().equalsIgnoreCase("equipamiento")) {
-            ImageView premio = new ImageView();
-            premio.setFitWidth(CELL_SIZE);
-            premio.setFitHeight(CELL_SIZE);
-            premio.setImage(new Image(Objects.requireNonNull(CeldaView.class.getResource("/equipamiento.png")).toExternalForm()));
-            return premio;
-        }
-        return null;
-    }*/
 }

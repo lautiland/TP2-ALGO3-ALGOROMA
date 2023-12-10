@@ -67,7 +67,7 @@ public class JugadoresView extends View {
     private void configurarBotonComenzar(VBox layout, Stage stage) {
         Button comenzar = new Button("Comenzar");
         configurarBoton(comenzar);
-        comenzar.setOnAction(new BotonIniciarTableroHandler(inputs, stage, juego));
+        comenzar.setOnAction(new BotonIniciarTableroHandler(comenzar, inputs, stage, juego));
 
         layout.getChildren().add(comenzar);
     }

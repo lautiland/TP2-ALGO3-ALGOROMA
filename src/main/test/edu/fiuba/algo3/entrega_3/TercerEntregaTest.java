@@ -28,18 +28,25 @@ public class TercerEntregaTest {
 
         when(dadoMock.tirar()).thenReturn(1);
         juego.jugarTurno(); // Casco
+        juego.jugarTurno(); // Maximus
         when(dadoMock.tirar()).thenReturn(5);
         juego.jugarTurno(); // Nada
+        juego.jugarTurno(); // Maximus
         when(dadoMock.tirar()).thenReturn(3);
         juego.jugarTurno(); // Armadura, Fiera (-10)
+        juego.jugarTurno(); // Maximus
         when(dadoMock.tirar()).thenReturn(6);
         juego.jugarTurno(); // Escudo y espada
+        juego.jugarTurno(); // Maximus
         juego.jugarTurno(); // Llave
+        juego.jugarTurno(); // Maximus
         juego.jugarTurno(); // Fiera (-10)
+        juego.jugarTurno(); // Maximus
         juego.jugarTurno(); // Nada
+        juego.jugarTurno(); // Maximus
         juego.jugarTurno();
 
-        assertEquals(juego.obtenerGanador(), ignacius);
+        assertEquals(ignacius, juego.obtenerGanador());
     }
 
     @Test
@@ -49,12 +56,13 @@ public class TercerEntregaTest {
         when(dadoMock.tirar()).thenReturn(1);
         Gladiador ignacius = new Gladiador("Ignacius", dadoMock);
         Gladiador maximus = new Gladiador("Maximus", dadoMock);
+        final int cantidadJugadores = 2;
         juego.agregarGladiador(ignacius);
         juego.agregarGladiador(maximus);
         juego.iniciarJuegoCompleto("mapa.json");
 
         assertThrows(SinTurnos.class, () -> {
-            for (int i = 0; i < TURNOS_MAXIMOS; i++) {
+            for (int i = 0; i < TURNOS_MAXIMOS * cantidadJugadores; i++) {
                 juego.jugarTurno();
             }
         });

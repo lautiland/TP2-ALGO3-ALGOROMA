@@ -11,6 +11,7 @@ import edu.fiuba.algo3.model.interactuable.Llegada;
 import edu.fiuba.algo3.model.interactuable.Ninguno;
 import edu.fiuba.algo3.model.tablero.Camino;
 import edu.fiuba.algo3.model.tablero.Casilla;
+import edu.fiuba.algo3.model.tablero.Tablero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,7 @@ public class PrimerEntregaTest {
     private static final int PUNTOS_ATAQUE_FIERA_ESCUDO_ESPADA = 18;
     private static final int PUNTOS_DESPUES_BONUS_SEMISENIOR = 25;
     private static final int PUNTOS_ENERGIA_INICIALES = 20;
+    private static final int TURNOS_MAXIMOS = 30;
     private Dado dadoMock;
     private Interactuable sinInteraccion;
     private static Logger loggerMock;
@@ -289,15 +291,16 @@ public class PrimerEntregaTest {
         //Arrange
         ArrayList<Gladiador> gladiadores = new ArrayList<>();
         Turnos turnos = new Turnos();
+        Tablero tableroMock = mock(Tablero.class);
 
         // Act y Assert
-        for (int i = 1; i < PUNTOS_DESPUES_COMER; i++) {
+        for (int i = 1; i < TURNOS_MAXIMOS; i++) {
             // Realizar la ejecución del método 30 veces
-            turnos.ejecutar(gladiadores, null);
+            turnos.ejecutar(gladiadores, tableroMock);
         }
 
         // Verificar que la excepción se lanza en la ejecución 30
-        assertThrows(SinTurnos.class, () -> turnos.ejecutar(gladiadores, null));
+        assertThrows(SinTurnos.class, () -> turnos.ejecutar(gladiadores, tableroMock));
         verify(loggerMock).error("Se han acabado los turnos, no hay ganador");
     }
 }

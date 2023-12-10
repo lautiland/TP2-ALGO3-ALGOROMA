@@ -47,4 +47,8 @@ public class AlgoRoma {
     public Tablero obtenerTablero() {
         return this.tablero;
     }
+
+    public Gladiador obtenerJugadorActual() {
+        return this.turnos.obtenerJugadorActual();
+    }
 }

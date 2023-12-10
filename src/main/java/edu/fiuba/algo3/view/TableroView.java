@@ -42,10 +42,6 @@ public class TableroView extends View {
             for (int fila = 0; fila < tablero.obtenerGrilla()[columna].length; fila++) {
                 HBox celdaVista = CeldaView.generarVista(tablero.obtenerGrilla()[columna][fila]);
                 gridPane.add(celdaVista, columna, fila);
-/*                ImageView interactuable = CeldaView.agregarInteractuables(tablero.obtenerGrilla()[columna][fila]);
-                if (interactuable != null) {
-                    gridPane.add(interactuable, columna, fila);
-                }*/
             }
         }
         this.gridPane = gridPane;

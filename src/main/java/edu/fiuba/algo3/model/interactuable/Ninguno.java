@@ -7,4 +7,9 @@ public class Ninguno implements Interactuable {
     @Override
     public void interactuarCon(Gladiador gladiador, Camino camino) {
     }
+
+    @Override
+    public String toString() {
+        return "Vacio";
+    }
 }

@@ -13,4 +13,9 @@ public class Comida implements Interactuable {
         Logger.getInstance().info("El gladiador " + gladiador.getNombre() + " encontró moretum, ganas " + PUNTOS_DE_ENERGIA_GANADOS + " puntos");
         gladiador.modificarEnergia(PUNTOS_DE_ENERGIA_GANADOS);
     }
+
+    @Override
+    public String toString() {
+        return "Comida";
+    }
 }

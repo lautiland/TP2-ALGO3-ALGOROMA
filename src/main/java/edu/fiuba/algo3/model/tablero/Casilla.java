@@ -17,4 +17,17 @@ public class Casilla implements Celda {
         this.premio.interactuarCon(gladiador, camino);
         this.obstaculo.interactuarCon(gladiador, camino);
     }
+
+    public String nombrePremio() {
+        return this.premio.toString();
+    }
+
+    public String nombreObstaculo() {
+        return this.obstaculo.toString();
+    }
+
+    @Override
+    public boolean equals(String tipo) {
+        return false; // Para que no lo tome como casilla vacia
+    }
 }

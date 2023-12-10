@@ -10,4 +10,9 @@ public class Lesion implements Interactuable {
         Logger.getInstance().info("El gladiador " + gladiador.getNombre() + " se lesiono");
         gladiador.lesionar();
     }
+
+    @Override
+    public String toString() {
+        return "Lesion";
+    }
 }

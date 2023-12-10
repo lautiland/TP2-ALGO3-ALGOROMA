@@ -11,4 +11,9 @@ public class Fiera implements Interactuable {
         Logger.getInstance().info("El gladiador " + gladiador.getNombre() + " encontró una fiera");
         gladiador.recibirAtaque();
     }
+
+    @Override
+    public String toString() {
+        return "Fiera";
+    }
 }

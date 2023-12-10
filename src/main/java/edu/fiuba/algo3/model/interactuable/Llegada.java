@@ -12,4 +12,9 @@ public class Llegada implements Interactuable {
             camino.reclamarPremio(gladiador);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Llegada";
+    }
 }

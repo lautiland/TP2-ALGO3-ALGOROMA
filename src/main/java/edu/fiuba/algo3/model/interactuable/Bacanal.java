@@ -15,4 +15,9 @@ public class Bacanal implements Interactuable {
         Logger.getInstance().info("Tiraste " + tirada + ", tomas " + tirada + " tragos, perdes " + PUNTOS_POR_TRAGO * tirada + " puntos ");
         gladiador.modificarEnergia(-PUNTOS_POR_TRAGO * tirada);
     }
+
+    @Override
+    public String toString() {
+        return "Bacanal";
+    }
 }

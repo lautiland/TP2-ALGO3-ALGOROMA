@@ -9,4 +9,9 @@ public class Equipamiento implements Interactuable {
     public void interactuarCon(Gladiador gladiador, Camino camino) {
         gladiador.actualizarEquipo();
     }
+
+    @Override
+    public String toString() {
+        return "Equipamiento";
+    }
 }

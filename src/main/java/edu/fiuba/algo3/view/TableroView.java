@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.view;
 
+import edu.fiuba.algo3.controller.BotonSiguienteJugadorHandler;
+import edu.fiuba.algo3.controller.BotonTirarDadosHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
+import edu.fiuba.algo3.model.Gladiador;
 import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.tablero.Tablero;
 import javafx.geometry.Pos;
@@ -20,31 +23,30 @@ public class TableroView extends View {
     private final Scene scene;
     private final AlgoRoma juego;
     private GridPane gridPane;
+    private Stage stage;
+    Gladiador jugadorActual;
+    private VBox layout;
 
     public TableroView(Stage stage, AlgoRoma juego) {
-        VBox layout = new VBox(SPACING);
+        this.layout = new VBox(SPACING);
         layout.setAlignment(Pos.CENTER);
 
+        this.stage = stage;
         this.juego = juego;
+        this.jugadorActual = juego.obtenerJugadorActual();
 
-        Label jugadorActual = new Label("Jugador actual: " + juego.obtenerJugadorActual().getNombre());
-        jugadorActual.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
-        layout.getChildren().add(jugadorActual);
+        actualizarTablero();
 
-        //configurarTituloTurno(layout, juego);
-        configurarTablero(layout, juego.obtenerTablero());
-        //configurarBotonTirarDados(layout, stage, juego);
-        configurarBackground(layout);
-        agregarGladiador();
+        scene = new Scene(layout, WIDTH, HEIGHT);
+    }
 
+    private void agregarBotonDados(VBox layout) {
         Button tirarDados = new Button("Tirar dados");
-        // tirarDados.setOnAction(new BotonTirarDadosEventHandler(stage, juego, this));
+        tirarDados.setOnAction(new BotonTirarDadosHandler(this.stage, juego, this));
         tirarDados.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold");
         tirarDados.setPrefWidth(200);
         tirarDados.setPrefHeight(50);
         layout.getChildren().add(tirarDados);
-
-        scene = new Scene(layout, WIDTH, HEIGHT);
     }
 
     private void configurarTablero(VBox layout, Tablero tablero) {
@@ -61,14 +63,48 @@ public class TableroView extends View {
     }
 
     private void agregarGladiador() {
-        DataClassCelda salida = juego.obtenerTablero().obtenerSalida();
+        DataClassCelda gladiadorPos = juego.obtenerTablero().obtenerPosicionDe(this.jugadorActual);
 
         ImageView imageView = new ImageView();
         imageView.setFitWidth(CELL_SIZE);
         imageView.setFitHeight(CELL_SIZE);
         imageView.setImage(new Image(Objects.requireNonNull(CeldaView.class.getResource("/gladiador.png")).toExternalForm()));
 
-        gridPane.add(imageView, salida.X, salida.Y);
+        gridPane.add(imageView, gladiadorPos.X, gladiadorPos.Y);
+    }
+
+    public void agregarBotonSiguienteJugador() {
+        Button siguienteJugador = new Button("Siguiente jugador");
+        siguienteJugador.setOnAction(new BotonSiguienteJugadorHandler(this.stage, juego, this));
+        siguienteJugador.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold");
+        siguienteJugador.setPrefWidth(200);
+        siguienteJugador.setPrefHeight(50);
+        layout.getChildren().add(siguienteJugador);
+    }
+
+    public void actualizarMovimientos() {
+        layout.getChildren().clear();
+        Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
+        jugadorLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+        layout.getChildren().add(jugadorLabel);
+        configurarTablero(layout, juego.obtenerTablero());
+        agregarGladiador();
+        agregarBotonSiguienteJugador();
+    }
+
+    public void actualizarTablero() {
+        layout.getChildren().clear();
+        this.jugadorActual = juego.obtenerJugadorActual();
+        Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
+        jugadorLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+        layout.getChildren().add(jugadorLabel);
+
+        //configurarTituloTurno(layout, juego);
+        configurarTablero(layout, juego.obtenerTablero());
+        //configurarBotonTirarDados(layout, stage, juego);
+        configurarBackground(layout);
+        agregarGladiador();
+        agregarBotonDados(layout);
     }
 
     public Scene getScene() {

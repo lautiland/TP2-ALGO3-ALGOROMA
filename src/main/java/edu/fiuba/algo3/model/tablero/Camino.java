@@ -49,6 +49,10 @@ public class Camino {
 
     }
 
+    public int obtenerPosicionDe(Gladiador gladiador) {
+        return this.gladiadoresANumeroDeCasilla.get(gladiador);
+    }
+
     public void moverAMitad(Gladiador gladiador) {
         this.desplazarGladiadorEInteractuar(gladiador, this.sendero.size() / 2);
     }

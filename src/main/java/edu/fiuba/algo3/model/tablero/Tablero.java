@@ -9,24 +9,30 @@ import edu.fiuba.algo3.model.parser.DataClassTablero;
 import java.util.List;
 
 public class Tablero {
-
     private final Celda[][] grilla;
     private final Camino camino;
     private DataClassCelda salida;
+    private DataClassTablero mapa;
 
     public Tablero(List<Gladiador> gladiadores, DataClassTablero mapa) {
-        this.grilla = new Celda[mapa.LARGO][mapa.ANCHO];
+        this.mapa = mapa;
+        this.grilla = new Celda[this.mapa.LARGO][this.mapa.ANCHO];
         this.camino = new Camino(gladiadores);
-        this.crearCaminoEnTablero(mapa);
-        this.construirElResto(mapa);
+        this.salida = mapa.getCamino().get(0);
+        this.crearCaminoEnTablero(this.mapa);
+        this.construirElResto(this.mapa);
     }
 
     public void turnoDe(Gladiador gladiador) {
         gladiador.jugarTurno(this.camino);
     }
 
+    public DataClassCelda obtenerPosicionDe(Gladiador gladiador) {
+        int casillasAvanzadas = this.camino.obtenerPosicionDe(gladiador);
+        return mapa.getCamino().get(casillasAvanzadas);
+    }
+
     private void crearCaminoEnTablero(DataClassTablero mapa) {
-        this.salida = mapa.getCamino().get(0);
         for (DataClassCelda celdaCamino : mapa.getCamino()) {
             Interactuable premio = InteractuableFactory.crearInteractuable(celdaCamino.premio);
             Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaCamino.obstaculo);

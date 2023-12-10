@@ -24,7 +24,7 @@ public class AlgoRoma {
         JuegoParser parser = new JuegoParser();
         DataClassTablero mapa = parser.parsear(rutaDelMapa, "json");
         this.tablero = new Tablero(gladiadores, mapa);
-        this.turnos = new Turnos(gladiadores.get(0));
+        this.turnos = new Turnos(gladiadores);
     }
 
     // TODO: Sacar si no se usa?

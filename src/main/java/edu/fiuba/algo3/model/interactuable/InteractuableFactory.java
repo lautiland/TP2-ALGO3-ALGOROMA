@@ -16,6 +16,8 @@ public class InteractuableFactory {
                 return new Lesion();
             case "Llegada":
                 return new Llegada();
+            case "Salida":
+                return new Salida();
             default:
                 return new Ninguno();
         }

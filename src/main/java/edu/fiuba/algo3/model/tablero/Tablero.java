@@ -41,11 +41,11 @@ public class Tablero {
             this.grilla[celdaCamino.X][celdaCamino.Y] = casilla;
         }
         DataClassCelda celdaLlegada = mapa.getLlegada();
-        Interactuable premio = InteractuableFactory.crearInteractuable("Llegada");
-        Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaLlegada.obstaculo);
-        Casilla casilla = new Casilla(premio, obstaculo);
-        this.camino.agregarCasilla(casilla);
-        this.grilla[celdaLlegada.X][celdaLlegada.Y] = casilla;
+        Interactuable premioLlegada = InteractuableFactory.crearInteractuable("Llegada");
+        Interactuable obstaculoLlegada = InteractuableFactory.crearInteractuable(celdaLlegada.obstaculo);
+        Casilla casillaLlegada = new Casilla(premioLlegada, obstaculoLlegada);
+        this.camino.agregarCasilla(casillaLlegada);
+        this.grilla[celdaLlegada.X][celdaLlegada.Y] = casillaLlegada;
     }
 
     private void construirElResto(DataClassTablero mapa) {

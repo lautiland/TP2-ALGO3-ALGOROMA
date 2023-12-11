@@ -19,5 +19,6 @@ public class BotonIniciarSeleccionHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         SeleccionView seleccion = new SeleccionView(stage, juego);
         stage.setScene(seleccion.getScene());
+        stage.setMaximized(true);
     }
 }

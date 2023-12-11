@@ -19,9 +19,9 @@ public class View {
     protected static final int BTN_WIDTH = 100;
     protected static final int BTN_HEIGHT = 25;
     protected static final int BTN_FS = 14;
-    protected static final int CELL_SIZE = 35;
-    protected static final int WIDTH = 800;
-    protected static final int HEIGHT = 600;
+    protected static final int CELL_SIZE = 50;
+    protected static double WIDTH;
+    protected static double HEIGHT;
     protected static final Image BACKGROUND = new Image(Objects.requireNonNull(View.class.getResource("/coliseo.jpg")).toExternalForm());
 
     protected void configurarBackground(VBox layout) {
@@ -46,5 +46,9 @@ public class View {
         texto.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
         Font customFont = Font.loadFont(getClass().getResourceAsStream(fuente), fontSize);
         texto.setFont(customFont);
+    }
+    public static void setDimensions(double width, double height) {
+        WIDTH = width;
+        HEIGHT = height;
     }
 }

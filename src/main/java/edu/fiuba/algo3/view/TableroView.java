@@ -12,9 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -45,9 +43,7 @@ public class TableroView extends View {
     private void agregarBotonDados(VBox layout) {
         Button tirarDados = new Button("Tirar dados");
         tirarDados.setOnAction(new BotonTirarDadosHandler(this.stage, juego, this));
-        tirarDados.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold");
-        tirarDados.setPrefWidth(200);
-        tirarDados.setPrefHeight(50);
+        configurarBoton(tirarDados);
         layout.getChildren().add(tirarDados);
     }
 
@@ -77,18 +73,16 @@ public class TableroView extends View {
     }
 
     public void agregarBotonSiguienteJugador() {
-        Button siguienteJugador = new Button("Siguiente jugador");
+        Button siguienteJugador = new Button("Siguiente");
         siguienteJugador.setOnAction(new BotonSiguienteJugadorHandler(this.stage, juego, this));
-        siguienteJugador.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold");
-        siguienteJugador.setPrefWidth(200);
-        siguienteJugador.setPrefHeight(50);
+        configurarBoton(siguienteJugador);
         layout.getChildren().add(siguienteJugador);
     }
 
     public void actualizarMovimientos() {
         layout.getChildren().clear();
         Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
-        jugadorLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+        configurarTitulo(jugadorLabel, TXT_FONT, TITULO_FS);
         layout.getChildren().add(jugadorLabel);
         configurarTablero(layout, juego.obtenerTablero());
         agregarGladiador();
@@ -99,15 +93,24 @@ public class TableroView extends View {
         layout.getChildren().clear();
         this.jugadorActual = juego.obtenerJugadorActual();
         Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
-        jugadorLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+        configurarTitulo(jugadorLabel, TXT_FONT, TITULO_FS);
         layout.getChildren().add(jugadorLabel);
 
-        //configurarTituloTurno(layout, juego);
         configurarTablero(layout, juego.obtenerTablero());
         //configurarBotonTirarDados(layout, stage, juego);
-        configurarBackground(layout);
+        configurarBackground();
         agregarGladiador();
         agregarBotonDados(layout);
+    }
+
+    private void configurarBackground() {
+        Image pasto_tile = new Image(Objects.requireNonNull(View.class.getResource("/pasto_tile.png")).toExternalForm());
+        ImageView backgroundImageView = new ImageView(pasto_tile);
+        backgroundImageView.setPreserveRatio(true);
+        backgroundImageView.setSmooth(true); // Opcional: hace que el escalado sea más suave
+        backgroundImageView.setCache(true); // Opcional: mejora el rendimiento
+        BackgroundSize backgroundSize = new BackgroundSize(CELL_SIZE, CELL_SIZE, false, false, false, false);
+        layout.setBackground(new Background(new BackgroundImage(backgroundImageView.getImage(), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, backgroundSize)));
     }
 
     public Scene getScene() {

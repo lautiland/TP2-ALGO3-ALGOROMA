@@ -21,6 +21,7 @@ public class BotonCantidadJugadorHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         JugadoresView jugadores = new JugadoresView(stage, cantidadJugadores, juego);
         stage.setScene(jugadores.getScene());
+        stage.setMaximized(true);
     }
 }
 

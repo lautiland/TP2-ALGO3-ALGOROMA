@@ -10,7 +10,7 @@ public class Comida implements Interactuable {
 
     @Override
     public void interactuarCon(Gladiador gladiador, Camino camino) {
-        Logger.getInstance().info("El gladiador " + gladiador.getNombre() + " encontró moretum, ganas " + PUNTOS_DE_ENERGIA_GANADOS + " puntos");
+        Logger.getInstance().info("El gladiador " + gladiador.getNombre() + " encontró un rico pan, ganas " + PUNTOS_DE_ENERGIA_GANADOS + " puntos");
         gladiador.modificarEnergia(PUNTOS_DE_ENERGIA_GANADOS);
     }
 

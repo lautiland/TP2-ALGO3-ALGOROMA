@@ -14,7 +14,7 @@ import java.util.Objects;
 public class CeldaView extends View {
     private static final Image pastoImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/pasto_tile.png")).toExternalForm());
     private static final Image rocaImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/roca_tile.png")).toExternalForm());
-
+    private static final Image llegadaImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/llegada_tile.png")).toExternalForm());
     private static final Map<String, Image> imageCache = new HashMap<>();
 
     private Image loadImage(String path) {
@@ -35,18 +35,20 @@ public class CeldaView extends View {
         background.setFitWidth(CELL_SIZE);
         background.setFitHeight(CELL_SIZE);
 
+        String nombrePremio = celda.nombrePremio().toLowerCase();
+        String nombreObstaculo = celda.nombreObstaculo().toLowerCase();
+
         if (celda.equals("vacio")) {
-            // Cargar la imagen de pasto_tile.png para celda blanca
             background.setImage(pastoImage);
+        } else if (nombrePremio.equals("llegada")) {
+            background.setImage(llegadaImage);
         } else {
-            // Cargar la imagen de roca_tile.png para celda negra
             background.setImage(rocaImage);
         }
 
         stackPane.getChildren().addAll(background);
 
-        String nombrePremio = celda.nombrePremio().toLowerCase();
-        if (!nombrePremio.equals("vacio")) {
+        if (!nombrePremio.equals("vacio") && !nombrePremio.equals("llegada") && !nombrePremio.equals("salida")) {
             ImageView premio = new ImageView();
             premio.setFitWidth(24);
             premio.setFitHeight(24);
@@ -57,7 +59,6 @@ public class CeldaView extends View {
 
         }
 
-        String nombreObstaculo = celda.nombreObstaculo().toLowerCase();
         if (!nombreObstaculo.equals("vacio")) {
             ImageView obstaculo = new ImageView();
             obstaculo.setFitWidth(24);

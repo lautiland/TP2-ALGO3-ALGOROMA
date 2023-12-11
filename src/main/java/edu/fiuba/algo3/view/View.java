@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.view;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 
 import java.util.Objects;
@@ -22,18 +22,17 @@ public class View {
     protected static final int CELL_SIZE = 35;
     protected static final int WIDTH = 800;
     protected static final int HEIGHT = 600;
-    protected static final String BACKGROUND = "/coliseo.jpg";
+    protected static final Image BACKGROUND = new Image(Objects.requireNonNull(View.class.getResource("/coliseo.jpg")).toExternalForm());
 
     protected void configurarBackground(VBox layout) {
-        Image backgroundImage = new Image(Objects.requireNonNull(getClass().getResource(BACKGROUND)).toExternalForm());
-        ImageView backgroundImageView = new ImageView(backgroundImage);
+        ImageView backgroundImageView = new ImageView(BACKGROUND);
         backgroundImageView.setPreserveRatio(true);
         backgroundImageView.setSmooth(true); // Opcional: hace que el escalado sea más suave
         backgroundImageView.setCache(true); // Opcional: mejora el rendimiento
         backgroundImageView.setFitWidth(WIDTH);
         backgroundImageView.setFitHeight(HEIGHT);
 
-        layout.setBackground(new Background(new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        layout.setBackground(new Background(new BackgroundImage(BACKGROUND, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
 
     protected void configurarBoton(Button button) {

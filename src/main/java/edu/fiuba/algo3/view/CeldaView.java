@@ -7,10 +7,25 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class CeldaView extends View {
-    public static HBox generarVista(Celda celda) {
+    private static final Image pastoImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/pasto_tile.png")).toExternalForm());
+    private static final Image rocaImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/roca_tile.png")).toExternalForm());
+
+    private static final Map<String, Image> imageCache = new HashMap<>();
+
+    private Image loadImage(String path) {
+        return new Image(Objects.requireNonNull(CeldaView.class.getResource(path)).toExternalForm());
+    }
+
+    private Image getCachedImage(String path) {
+        return imageCache.computeIfAbsent(path, this::loadImage);
+    }
+
+    public HBox generarVista(Celda celda) {
         HBox layout = new HBox(SPACING);
         layout.setAlignment(Pos.CENTER);
 
@@ -22,30 +37,37 @@ public class CeldaView extends View {
 
         if (celda.equals("vacio")) {
             // Cargar la imagen de pasto_tile.png para celda blanca
-            Image pastoImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/pasto_tile.png")).toExternalForm());
             background.setImage(pastoImage);
         } else {
             // Cargar la imagen de roca_tile.png para celda negra
-            Image rocaImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/roca_tile.png")).toExternalForm());
             background.setImage(rocaImage);
         }
 
         stackPane.getChildren().addAll(background);
 
-        ImageView premio = new ImageView();
-        premio.setFitWidth(24);
-        premio.setFitHeight(24);
-        premio.setImage(new Image(Objects.requireNonNull(CeldaView.class.getResource("/" + celda.nombrePremio().toLowerCase() + ".png")).toExternalForm()));
-        stackPane.getChildren().addAll(premio);
+        String nombrePremio = celda.nombrePremio().toLowerCase();
+        if (!nombrePremio.equals("vacio")) {
+            ImageView premio = new ImageView();
+            premio.setFitWidth(24);
+            premio.setFitHeight(24);
+            Image imagenPremio = getCachedImage("/" + celda.nombrePremio().toLowerCase() + ".png");
+            premio.setImage(imagenPremio);
+            stackPane.getChildren().addAll(premio);
+            StackPane.setAlignment(premio, Pos.TOP_LEFT);
 
-        ImageView obstaculo = new ImageView();
-        obstaculo.setFitWidth(24);
-        obstaculo.setFitHeight(24);
-        obstaculo.setImage(new Image(Objects.requireNonNull(CeldaView.class.getResource("/" + celda.nombreObstaculo().toLowerCase() + ".png")).toExternalForm()));
-        stackPane.getChildren().addAll(obstaculo);
+        }
 
-        StackPane.setAlignment(premio, Pos.TOP_LEFT);
-        StackPane.setAlignment(obstaculo, Pos.BOTTOM_RIGHT);
+        String nombreObstaculo = celda.nombreObstaculo().toLowerCase();
+        if (!nombreObstaculo.equals("vacio")) {
+            ImageView obstaculo = new ImageView();
+            obstaculo.setFitWidth(24);
+            obstaculo.setFitHeight(24);
+            Image imagenObstaculo = getCachedImage("/" + celda.nombreObstaculo().toLowerCase() + ".png");
+            obstaculo.setImage(imagenObstaculo);
+            stackPane.getChildren().addAll(obstaculo);
+            StackPane.setAlignment(obstaculo, Pos.BOTTOM_RIGHT);
+
+        }
 
         layout.getChildren().addAll(stackPane);
 

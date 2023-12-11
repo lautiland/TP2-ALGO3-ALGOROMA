@@ -26,7 +26,7 @@ public class EstadoTest {
         Estado lesionado = new Lesionado();
 
         //Arrange
-        Estado nuevoEstado = lesionado.jugar(gladiador);
+        Estado nuevoEstado = lesionado.jugar(gladiador, null);
 
         //Assert
         assertTrue(nuevoEstado instanceof Sano);
@@ -50,6 +50,25 @@ public class EstadoTest {
         assertTrue(camino.estaEl(gladiador, 1));
         gladiador.jugarTurno(camino);
         gladiador.jugarTurno(camino);
+        assertTrue(camino.estaEl(gladiador, 2));
+    }
+
+    @Test
+    public void test03SigueJugandoSinEnergiaDespuesDeRecuperar() {
+        Dado dadoMock = mock(Dado.class, "Dado");
+        when(dadoMock.tirar()).thenReturn(1);
+        Gladiador gladiador = new Gladiador("Augustus", dadoMock);
+        Camino camino = new Camino(List.of(gladiador));
+        Interactuable sinInteractuable = InteractuableFactory.crearInteractuable("Ninguno");
+        Interactuable Fiera = InteractuableFactory.crearInteractuable("Fiera");
+        camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
+        camino.agregarCasilla(new Casilla(sinInteractuable, Fiera));
+        camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
+
+        gladiador.jugarTurno(camino);// Se encuentra a la fiera
+        gladiador.jugarTurno(camino); // Recupera energia
+        gladiador.jugarTurno(camino);
+
         assertTrue(camino.estaEl(gladiador, 2));
     }
 }

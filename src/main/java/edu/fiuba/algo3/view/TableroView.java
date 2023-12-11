@@ -27,6 +27,8 @@ public class TableroView extends View {
     Gladiador jugadorActual;
     private VBox layout;
 
+    private static final Image gladiador = new Image(Objects.requireNonNull(CeldaView.class.getResource("/gladiador.png")).toExternalForm());
+
     public TableroView(Stage stage, AlgoRoma juego) {
         this.layout = new VBox(SPACING);
         layout.setAlignment(Pos.CENTER);
@@ -52,9 +54,10 @@ public class TableroView extends View {
     private void configurarTablero(VBox layout, Tablero tablero) {
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
+        CeldaView celdaView = new CeldaView();
         for (int columna = 0; columna < tablero.obtenerGrilla().length; columna++) {
             for (int fila = 0; fila < tablero.obtenerGrilla()[columna].length; fila++) {
-                HBox celdaVista = CeldaView.generarVista(tablero.obtenerGrilla()[columna][fila]);
+                HBox celdaVista = celdaView.generarVista(tablero.obtenerGrilla()[columna][fila]);
                 gridPane.add(celdaVista, columna, fila);
             }
         }
@@ -68,7 +71,7 @@ public class TableroView extends View {
         ImageView imageView = new ImageView();
         imageView.setFitWidth(CELL_SIZE);
         imageView.setFitHeight(CELL_SIZE);
-        imageView.setImage(new Image(Objects.requireNonNull(CeldaView.class.getResource("/gladiador.png")).toExternalForm()));
+        imageView.setImage(gladiador);
 
         gridPane.add(imageView, gladiadorPos.X, gladiadorPos.Y);
     }

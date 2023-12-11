@@ -9,6 +9,6 @@ public class SinEnergia implements Estado {
     public Estado jugar(Gladiador gladiador) {
         Logger.getInstance().info("El gladiador " + gladiador.getNombre() + " no avanza, esta sin energia, recibe bono de 5 puntos");
         gladiador.modificarEnergia(5);
-        return gladiador.actualizarEstado();
+        return new Sano();
     }
 }

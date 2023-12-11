@@ -114,7 +114,7 @@ public class PrimerEntregaTest {
         gladiador.jugarTurno(camino);
 
         //Assert 20 iniciales + 10 por comer
-        verify(loggerMock).info("El gladiador Atticus encontró moretum, ganas 10 puntos");
+        verify(loggerMock).info("El gladiador Atticus encontró un rico pan, ganas 10 puntos");
         verify(loggerMock).info("El gladiador ahora tiene 30 puntos de energía");
         assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_COMER));
     }

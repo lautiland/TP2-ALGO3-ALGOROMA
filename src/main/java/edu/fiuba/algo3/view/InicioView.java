@@ -11,42 +11,46 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class InicioView extends View {
-    private final Scene scene;
-    private final AlgoRoma juego;
+    private final Stage STAGE;
+    private final Scene SCENE;
+    private final VBox LAYOUT;
+    private final AlgoRoma JUEGO;
 
     public InicioView(Stage stage, AlgoRoma juego) {
-        VBox layout = new VBox(SPACING);
-        layout.setAlignment(Pos.CENTER);
-
-        this.juego = juego;
-        configurarTituloPrincipal(layout);
-        configurarBotones(layout, stage);
-        configurarBackground(layout);
+        this.STAGE = stage;
+        this.LAYOUT = new VBox(SPACING);
+        LAYOUT.setAlignment(Pos.CENTER);
+        this.JUEGO = juego;
 
 
-        scene = new Scene(layout, WIDTH, HEIGHT);
+        configurarTituloPrincipal();
+        configurarBotones();
+        configurarBackground(LAYOUT);
+
+
+        SCENE = new Scene(LAYOUT, WIDTH, HEIGHT);
     }
 
-    private void configurarTituloPrincipal(VBox layout) {
+    private void configurarTituloPrincipal() {
         Label titleText = new Label("AlgoRoma");
         configurarTitulo(titleText, TITULO_PRINCIPAL_FONT, TITULO_PRINCIPAL_FS);
-        layout.getChildren().add(titleText);
+        LAYOUT.getChildren().add(titleText);
     }
 
-    private void configurarBotones(VBox layout, Stage stage) {
+    private void configurarBotones() {
 
         Button iniciar = new Button("Iniciar");
         configurarBoton(iniciar);
-        iniciar.setOnAction(new BotonIniciarSeleccionHandler(stage, juego));
+        iniciar.setOnAction(new BotonIniciarSeleccionHandler(STAGE, JUEGO));
 
         Button salida = new Button("Salir");
         configurarBoton(salida);
         salida.setOnAction(new BotonSalirHandler());
 
-        layout.getChildren().addAll(iniciar, salida);
+        LAYOUT.getChildren().addAll(iniciar, salida);
     }
 
     public Scene getScene() {
-        return scene;
+        return SCENE;
     }
 }

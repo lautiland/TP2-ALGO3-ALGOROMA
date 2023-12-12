@@ -7,7 +7,7 @@ public class DataClassTablero {
 
     public final int ANCHO;
     public final int LARGO;
-    public final List<DataClassCelda> camino = new ArrayList<>();
+    public final List<DataClassCelda> CAMINO = new ArrayList<>();
 
     public DataClassTablero(int ancho, int largo) {
         this.ANCHO = ancho;
@@ -15,14 +15,14 @@ public class DataClassTablero {
     }
 
     public List<DataClassCelda> getCamino() {
-        return camino.subList(0, camino.size() - 1);
+        return CAMINO.subList(0, CAMINO.size() - 1);
     }
 
     public DataClassCelda getLlegada() {
-        return camino.get(camino.size() - 1);
+        return CAMINO.get(CAMINO.size() - 1);
     }
 
     public void agregarCelda(DataClassCelda celda) {
-        this.camino.add(celda);
+        this.CAMINO.add(celda);
     }
 }

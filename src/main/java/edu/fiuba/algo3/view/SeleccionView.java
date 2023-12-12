@@ -11,47 +11,49 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SeleccionView extends View {
-
-    private final Scene scene;
-    private final AlgoRoma juego;
+    private final Stage STAGE;
+    private final Scene SCENE;
+    private final VBox LAYOUT;
+    private final AlgoRoma JUEGO;
 
     public SeleccionView(Stage stage, AlgoRoma juego) {
-        VBox layout = new VBox(SPACING);
-        layout.setAlignment(Pos.CENTER);
+        this.STAGE = stage;
+        this.LAYOUT = new VBox(SPACING);
+        LAYOUT.setAlignment(Pos.CENTER);
+        this.JUEGO = juego;
 
-        this.juego = juego;
-        configurarContenido(stage, layout);
-        configurarBackground(layout);
+        configurarContenido();
+        configurarBackground(LAYOUT);
 
-        scene = new Scene(layout, WIDTH, HEIGHT);
+        SCENE = new Scene(LAYOUT, WIDTH, HEIGHT);
     }
 
-    public void configurarContenido(Stage stage, VBox layout) {
-        HBox contenido = new HBox(SPACING);
-        contenido.setAlignment(Pos.CENTER);
+    public void configurarContenido() {
+        HBox subLayout = new HBox(SPACING);
+        subLayout.setAlignment(Pos.CENTER);
 
-        configurarTexto(layout);
-        configurarBotones(contenido, stage);
+        configurarTexto();
+        configurarBotones(subLayout);
 
-        layout.getChildren().add(contenido);
+        LAYOUT.getChildren().add(subLayout);
     }
 
-    public void configurarTexto(VBox layout) {
+    public void configurarTexto() {
         Label texto = new Label("Seleccione la cantidad de jugadores");
         configurarTitulo(texto, TXT_FONT, TITULO_FS);
-        layout.getChildren().add(texto);
+        LAYOUT.getChildren().add(texto);
     }
 
-    public void configurarBotones(HBox layout, Stage stage) {
+    public void configurarBotones(HBox subLayout) {
         for (int i = 2; i <= 6; i++) {
             Button boton = new Button(Integer.toString(i));
             configurarBoton(boton);
-            boton.setOnAction(new BotonCantidadJugadorHandler(stage, i, juego));
-            layout.getChildren().add(boton);
+            boton.setOnAction(new BotonCantidadJugadorHandler(STAGE, i, JUEGO));
+            subLayout.getChildren().add(boton);
         }
     }
 
     public Scene getScene() {
-        return scene;
+        return SCENE;
     }
 }

@@ -15,7 +15,7 @@ Corrector: **Diego Sánchez y Joaquin Rivero**
 
 ## Informe
 
-El informe del trabajo práctico puede encontrarse en el link a continuación: [Informe](https://www.overleaf.com/project/6567a55cc72db212dfee7018)
+El informe del trabajo práctico puede encontrarse en el link a continuación: [Informe](https://www.overleaf.com/project/6567a55cc72db212dfee7018).
 
 ## Aplicación
 

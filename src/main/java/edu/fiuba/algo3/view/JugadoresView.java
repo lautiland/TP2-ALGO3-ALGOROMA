@@ -16,43 +16,46 @@ import java.util.ArrayList;
 
 public class JugadoresView extends View {
 
-    private final Scene scene;
-    private final ArrayList<TextField> inputs = new ArrayList<>();
-    private final AlgoRoma juego;
+    private final Stage STAGE;
+    private final Scene SCENE;
+    private final VBox LAYOUT;
+    private final AlgoRoma JUEGO;
+    private final ArrayList<TextField> INPUTS = new ArrayList<>();
 
     public JugadoresView(Stage stage, int cantidadJugdores, AlgoRoma juego) {
-        VBox layout = new VBox(SPACING);
-        layout.setAlignment(Pos.CENTER);
+        this.STAGE = stage;
+        this.LAYOUT = new VBox(SPACING);
+        LAYOUT.setAlignment(Pos.CENTER);
+        this.JUEGO = juego;
 
-        this.juego = juego;
-        configurarTitulo(layout);
-        configurarInputs(layout, cantidadJugdores);
-        configurarBotonComenzar(layout, stage);
-        configurarBackground(layout);
+        configurarTitulo();
+        configurarInputs(cantidadJugdores);
+        configurarBotonComenzar();
+        configurarBackground(LAYOUT);
 
-        scene = new Scene(layout, WIDTH, HEIGHT);
+        SCENE = new Scene(LAYOUT, WIDTH, HEIGHT);
     }
 
-    private void configurarTitulo(VBox layout) {
+    private void configurarTitulo() {
         Label titulo = new Label("Elige a los jugadores");
         configurarTitulo(titulo, TXT_FONT, TITULO_FS);
-        layout.getChildren().add(titulo);
+        LAYOUT.getChildren().add(titulo);
     }
 
-    private void configurarInputs(VBox layout, int cantidadJugadores) {
+    private void configurarInputs(int cantidadJugadores) {
         for (int i = 0; i < cantidadJugadores; i++) {
             Label jugador = new Label("Gladiador " + (i + 1));
             configurarTitulo(jugador, TXT_FONT, TXT_FS);
 
             TextField nombre = new TextField();
             configurarTextField(nombre);
-            inputs.add(nombre);
+            INPUTS.add(nombre);
 
             HBox inputContainer = new HBox(SPACING);
             inputContainer.setAlignment(Pos.CENTER);
             inputContainer.getChildren().addAll(jugador, nombre);
 
-            layout.getChildren().add(inputContainer);
+            LAYOUT.getChildren().add(inputContainer);
         }
     }
 
@@ -64,15 +67,15 @@ public class JugadoresView extends View {
         textField.setMaxHeight(BTN_HEIGHT);
     }
 
-    private void configurarBotonComenzar(VBox layout, Stage stage) {
+    private void configurarBotonComenzar() {
         Button comenzar = new Button("Comenzar");
         configurarBoton(comenzar);
-        comenzar.setOnAction(new BotonIniciarTableroHandler(comenzar, inputs, stage, juego));
+        comenzar.setOnAction(new BotonIniciarTableroHandler(INPUTS, STAGE, JUEGO));
 
-        layout.getChildren().add(comenzar);
+        LAYOUT.getChildren().add(comenzar);
     }
 
     public Scene getScene() {
-        return scene;
+        return SCENE;
     }
 }

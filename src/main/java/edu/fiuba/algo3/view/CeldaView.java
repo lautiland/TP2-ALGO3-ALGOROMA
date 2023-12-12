@@ -12,17 +12,17 @@ import java.util.Map;
 import java.util.Objects;
 
 public class CeldaView extends View {
-    private static final Image pastoImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/pasto_tile.png")).toExternalForm());
-    private static final Image rocaImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/roca_tile.png")).toExternalForm());
-    private static final Image llegadaImage = new Image(Objects.requireNonNull(CeldaView.class.getResource("/llegada_tile.png")).toExternalForm());
-    private static final Map<String, Image> imageCache = new HashMap<>();
+    private static final Image PASTO_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/pasto_tile.png")).toExternalForm());
+    private static final Image ROCA_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/roca_tile.png")).toExternalForm());
+    private static final Image LLEGADA_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/llegada_tile.png")).toExternalForm());
+    private static final Map<String, Image> IMAGE_CACHE = new HashMap<>();
 
     private Image loadImage(String path) {
         return new Image(Objects.requireNonNull(CeldaView.class.getResource(path)).toExternalForm());
     }
 
     private Image getCachedImage(String path) {
-        return imageCache.computeIfAbsent(path, this::loadImage);
+        return IMAGE_CACHE.computeIfAbsent(path, this::loadImage);
     }
 
     public HBox generarVista(Celda celda) {
@@ -39,11 +39,11 @@ public class CeldaView extends View {
         String nombreObstaculo = celda.nombreObstaculo().toLowerCase();
 
         if (celda.equals("vacio")) {
-            background.setImage(pastoImage);
+            background.setImage(PASTO_IMAGE);
         } else if (nombrePremio.equals("llegada")) {
-            background.setImage(llegadaImage);
+            background.setImage(LLEGADA_IMAGE);
         } else {
-            background.setImage(rocaImage);
+            background.setImage(ROCA_IMAGE);
         }
 
         stackPane.getChildren().addAll(background);

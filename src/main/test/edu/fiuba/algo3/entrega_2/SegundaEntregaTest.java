@@ -67,18 +67,18 @@ public class SegundaEntregaTest {
 
         assertEquals(PRIMER_CELDA_X, primerCelda.X);
         assertEquals(PRIMER_CELDA_Y, primerCelda.Y);
-        assertEquals(SIN_INTERACTUABLE, primerCelda.obstaculo);
-        assertEquals(SIN_INTERACTUABLE, primerCelda.premio);
+        assertEquals(SIN_INTERACTUABLE, primerCelda.OBSTACULO);
+        assertEquals(SIN_INTERACTUABLE, primerCelda.PREMIO);
 
         assertEquals(ULTIMA_CELDA_X, ultimaCelda.X);
         assertEquals(ULTIMA_CELDA_Y, ultimaCelda.Y);
-        assertEquals(SIN_INTERACTUABLE, ultimaCelda.obstaculo);
-        assertEquals(SIN_INTERACTUABLE, ultimaCelda.premio);
+        assertEquals(SIN_INTERACTUABLE, ultimaCelda.OBSTACULO);
+        assertEquals(SIN_INTERACTUABLE, ultimaCelda.PREMIO);
 
         assertEquals(CELDA_RANDOM_X, celdaConDosObstaculos.X);
         assertEquals(CELDA_RANDOM_Y, celdaConDosObstaculos.Y);
-        assertEquals(CELDA_RANDOM_OBSTACULO, celdaConDosObstaculos.obstaculo);
-        assertEquals(CELDA_RANDOM_PREMIO, celdaConDosObstaculos.premio);
+        assertEquals(CELDA_RANDOM_OBSTACULO, celdaConDosObstaculos.OBSTACULO);
+        assertEquals(CELDA_RANDOM_PREMIO, celdaConDosObstaculos.PREMIO);
     }
 
 

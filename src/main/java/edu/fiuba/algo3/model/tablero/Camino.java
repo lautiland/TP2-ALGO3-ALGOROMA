@@ -9,56 +9,56 @@ import java.util.Map;
 
 public class Camino {
 
-    private final List<Casilla> sendero = new ArrayList<>();
-    private final Map<Gladiador, Integer> gladiadoresANumeroDeCasilla = new HashMap<>();
+    private final List<Casilla> SENDERO = new ArrayList<>();
+    private final Map<Gladiador, Integer> GLADIADOR_TO_NUMERO_CASILLA = new HashMap<>();
     private boolean premioReclamado = false;
     private Gladiador ganador;
 
     public Camino(List<Gladiador> gladiadores) {
         for (Gladiador gladiador : gladiadores) {
-            gladiadoresANumeroDeCasilla.put(gladiador, 0);
+            GLADIADOR_TO_NUMERO_CASILLA.put(gladiador, 0);
         }
     }
 
     public void agregarCasilla(Casilla camino) {
-        this.sendero.add(camino);
+        this.SENDERO.add(camino);
     }
 
     public void mover(Gladiador gladiador, int numeroCasillas) {
-        int numeroDeCasillaActualDelGladiador = this.gladiadoresANumeroDeCasilla.get(gladiador);
+        int numeroDeCasillaActualDelGladiador = this.GLADIADOR_TO_NUMERO_CASILLA.get(gladiador);
         int nuevaUbicacion = numeroDeCasillaActualDelGladiador + numeroCasillas;
-        if (nuevaUbicacion > this.sendero.size()) {
-            nuevaUbicacion = this.sendero.size();
+        if (nuevaUbicacion > this.SENDERO.size()) {
+            nuevaUbicacion = this.SENDERO.size();
         }
         this.desplazarGladiadorEInteractuar(gladiador, nuevaUbicacion);
     }
 
     public boolean estaEl(Gladiador gladiador, int enCasillaNumero) {
-        return this.gladiadoresANumeroDeCasilla.get(gladiador) == enCasillaNumero;
+        return this.GLADIADOR_TO_NUMERO_CASILLA.get(gladiador) == enCasillaNumero;
     }
 
     private void desplazarGladiadorEInteractuar(Gladiador gladiador, int nuevaUbicacion) {
         Casilla casilla;
         try {
-            casilla = this.sendero.get(nuevaUbicacion);
+            casilla = this.SENDERO.get(nuevaUbicacion);
         } catch (IndexOutOfBoundsException e) {
-            casilla = this.sendero.get(this.sendero.size() - 1);
+            casilla = this.SENDERO.get(this.SENDERO.size() - 1);
         }
-        gladiadoresANumeroDeCasilla.put(gladiador, nuevaUbicacion);
+        GLADIADOR_TO_NUMERO_CASILLA.put(gladiador, nuevaUbicacion);
         casilla.interactuarCon(gladiador, this);
 
     }
 
     public int obtenerPosicionDe(Gladiador gladiador) {
-        return this.gladiadoresANumeroDeCasilla.get(gladiador);
+        return this.GLADIADOR_TO_NUMERO_CASILLA.get(gladiador);
     }
 
     public void moverAMitad(Gladiador gladiador) {
-        this.desplazarGladiadorEInteractuar(gladiador, this.sendero.size() / 2);
+        this.desplazarGladiadorEInteractuar(gladiador, this.SENDERO.size() / 2);
     }
 
     public void eliminarGladiadorDeCamino(Gladiador gladiador) {
-        this.gladiadoresANumeroDeCasilla.remove(gladiador);
+        this.GLADIADOR_TO_NUMERO_CASILLA.remove(gladiador);
     }
 
     public void reclamarPremio(Gladiador gladiador) {

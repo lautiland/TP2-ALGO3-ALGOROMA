@@ -11,16 +11,14 @@ import java.util.List;
 public class Tablero {
     private final Celda[][] grilla;
     private final Camino camino;
-    private DataClassCelda salida;
-    private DataClassTablero mapa;
+    private final DataClassTablero MAPA;
 
     public Tablero(List<Gladiador> gladiadores, DataClassTablero mapa) {
-        this.mapa = mapa;
-        this.grilla = new Celda[this.mapa.LARGO][this.mapa.ANCHO];
+        this.MAPA = mapa;
+        this.grilla = new Celda[this.MAPA.LARGO][this.MAPA.ANCHO];
         this.camino = new Camino(gladiadores);
-        this.salida = mapa.getCamino().get(0);
-        this.crearCaminoEnTablero(this.mapa);
-        this.construirElResto(this.mapa);
+        this.crearCaminoEnTablero(this.MAPA);
+        this.construirElResto(this.MAPA);
     }
 
     public void turnoDe(Gladiador gladiador) {
@@ -29,20 +27,20 @@ public class Tablero {
 
     public DataClassCelda obtenerPosicionDe(Gladiador gladiador) {
         int casillasAvanzadas = this.camino.obtenerPosicionDe(gladiador);
-        return mapa.getCamino().get(casillasAvanzadas);
+        return MAPA.getCamino().get(casillasAvanzadas);
     }
 
     private void crearCaminoEnTablero(DataClassTablero mapa) {
         for (DataClassCelda celdaCamino : mapa.getCamino()) {
-            Interactuable premio = InteractuableFactory.crearInteractuable(celdaCamino.premio);
-            Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaCamino.obstaculo);
+            Interactuable premio = InteractuableFactory.crearInteractuable(celdaCamino.PREMIO);
+            Interactuable obstaculo = InteractuableFactory.crearInteractuable(celdaCamino.OBSTACULO);
             Casilla casilla = new Casilla(premio, obstaculo);
             this.camino.agregarCasilla(casilla);
             this.grilla[celdaCamino.X][celdaCamino.Y] = casilla;
         }
         DataClassCelda celdaLlegada = mapa.getLlegada();
         Interactuable premioLlegada = InteractuableFactory.crearInteractuable("Llegada");
-        Interactuable obstaculoLlegada = InteractuableFactory.crearInteractuable(celdaLlegada.obstaculo);
+        Interactuable obstaculoLlegada = InteractuableFactory.crearInteractuable(celdaLlegada.OBSTACULO);
         Casilla casillaLlegada = new Casilla(premioLlegada, obstaculoLlegada);
         this.camino.agregarCasilla(casillaLlegada);
         this.grilla[celdaLlegada.X][celdaLlegada.Y] = casillaLlegada;
@@ -67,9 +65,5 @@ public class Tablero {
 
     public Celda[][] obtenerGrilla() {
         return this.grilla;
-    }
-
-    public DataClassCelda obtenerSalida() {
-        return this.salida;
     }
 }

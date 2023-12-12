@@ -18,36 +18,35 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class TableroView extends View {
-    private final Scene scene;
-    private final AlgoRoma juego;
+    private final Stage STAGE;
+    private final Scene SCENE;
+    private final VBox LAYOUT;
+    private final AlgoRoma JUEGO;
     private GridPane gridPane;
-    private Stage stage;
-    Gladiador jugadorActual;
-    private VBox layout;
+    private Gladiador jugadorActual;
 
-    private static final Image gladiador = new Image(Objects.requireNonNull(CeldaView.class.getResource("/gladiador.png")).toExternalForm());
+    private static final Image GLADIADOR = new Image(Objects.requireNonNull(CeldaView.class.getResource("/gladiador.png")).toExternalForm());
 
     public TableroView(Stage stage, AlgoRoma juego) {
-        this.layout = new VBox(SPACING);
-        layout.setAlignment(Pos.CENTER);
-
-        this.stage = stage;
-        this.juego = juego;
+        this.STAGE = stage;
+        this.LAYOUT = new VBox(SPACING);
+        LAYOUT.setAlignment(Pos.CENTER);
+        this.JUEGO = juego;
         this.jugadorActual = juego.obtenerJugadorActual();
 
         actualizarTablero();
 
-        scene = new Scene(layout, WIDTH, HEIGHT);
+        SCENE = new Scene(LAYOUT, WIDTH, HEIGHT);
     }
 
-    private void agregarBotonDados(VBox layout) {
+    private void agregarBotonDados() {
         Button tirarDados = new Button("Tirar dados");
-        tirarDados.setOnAction(new BotonTirarDadosHandler(this.stage, juego, this));
+        tirarDados.setOnAction(new BotonTirarDadosHandler(STAGE, JUEGO, this));
         configurarBoton(tirarDados);
-        layout.getChildren().add(tirarDados);
+        LAYOUT.getChildren().add(tirarDados);
     }
 
-    private void configurarTablero(VBox layout, Tablero tablero) {
+    private void configurarTablero(Tablero tablero) {
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         CeldaView celdaView = new CeldaView();
@@ -58,49 +57,49 @@ public class TableroView extends View {
             }
         }
         this.gridPane = gridPane;
-        layout.getChildren().add(gridPane);
+        LAYOUT.getChildren().add(this.gridPane);
     }
 
     private void agregarGladiador() {
-        DataClassCelda gladiadorPos = juego.obtenerTablero().obtenerPosicionDe(this.jugadorActual);
+        DataClassCelda gladiadorPos = JUEGO.obtenerTablero().obtenerPosicionDe(this.jugadorActual);
 
         ImageView imageView = new ImageView();
         imageView.setFitWidth(CELL_SIZE);
         imageView.setFitHeight(CELL_SIZE);
-        imageView.setImage(gladiador);
+        imageView.setImage(GLADIADOR);
 
         gridPane.add(imageView, gladiadorPos.X, gladiadorPos.Y);
     }
 
     public void agregarBotonSiguienteJugador() {
         Button siguienteJugador = new Button("Siguiente");
-        siguienteJugador.setOnAction(new BotonSiguienteJugadorHandler(this.stage, juego, this));
+        siguienteJugador.setOnAction(new BotonSiguienteJugadorHandler(this));
         configurarBoton(siguienteJugador);
-        layout.getChildren().add(siguienteJugador);
+        LAYOUT.getChildren().add(siguienteJugador);
     }
 
     public void actualizarMovimientos() {
-        layout.getChildren().clear();
+        LAYOUT.getChildren().clear();
         Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
         configurarTitulo(jugadorLabel, TXT_FONT, TITULO_FS);
-        layout.getChildren().add(jugadorLabel);
-        configurarTablero(layout, juego.obtenerTablero());
+        LAYOUT.getChildren().add(jugadorLabel);
+        configurarTablero(JUEGO.obtenerTablero());
         agregarGladiador();
         agregarBotonSiguienteJugador();
     }
 
     public void actualizarTablero() {
-        layout.getChildren().clear();
-        this.jugadorActual = juego.obtenerJugadorActual();
+        LAYOUT.getChildren().clear();
+        this.jugadorActual = JUEGO.obtenerJugadorActual();
         Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
         configurarTitulo(jugadorLabel, TXT_FONT, TITULO_FS);
-        layout.getChildren().add(jugadorLabel);
+        LAYOUT.getChildren().add(jugadorLabel);
 
-        configurarTablero(layout, juego.obtenerTablero());
+        configurarTablero(JUEGO.obtenerTablero());
         //configurarBotonTirarDados(layout, stage, juego);
         configurarBackground();
         agregarGladiador();
-        agregarBotonDados(layout);
+        agregarBotonDados();
     }
 
     private void configurarBackground() {
@@ -110,10 +109,10 @@ public class TableroView extends View {
         backgroundImageView.setSmooth(true); // Opcional: hace que el escalado sea más suave
         backgroundImageView.setCache(true); // Opcional: mejora el rendimiento
         BackgroundSize backgroundSize = new BackgroundSize(CELL_SIZE, CELL_SIZE, false, false, false, false);
-        layout.setBackground(new Background(new BackgroundImage(backgroundImageView.getImage(), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, backgroundSize)));
+        LAYOUT.setBackground(new Background(new BackgroundImage(backgroundImageView.getImage(), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, backgroundSize)));
     }
 
     public Scene getScene() {
-        return scene;
+        return SCENE;
     }
 }

@@ -40,29 +40,29 @@ public class JSONReaderTest {
     public void test01SeCreaUnMapaConJSONValido() throws FileNotFoundException {
         Reader reader = new FileReader(mapaValido);
         DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson(reader);
-        DataClassCelda primerCelda = mapa.camino.get(0);
-        DataClassCelda celdaRandom = mapa.camino.get(INDICE_CAMINO_LESION_COMIDA);
-        DataClassCelda ultimaCelda = mapa.camino.get(mapa.camino.size() - 1);
+        DataClassCelda primerCelda = mapa.CAMINO.get(0);
+        DataClassCelda celdaRandom = mapa.CAMINO.get(INDICE_CAMINO_LESION_COMIDA);
+        DataClassCelda ultimaCelda = mapa.CAMINO.get(mapa.CAMINO.size() - 1);
         assertNotNull(mapa);
 
         assertEquals(MAPA_ANCHO, mapa.ANCHO);
         assertEquals(MAPA_LARGO, mapa.LARGO);
-        assertEquals(MAPA_CANTIDAD_CELDAS, mapa.camino.size() - 1);
+        assertEquals(MAPA_CANTIDAD_CELDAS, mapa.CAMINO.size() - 1);
 
         assertEquals(PRIMER_CELDA_X, primerCelda.X);
         assertEquals(PRIMER_CELDA_Y, primerCelda.Y);
-        assertEquals(SIN_INTERACTUABLE, primerCelda.obstaculo);
-        assertEquals(SIN_INTERACTUABLE, primerCelda.premio);
+        assertEquals(SIN_INTERACTUABLE, primerCelda.OBSTACULO);
+        assertEquals(SIN_INTERACTUABLE, primerCelda.PREMIO);
 
         assertEquals(ULTIMA_CELDA_X, ultimaCelda.X);
         assertEquals(ULTIMA_CELDA_Y, ultimaCelda.Y);
-        assertEquals(SIN_INTERACTUABLE, ultimaCelda.obstaculo);
-        assertEquals(SIN_INTERACTUABLE, ultimaCelda.premio);
+        assertEquals(SIN_INTERACTUABLE, ultimaCelda.OBSTACULO);
+        assertEquals(SIN_INTERACTUABLE, ultimaCelda.PREMIO);
 
         assertEquals(CELDA_RANDOM_X, celdaRandom.X);
         assertEquals(CELDA_RANDOM_Y, celdaRandom.Y);
-        assertEquals(CELDA_RANDOM_OBSTACULO, celdaRandom.obstaculo);
-        assertEquals(CELDA_RANDOM_PREMIO, celdaRandom.premio);
+        assertEquals(CELDA_RANDOM_OBSTACULO, celdaRandom.OBSTACULO);
+        assertEquals(CELDA_RANDOM_PREMIO, celdaRandom.PREMIO);
     }
 
     @Test

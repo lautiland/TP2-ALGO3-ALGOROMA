@@ -7,21 +7,21 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 public class BotonCantidadJugadorHandler implements EventHandler<ActionEvent> {
-    private final Stage stage;
-    private final int cantidadJugadores;
-    private final AlgoRoma juego;
+    private final Stage STAGE;
+    private final int CANTIDAD_JUGADORES;
+    private final AlgoRoma JUEGO;
 
     public BotonCantidadJugadorHandler(Stage stage, int cantidadJugadores, AlgoRoma juego) {
-        this.stage = stage;
-        this.cantidadJugadores = cantidadJugadores;
-        this.juego = juego;
+        this.STAGE = stage;
+        this.CANTIDAD_JUGADORES = cantidadJugadores;
+        this.JUEGO = juego;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        JugadoresView jugadores = new JugadoresView(stage, cantidadJugadores, juego);
-        stage.setScene(jugadores.getScene());
-        stage.setMaximized(true);
+        JugadoresView jugadores = new JugadoresView(STAGE, CANTIDAD_JUGADORES, JUEGO);
+        STAGE.setScene(jugadores.getScene());
+        STAGE.setMaximized(true);
     }
 }
 

@@ -7,18 +7,18 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 public class BotonIniciarSeleccionHandler implements EventHandler<ActionEvent> {
-    private final Stage stage;
-    private final AlgoRoma juego;
+    private final Stage STAGE;
+    private final AlgoRoma JUEGO;
 
     public BotonIniciarSeleccionHandler(Stage stage, AlgoRoma juego) {
-        this.stage = stage;
-        this.juego = juego;
+        this.STAGE = stage;
+        this.JUEGO = juego;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        SeleccionView seleccion = new SeleccionView(stage, juego);
-        stage.setScene(seleccion.getScene());
-        stage.setMaximized(true);
+        SeleccionView seleccion = new SeleccionView(STAGE, JUEGO);
+        STAGE.setScene(seleccion.getScene());
+        STAGE.setMaximized(true);
     }
 }

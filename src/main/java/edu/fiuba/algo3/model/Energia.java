@@ -24,8 +24,8 @@ public class Energia {
         Logger.getInstance().info("El gladiador ahora tiene " + this.puntos + " puntos de energía");
     }
 
-    public boolean tenes(int puntos) {
-        return this.puntos == puntos;
+    public int obtenerPuntos() {
+        return this.puntos;
     }
 
 }

@@ -16,6 +16,7 @@ public class CeldaView extends View {
     private static final Image ROCA_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/roca_tile.png")).toExternalForm());
     private static final Image LLEGADA_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/llegada_tile.png")).toExternalForm());
     private static final Map<String, Image> IMAGE_CACHE = new HashMap<>();
+    private static final int INTERACUABLE_SIZE = 32;
 
     private Image loadImage(String path) {
         return new Image(Objects.requireNonNull(CeldaView.class.getResource(path)).toExternalForm());
@@ -50,8 +51,8 @@ public class CeldaView extends View {
 
         if (!nombrePremio.equals("vacio") && !nombrePremio.equals("llegada") && !nombrePremio.equals("salida")) {
             ImageView premio = new ImageView();
-            premio.setFitWidth(24);
-            premio.setFitHeight(24);
+            premio.setFitWidth(INTERACUABLE_SIZE);
+            premio.setFitHeight(INTERACUABLE_SIZE);
             Image imagenPremio = getCachedImage("/" + celda.nombrePremio().toLowerCase() + ".png");
             premio.setImage(imagenPremio);
             stackPane.getChildren().addAll(premio);
@@ -61,8 +62,8 @@ public class CeldaView extends View {
 
         if (!nombreObstaculo.equals("vacio")) {
             ImageView obstaculo = new ImageView();
-            obstaculo.setFitWidth(24);
-            obstaculo.setFitHeight(24);
+            obstaculo.setFitWidth(INTERACUABLE_SIZE);
+            obstaculo.setFitHeight(INTERACUABLE_SIZE);
             Image imagenObstaculo = getCachedImage("/" + celda.nombreObstaculo().toLowerCase() + ".png");
             obstaculo.setImage(imagenObstaculo);
             stackPane.getChildren().addAll(obstaculo);

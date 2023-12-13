@@ -81,8 +81,11 @@ public class TableroView extends View {
     public void actualizarMovimientos() {
         LAYOUT.getChildren().clear();
         Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
+        Label energiaLabel = new Label("Energía: " + this.jugadorActual.obtenerPuntosEnergia());
         configurarTitulo(jugadorLabel, TXT_FONT, TITULO_FS);
+        configurarTitulo(energiaLabel, TXT_FONT, TITULO_FS);
         LAYOUT.getChildren().add(jugadorLabel);
+        LAYOUT.getChildren().add(energiaLabel);
         configurarTablero(JUEGO.obtenerTablero());
         agregarGladiador();
         agregarBotonSiguienteJugador();
@@ -92,8 +95,11 @@ public class TableroView extends View {
         LAYOUT.getChildren().clear();
         this.jugadorActual = JUEGO.obtenerJugadorActual();
         Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
+        Label energiaLabel = new Label("Energía: " + this.jugadorActual.obtenerPuntosEnergia());
         configurarTitulo(jugadorLabel, TXT_FONT, TITULO_FS);
+        configurarTitulo(energiaLabel, TXT_FONT, TITULO_FS);
         LAYOUT.getChildren().add(jugadorLabel);
+        LAYOUT.getChildren().add(energiaLabel);
 
         configurarTablero(JUEGO.obtenerTablero());
         //configurarBotonTirarDados(layout, stage, juego);

@@ -61,8 +61,8 @@ public class Gladiador {
         return this.NOMBRE;
     }
 
-    public boolean tenesPuntosDeEnegia(int puntos) {
-        return this.ENERGIA.tenes(puntos);
+    public int obtenerPuntosEnergia() {
+        return this.ENERGIA.obtenerPuntos();
     }
 
     public boolean abrirPuerta(Camino camino) {

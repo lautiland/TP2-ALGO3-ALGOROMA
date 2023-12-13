@@ -4,7 +4,7 @@ import edu.fiuba.algo3.model.Dado;
 import edu.fiuba.algo3.model.Gladiador;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SeniorityTest {
 
@@ -30,6 +30,6 @@ public class SeniorityTest {
         gladiador.actualizarSeniority();
 
         //Assert, en total suma 30 puntos, mas los 20 iniciales
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_FINALES_CON_12_TURNOS));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_FINALES_CON_12_TURNOS);
     }
 }

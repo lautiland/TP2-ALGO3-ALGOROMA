@@ -13,7 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class SegundaEntregaTest {
@@ -92,7 +93,8 @@ public class SegundaEntregaTest {
         algoRoma.jugarTurno();
         verify(loggerMock).info("Gladiador Atticus cayó en una Bacanal");
         verify(loggerMock).info("Tiraste 1, tomas 1 tragos, perdes 5 puntos ");
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_UN_TRAGO));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_DESPUES_UN_TRAGO);
+
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador Atticus se lesiono");
@@ -101,7 +103,8 @@ public class SegundaEntregaTest {
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador Atticus encontró una fiera");
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_UN_TRAGO_FIERA));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_DESPUES_UN_TRAGO_FIERA);
+
     }
 
     @Test
@@ -112,7 +115,8 @@ public class SegundaEntregaTest {
         algoRoma.iniciarJuegoCompleto("src/main/test/edu/fiuba/algo3/entrega_2/examples/mapaPremios.json");
 
         algoRoma.jugarTurno();
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_COMIDA));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_DESPUES_COMIDA);
+
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador recibe casco");
@@ -138,7 +142,8 @@ public class SegundaEntregaTest {
         algoRoma.iniciarJuegoCompleto("src/main/test/edu/fiuba/algo3/entrega_2/examples/mapaCompleto.json");
 
         algoRoma.jugarTurno();
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_COMIDA_BACANAL));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_DESPUES_COMIDA_BACANAL);
+
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador recibe casco");
@@ -150,7 +155,7 @@ public class SegundaEntregaTest {
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador recibe una armadura"); // Se aplica primero el premio luego el obstaculo!
         verify(loggerMock).info("El gladiador Atticus encontró una fiera");
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_COMIDA_BACANAL_ARMADURA_FIERA));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_DESPUES_COMIDA_BACANAL_ARMADURA_FIERA);
 
         algoRoma.jugarTurno();
         verify(loggerMock).info("El gladiador recibe un escudo y una espada");

@@ -18,8 +18,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class PrimerEntregaTest {
@@ -56,7 +55,7 @@ public class PrimerEntregaTest {
 
         //Assert
         verify(loggerMock).info("El gladiador ahora tiene 0 puntos de energía");
-        assertTrue(gladiador.tenesPuntosDeEnegia(0));
+        assertEquals(gladiador.obtenerPuntosEnergia(), 0);
     }
 
     @Test
@@ -89,7 +88,7 @@ public class PrimerEntregaTest {
 
         //Act
         gladiadorAtticus.jugarTurno(camino);
-        assertTrue(gladiadorAtticus.tenesPuntosDeEnegia(0));
+        assertEquals(gladiadorAtticus.obtenerPuntosEnergia(), 0);
 
         gladiadorAtticus.jugarTurno(camino);
 
@@ -97,7 +96,7 @@ public class PrimerEntregaTest {
         verify(loggerMock).info("El gladiador Atticus no avanza, esta sin energia, recibe bono de 5 puntos");
         verify(loggerMock).info("El gladiador ahora tiene 5 puntos de energía");
         assertTrue(camino.estaEl(gladiadorAtticus, 1));
-        assertTrue(gladiadorAtticus.tenesPuntosDeEnegia(5));
+        assertEquals(gladiadorAtticus.obtenerPuntosEnergia(), 5);
     }
 
 
@@ -116,7 +115,7 @@ public class PrimerEntregaTest {
         //Assert 20 iniciales + 10 por comer
         verify(loggerMock).info("El gladiador Atticus encontró un rico pan, ganas 10 puntos");
         verify(loggerMock).info("El gladiador ahora tiene 30 puntos de energía");
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_COMER));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_DESPUES_COMER);
     }
 
 
@@ -139,7 +138,7 @@ public class PrimerEntregaTest {
 
         // Assert
         verify(loggerMock).info("El gladiador recibe casco");
-        assertTrue(gladiador.tenesPuntosDeEnegia(5));
+        assertEquals(gladiador.obtenerPuntosEnergia(), 5);
     }
 
     @Test
@@ -163,7 +162,7 @@ public class PrimerEntregaTest {
 
         // Assert
         verify(loggerMock).info("El gladiador recibe un escudo y una espada");
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_ATAQUE_FIERA_ESCUDO_ESPADA));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_ATAQUE_FIERA_ESCUDO_ESPADA);
     }
 
     @Test
@@ -184,7 +183,7 @@ public class PrimerEntregaTest {
         //Assert
         verify(loggerMock).info("El gladiador Atticus encontró una fiera");
         verify(loggerMock).info("El gladiador Atticus tiene un casco, pierde 15 puntos de energia");
-        assertTrue(gladiador.tenesPuntosDeEnegia(5));
+        assertEquals(gladiador.obtenerPuntosEnergia(), 5);
     }
 
     @Test
@@ -204,7 +203,8 @@ public class PrimerEntregaTest {
         //Assert, sube 5 puntos de los 20 iniciales
         verify(loggerMock).info("El gladiador Atticus subió de nivel a SemiSenior");
         verify(loggerMock).info("El gladiador Atticus consigue 5 puntos de energia por ser SemiSenior");
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_DESPUES_BONUS_SEMISENIOR));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_DESPUES_BONUS_SEMISENIOR);
+
     }
 
     @Test
@@ -251,7 +251,7 @@ public class PrimerEntregaTest {
         //Assert
         verify(loggerMock).info("El gladiador recibe una llave");
         verify(loggerMock).info("El gladiador Atticus tiene la llave, no pierde energia");
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_ENERGIA_INICIALES));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_ENERGIA_INICIALES);
     }
 
     @Test
@@ -283,7 +283,8 @@ public class PrimerEntregaTest {
         //Assert
         verify(loggerMock).info("El gladiador recibe una llave");
         verify(loggerMock).info("El gladiador cayo en una casilla de mejora pero ya esta al máximo");
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_ENERGIA_INICIALES));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_ENERGIA_INICIALES);
+
     }
 
     @Test

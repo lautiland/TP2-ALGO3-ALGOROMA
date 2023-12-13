@@ -4,7 +4,7 @@ import edu.fiuba.algo3.model.Dado;
 import edu.fiuba.algo3.model.Gladiador;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EquipamientoTest {
 
@@ -22,7 +22,7 @@ public class EquipamientoTest {
         gladiador.recibirAtaque();
 
         //Assert, gladiador inicia con 20 puntos
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_FINALES_ATAQUE_CON_ARMADURA));
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_FINALES_ATAQUE_CON_ARMADURA);
 
     }
 
@@ -38,7 +38,6 @@ public class EquipamientoTest {
         gladiador.recibirAtaque();
 
         //Assert, gladiador inicia con 20 puntos
-        assertTrue(gladiador.tenesPuntosDeEnegia(PUNTOS_FINALES_ATAQUE_CON_ESCUDO_ESPADA));
-
+        assertEquals(gladiador.obtenerPuntosEnergia(), PUNTOS_FINALES_ATAQUE_CON_ESCUDO_ESPADA);
     }
 }

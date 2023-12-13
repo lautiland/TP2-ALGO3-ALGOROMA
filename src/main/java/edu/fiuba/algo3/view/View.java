@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class View {
     protected static final int TITULO_FS = 30;
     protected static final String TXT_FONT = "/TimesNewRoman.ttf";
     protected static final int TXT_FS = 20;
-    protected static final int BTN_WIDTH = 100;
+    protected static final int BTN_WIDTH = 120;
     protected static final int BTN_HEIGHT = 25;
     protected static final int BTN_FS = 14;
     protected static final int CELL_SIZE = 50;
@@ -37,8 +38,10 @@ public class View {
 
     protected void configurarBoton(Button button) {
         button.setPrefSize(BTN_WIDTH, BTN_HEIGHT);
-        button.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 16;");
-        Font customFont = Font.loadFont(getClass().getResourceAsStream(TXT_FONT), BTN_FS);
+        button.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 16");
+        button.setOnMouseEntered(e -> button.setStyle("-fx-background-color: #BDD9F2; -fx-text-fill: black; -fx-padding: 8 16"));
+        button.setOnMouseExited(e -> button.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 16"));
+        Font customFont = Font.font(TXT_FONT, FontWeight.BOLD, BTN_FS);
         button.setFont(customFont);
     }
 
@@ -47,6 +50,7 @@ public class View {
         Font customFont = Font.loadFont(getClass().getResourceAsStream(fuente), fontSize);
         texto.setFont(customFont);
     }
+
     public static void setDimensions(double width, double height) {
         WIDTH = width;
         HEIGHT = height;

@@ -5,15 +5,20 @@ import edu.fiuba.algo3.view.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class BotonIniciarTableroHandler implements EventHandler<ActionEvent> {
     private final Stage STAGE;
     private final AlgoRoma JUEGO;
     private final ArrayList<TextField> INPUTS;
+    private final static MediaPlayer sonido = new MediaPlayer(new Media(Objects.requireNonNull(Objects.requireNonNull(BotonTirarDadosHandler.class.getResource("/select.mp3")).toExternalForm())));
+
 
     public BotonIniciarTableroHandler(ArrayList<TextField> inputs, Stage stage, AlgoRoma juego) {
         this.STAGE = stage;
@@ -23,6 +28,7 @@ public class BotonIniciarTableroHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        sonido.play();
         for (TextField input : INPUTS) {
             String nombre = input.getText();
             JUEGO.agregarGladiador(nombre);

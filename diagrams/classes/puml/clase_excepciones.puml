@@ -1,0 +1,11 @@
+@startuml
+
+exception JSONInvalido
+exception JuegoSinGladiadores
+exception SinTurnos
+
+JSONReader ..> JSONInvalido
+AlgoRoma ..> JuegoSinGladiadores
+Turnos ..> SinTurnos
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+
+class AlgoRoma {
+    + agregarGladiador(:Gladiador)
+    + agregarGladiador(:String)
+    + obtenerTablero(): Tablero
+    + tieneGanador() : boolean
+    + jugarTurno()
+    + obtenerJugadorActual(): Gladiador
+    + obtenerGanador(): Gladiador
+    + iniciarJuegoCompleto(rutaMapa: String)
+}
+
+class Turnos {
+    - jugadorActual: Gladiador
+    - gladiadoresSinJugar: Queue<Gladiador>
+    - TURNOS_MAXIMOS: int
+    - turnosActuales: int
+    + Turnos(:Gladiador[])
+    + obtenerJugadorActual(): Gladiador
+    + ejecutar(:Gladiador[], :Tablero)
+}
+
+AlgoRoma --> Tablero
+AlgoRoma --> "*" Gladiador
+AlgoRoma --> Turnos
+
+Turnos -> "*" Gladiador
+Tablero <. Turnos
+
+@enduml

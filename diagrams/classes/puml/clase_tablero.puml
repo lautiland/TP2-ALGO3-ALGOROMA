@@ -1,0 +1,40 @@
+@startuml
+class Tablero {
+    + Tablero(:Gladiador[], :DataClassTablero)
+    - crearCaminoEnTablero(:DataClassTablero)
+    - construirElResto(:DataClassTablero)
+    + tieneGanador(): boolean
+    + obtenerGanador(): Gladiador
+    + obtenerGrilla(): Celda[][]
+    + obtenerPosicionDe(:Gladiador): DataClassCelda
+    + turnoDe(:Gladiador)
+}
+
+class Camino {
+    - ganador: Gladiador
+    - GLADIADOR_TO_NUMERO_CASILLA: Map<Gladiador, int>
+    - premioReclamado: boolean
+    + Camino(:Gladiador[])
+    - desplazarGladiadorEInteractuar(:Gladiador, casillas: int)
+    + eliminarGladiadorDeCamino(:Gladiador)
+    + mover(:Gladiador, casillas: int)
+    + obtenerPosicionDe(:Gladiador): int
+    + moverAMitad(:Gladiador)
+    + obtenerGanador(): Gladiador
+    + reclamarPremio(:Gladiador)
+    + estaEl(:Gladiador, casilla: int): boolean
+    + agregarCasilla(:Casilla)
+}
+
+interface Celda
+
+Tablero --> DataClassTablero
+Tablero --> Camino
+Tablero --> Celda
+Tablero ..> DataClassCelda
+Tablero ..> Gladiador
+
+Camino -> "*" Gladiador
+Camino --> "*" Casilla
+
+@enduml

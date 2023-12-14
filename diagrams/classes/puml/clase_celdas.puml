@@ -1,0 +1,28 @@
+@startuml
+
+interface Celda {
+    + nombrePremio(): String
+    + nombreObstaculo(): String
+    + equals(:String): boolean
+}
+
+class Casilla {
+    - premio: Interactuable
+    - obstaculo: Interactuable
+    + Casilla(:Interactuable, :Interactuable)
+    + nombrePremio(): String
+    + nombreObstaculo(): String
+    + equals(:String): boolean
+    + interactuarCon(:Gladiador, camino)
+}
+
+class CeldaSinCasilla {
+    + nombrePremio(): String
+    + nombreObstaculo(): String
+    + equals(:String): boolean
+}
+
+Celda <|-- CeldaSinCasilla
+Celda <|-- Casilla
+
+@enduml

@@ -5,9 +5,5 @@ import edu.fiuba.algo3.model.tablero.Camino;
 
 public interface Estado {
 
-    Estado jugar(Gladiador gladiador);
-
-    default Estado jugar(Gladiador gladiador, Camino camino) {
-        return jugar(gladiador);
-    }
+    Estado jugar(Gladiador gladiador, Camino camino);
 }

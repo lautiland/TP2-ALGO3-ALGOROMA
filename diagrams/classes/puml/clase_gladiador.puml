@@ -1,0 +1,45 @@
+@startuml
+class Gladiador{
+    - NOMBRE: String
+    + Gladiador(nombre:String, dado:Dado)
+    + modificarEnergia(valor:int)
+    + actualizarEstado(): Estado
+    + jugarTurno(:Camino)
+    + actualizarSeniority()
+    + lesionar()
+    + getNombre() : String
+    + calcularMovimientos() : int
+    + obtenerPuntosEnergia() : int
+    + abrirPuerta(:Camino) : boolean
+    + recibirAtaque()
+    + actualizarEquipo()
+}
+
+class Tiradas {
+    - TIRADAS_MAXIMAS: int
+    - tiradas: int
+    + tirarDado(): int
+    + verificarLimite(:Gladiador, :Camino): boolean
+}
+
+class Energia {
+    - puntos: int
+    - PUNTOS_INICIALES: int
+    + obtenerPuntos() : int
+    + actualizarEstado(:Estado): Estado
+    + modificarPuntos(valor:int)
+}
+
+class Dado{
+    + tirar(): int
+}
+
+Gladiador --> Seniorty
+Gladiador --> Energia
+Gladiador --> Tiradas
+Gladiador --> Estado
+Gladiador --> Equipamiento
+Gladiador ..> Dado
+
+Tiradas -> Dado
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+
+abstract class Seniority {
+    - experiencia: int
+    + actualizar(:Gladiador): Seniority
+}
+
+class Novato {
+    + actualizar(:Gladiador): Seniority
+}
+
+class SemiSenior {
+    - PUNTOS_EXPERIENCIA_INICIAL: int
+    - PUNTOS_DE_ENERGIA_GANADOS: int
+    - PUNTOS_NECESARIO_SIGUIENTE_NIVEL: int
+    + actualizar(:Gladiador): Seniority
+}
+
+class Senior {
+    - PUNTOS_DE_ENERGIA_GANADOS: int
+    - PUNTOS_EXPERIENCIA_INICIAL: int
+    + actualizar(:Gladiador): Seniority
+}
+
+Seniority <|-- Novato
+Seniority <|-- SemiSenior
+Seniority <|-- Senior
+
+Novato .> SemiSenior
+SemiSenior .> Senior
+
+@enduml

@@ -1,7 +1,6 @@
 @startuml
-!theme plain
 skinparam groupInheritance 1
-skinparam linetype ortho
+
 
 Equipamiento <|-- SinEquipamiento
 Equipamiento <|-- Casco
@@ -9,10 +8,10 @@ Equipamiento <|-- Armadura
 Equipamiento <|-- EscudoYEspada
 Equipamiento <|-- Llave
 
-SinEquipamiento ..> Casco
-Casco ..> Armadura
-Armadura ..> EscudoYEspada
-EscudoYEspada ..> Llave
+SinEquipamiento .> Casco
+Casco .> Armadura
+Armadura .> EscudoYEspada
+EscudoYEspada .> Llave
 
 Class Equipamiento{
     + {abstract} actualizar() : Equipamiento

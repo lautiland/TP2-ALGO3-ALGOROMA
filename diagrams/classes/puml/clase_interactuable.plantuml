@@ -1,0 +1,57 @@
+@startuml
+
+class Comida {
+    - PUNTOS_DE_ENERGIA_GANADOS: int
+    + interactuarCon(:Gladiador, :Camino)
+    + toString(): String
+}
+
+class Equipamiento{
+    + interactuarCon(:Gladiador, :Camino)
+    + toString(): String
+}
+
+class Fiera {
+    + interactuarCon(:Gladiador, :Camino)
+    + toString(): String
+}
+
+class Llegada {
+    + interactuarCon(:Gladiador, :Camino)
+    + toString(): String
+}
+
+class Lesion {
+    + interactuarCon(:Gladiador, :Camino)
+    + toString(): String
+}
+
+class Bacanal {
+    - PUNTOS_POR_TRAGO
+    + interactuarCon(:Gladiador, :Camino)
+    + toString(): String
+}
+
+class Llegada {
+    + interactuarCon(:Gladiador, :Camino)
+    + toString(): String
+}
+
+interface Interactuable {
+    + interactuarCon(:Gladiador, :Camino)
+}
+
+class InteractuableFactory {
+    + crearInteractuable(:String): Interactuable
+}
+
+Interactuable <|-- Comida
+Interactuable <|-- Bacanal
+Interactuable <|-- Equipamiento
+Interactuable <|-- Fiera
+Interactuable <|-- Llegada
+Interactuable <|-- Lesion
+
+InteractuableFactory ..> Interactuable
+
+@enduml

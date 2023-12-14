@@ -1,0 +1,36 @@
+@startuml
+
+class DataClassCelda {
+    + X: int
+    + Y: int
+    + PREMIO: String
+    + OBSTACULO: String
+    + DataClassCelda(x:int, y:int, premio:String, Obstaculo: String)
+}
+
+class DataClassTablero {
+    + ANCHO: int
+    + LARGO: int
+    + DataClassTablero(ancho:int, largo:int)
+    + getLlegada(): DataClassCelda
+    + getCamino(): DataClassCelda[]
+}
+
+class JSONReader {
+    - validarJSON(:JsonElement): JsonObject
+    - obtenerCamino(:JsonObject, :DataClassTablero)
+    - obtenerValorSinComillas(:JsonElement): String
+    - obtenerTamanioMapa(:JsonObject): DataClassTablero
+    + obtenerMapaDesdeJson(:Reader): DataClassTablero
+}
+
+class JuegoParser {
+    + parsear(path: String, tipo: String): DataClassTablero
+}
+
+DataClassTablero *-> "*" DataClassCelda
+JSONReader ..> DataClassTablero
+JSONReader ..> DataClassCelda
+JuegoParser ..> JSONReader
+
+@enduml

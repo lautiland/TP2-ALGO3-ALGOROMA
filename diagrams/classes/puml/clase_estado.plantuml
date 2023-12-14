@@ -1,7 +1,4 @@
 @startuml
-!theme plain
-skinparam groupInheritance 1
-skinparam linetype polyline
 
 interface Estado{
     + jugar( :Gladiador, :Camino) : Estado
@@ -20,8 +17,11 @@ class Lesionado{
 }
 
 
-Estado <|.. Sano
-Estado <|... SinEnergia
-Estado <|.. Lesionado
+Estado <|-- SinEnergia
+Estado <|-- Sano
+Estado <|-- Lesionado
+
+SinEnergia .> Sano
+Sano <. Lesionado
 
 @enduml

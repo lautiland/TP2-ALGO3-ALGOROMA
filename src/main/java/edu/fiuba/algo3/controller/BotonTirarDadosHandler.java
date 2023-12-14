@@ -34,7 +34,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         reproducirDados();
         JUEGO.jugarTurno();
-        if (JUEGO.obtenerTablero().tieneGanador()) {
+        if (JUEGO.tieneGanador()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Fin del juego");
             alert.setHeaderText("El ganador es " + JUEGO.obtenerGanador().getNombre());

@@ -27,7 +27,6 @@ public class AlgoRoma {
         this.turnos = new Turnos(gladiadores);
     }
 
-    // TODO: Sacar si no se usa?
     public void agregarGladiador(Gladiador gladiador) {
         this.gladiadores.add(gladiador);
     }
@@ -39,6 +38,10 @@ public class AlgoRoma {
 
     public void jugarTurno() {
         this.turnos.ejecutar(this.gladiadores, this.tablero);
+    }
+
+    public boolean tieneGanador() {
+        return this.tablero.tieneGanador();
     }
 
     public Gladiador obtenerGanador() {

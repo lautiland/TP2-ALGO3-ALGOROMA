@@ -11,10 +11,6 @@ import java.io.Reader;
 public class JSONReader {
 
     private static JsonObject validarJSON(JsonElement jsonElement) throws JSONInvalido {
-        if (!jsonElement.isJsonObject()) {
-            throw new JSONInvalido();
-        }
-
         JsonObject jsonObject = jsonElement.getAsJsonObject();
 
         if (!jsonObject.has("mapa")) {

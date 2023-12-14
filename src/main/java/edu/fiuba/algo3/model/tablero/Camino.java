@@ -34,7 +34,11 @@ public class Camino {
     }
 
     public boolean estaEl(Gladiador gladiador, int enCasillaNumero) {
-        return this.GLADIADOR_TO_NUMERO_CASILLA.get(gladiador) == enCasillaNumero;
+        try {
+            return this.GLADIADOR_TO_NUMERO_CASILLA.get(gladiador) == enCasillaNumero;
+        } catch (ClassCastException | NullPointerException e) {
+            return false;
+        }
     }
 
     private void desplazarGladiadorEInteractuar(Gladiador gladiador, int nuevaUbicacion) {

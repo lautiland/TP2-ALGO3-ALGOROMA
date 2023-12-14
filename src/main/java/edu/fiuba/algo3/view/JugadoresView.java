@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class JugadoresView extends View {
 
+    private static final int TEXTFIELD_W = 150;
     private final Stage STAGE;
     private final Scene SCENE;
     private final VBox LAYOUT;
@@ -63,7 +64,7 @@ public class JugadoresView extends View {
         textField.setFont(Font.loadFont(getClass().getResourceAsStream(TXT_FONT), BTN_FS));
         textField.setStyle("-fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
         textField.setPromptText("Nombre");
-        textField.setMaxWidth(150);
+        textField.setMaxWidth(TEXTFIELD_W);
         textField.setMaxHeight(BTN_HEIGHT);
     }
 

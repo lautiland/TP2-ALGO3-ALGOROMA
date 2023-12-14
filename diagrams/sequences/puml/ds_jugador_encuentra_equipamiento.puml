@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title "Jugador consigue mejora de equipamiento"
+
+autonumber
+
+actor usuario
+usuario -> "__:AlgoRoma__": jugarTurno()
+"__:AlgoRoma__" -> "__:Turnos__": ejecutar(gladiadores, tablero)
+"__:Turnos__" -> "__:Tablero__": turnoDe(jugadorActual)
+"__:Tablero__" -> "__:Gladiador__": jugarTurno(camino)
+"__:Gladiador__" -> "Sano:Estado": jugar(this, camino)
+"Sano:Estado" -> "__:Gladiador__": calcularMovimientos()
+"__:Gladiador__" --> "Sano:Estado": casillasAMover
+"Sano:Estado" -> "__:Camino__": mover(gladiador, casillasAMover)
+"__:Camino__" -> "__:Camino__": desplazarGladiadorEInteractuar(gladiador, nuevaUbicacion)
+note over "__:Camino__": Lo mueve de casilla
+"__:Camino__" -> "__:Casilla__": interactuarCon(gladiador,this)
+"__:Casilla__" -> "Equipamiento:Interactuable": interactuarCon(gladiador,this)
+"Equipamiento:Interactuable" -> "__:Gladiador__": actualizarEquipo()
+"__:Gladiador__" -> "actual:Equipamiento": actualizar()
+"actual:Equipamiento" --> "mejora:Equipamiento": new Equipamiento()
+"actual:Equipamiento" --> "__:Gladiador__": "mejora"
+"__:Casilla__" -> "Ninguno: interactuable": interactuarCon(gladiador,this)
+"Ninguno: interactuable" --> "__:Casilla__"
+"Sano:Estado" -> "__:Gladiador__": actualizarSeniority()
+"__:Gladiador__" -> "__:Seniority__": actualizar(this)
+"__:Seniority__" -> "__:Gladiador__": modificarEnergia(puntosSeniority)
+"__:Seniority__" --> "__:Gladiador__": this
+"Sano:Estado" -> "__:Gladiador__": actualizarEstado()
+"__:Gladiador__" -> "__:Energia__": actualizarEstado(estado)
+"__:Energia__" --> "__:Gladiador__": this
+
+"__:Gladiador__" -> "__:Tiradas__": verificarLimite(this,camino)
+"__:Tiradas__" --> "__:Gladiador__"
+
+@enduml

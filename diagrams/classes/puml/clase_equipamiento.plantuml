@@ -13,7 +13,7 @@ Casco .> Armadura
 Armadura .> EscudoYEspada
 EscudoYEspada .> Llave
 
-Class Equipamiento{
+abstract class Equipamiento{
     + {abstract} actualizar() : Equipamiento
     + {abstract} resistirAtaque( :Gladiador)
     + {abstract} abrirPuerta( :Gladiador, :Camino) : boolean

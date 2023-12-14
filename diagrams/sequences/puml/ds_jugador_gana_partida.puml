@@ -1,0 +1,54 @@
+@startuml
+
+autonumber
+title "Jugador con llave gana partida"
+actor usuario
+
+usuario -> "__:AlgoRoma__": jugarTurno()
+"__:AlgoRoma__" -> "__:Turnos__": ejecutar(gladiadores, tablero)
+"__:Turnos__" -> "__:Tablero__": turnoDe(jugadorActual)
+"__:Tablero__" -> "__:Gladiador__": jugarTurno(camino)
+"__:Gladiador__" -> "Sano:Estado": jugar(this, camino)
+"Sano:Estado" -> "__:Gladiador__": calcularMovimientos()
+"__:Gladiador__" --> "Sano:Estado": casillasAMover
+"Sano:Estado" -> "__:Camino__": mover(gladiador, casillasAMover)
+"__:Camino__" -> "__:Camino__": desplazarGladiadorEInteractuar(gladiador, nuevaUbicacion)
+"__:Camino__" -> "__:Casilla__": interactuarCon(gladiador,this)
+"__:Casilla__" -> "Llegada:Interactuable": interactuarCon(gladiador,this)
+"Llegada:Interactuable" -> "__:Gladiador__": abrirPuerta(camino)
+"__:Gladiador__" -> "Llave:Equipamiento": abrirPuerta(this,camino)
+"Llave:Equipamiento" --> "__:Gladiador__": true
+"__:Gladiador__" --> "Llegada:Interactuable": true
+"Llegada:Interactuable" -> "__:Camino__": reclamarPremio(gladiador)
+"__:Casilla__" -> "Ninguno: interactuable": interactuarCon(gladiador,this)
+"Ninguno: interactuable" --> "__:Casilla__"
+"Sano:Estado" -> "__:Gladiador__": actualizarSeniority()
+"__:Gladiador__" -> "__:Seniority__": actualizar(this)
+"__:Seniority__" -> "__:Gladiador__": modificarEnergia(puntosSeniority)
+"__:Seniority__" --> "__:Gladiador__": this
+"Sano:Estado" -> "__:Gladiador__": actualizarEstado()
+"__:Gladiador__" -> "__:Energia__": actualizarEstado(estado)
+"__:Energia__" --> "__:Gladiador__": this
+"__:Gladiador__" -> "__:Tiradas__": verificarLimite(this,camino)
+"__:Tiradas__" --> "__:Gladiador__"
+"__:Gladiador__" --> "__:Tablero__"
+"__:Tablero__" --> "__:Turnos__"
+"__:Turnos__" --> "__:AlgoRoma__"
+"__:AlgoRoma__" --> usuario
+
+usuario -> "__:AlgoRoma__": tieneGanador()
+"__:AlgoRoma__" -> "__:Tablero__": tieneGanador()
+"__:Tablero__" -> "__:Camino__": tieneGanador()
+"__:Camino__" --> "__:Tablero__": true
+"__:Tablero__" --> "__:AlgoRoma__": true
+"__:AlgoRoma__" --> usuario: true
+
+usuario -> "__:AlgoRoma__": obtenerGanador()
+"__:AlgoRoma__" -> "__:Tablero__": obtenerGanador()
+"__:Tablero__" -> "__:Camino__": obtenerGanador()
+"__:Camino__" --> "__:Tablero__": gladiador
+"__:Tablero__" --> "__:AlgoRoma__": gladiador
+"__:AlgoRoma__" --> usuario: gladiador
+
+
+@enduml

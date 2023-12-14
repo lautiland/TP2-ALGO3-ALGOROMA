@@ -1,0 +1,17 @@
+@startuml
+autonumber
+title "Jugador lesionado se intenta mover"
+actor usuario
+
+usuario -> "__:AlgoRoma__": jugarTurno()
+"__:AlgoRoma__" -> "__:Turnos__": ejecutar(gladiadores, tablero)
+"__:Turnos__" -> "__:Tablero__": turnoDe(jugadorActual)
+"__:Tablero__" -> "__:Gladiador__": jugarTurno(camino)
+"__:Gladiador__" -> "lesionado: Estado": jugar(this, camino)
+create "sano: Estado"
+"lesionado: Estado" -> "sano: Estado": <<create>>
+"lesionado: Estado" --> "__:Gladiador__": sano
+"__:Gladiador__" -> "__:Tiradas__": verificarLimite(this,camino)
+"__:Tiradas__" --> "__:Gladiador__"
+
+@enduml

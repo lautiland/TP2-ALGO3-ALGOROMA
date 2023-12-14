@@ -1,0 +1,15 @@
+@startuml
+
+autonumber
+title "Jugador juega 30 rondas y intenta jugar una mas"
+actor usuario
+
+usuario -> "__:AlgoRoma__": jugarTurno()
+"__:AlgoRoma__" -> "__:Turnos__": ejecutar(gladiadores, tablero)
+"__:Turnos__" --> SinTurnos: <<throws>>
+"__:Turnos__" --> "__:AlgoRoma__"
+"__:AlgoRoma__" --> usuario
+
+
+
+@enduml

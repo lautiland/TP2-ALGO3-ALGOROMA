@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title "Jugador novato sube a semisenior"
+
+autonumber
+
+actor usuario
+usuario -> "__:AlgoRoma__": jugarTurno()
+"__:AlgoRoma__" -> "__:Turnos__": ejecutar(gladiadores, tablero)
+"__:Turnos__" -> "__:Tablero__": turnoDe(jugadorActual)
+"__:Tablero__" -> "__:Gladiador__": jugarTurno(camino)
+"__:Gladiador__" -> "Sano:Estado": jugar(this, camino)
+"Sano:Estado" -> "__:Gladiador__": calcularMovimientos()
+"__:Gladiador__" --> "Sano:Estado": casillasAMover
+"Sano:Estado" -> "__:Camino__": mover(gladiador, casillasAMover)
+"__:Camino__" -> "__:Camino__": desplazarGladiadorEInteractuar(gladiador, nuevaUbicacion)
+note over "__:Camino__": Lo mueve de casilla
+"__:Casilla__" -> "Ninguno: interactuable": interactuarCon(gladiador,this)
+"Ninguno: interactuable" --> "__:Casilla__"
+"__:Casilla__" -> "Ninguno: interactuable": interactuarCon(gladiador,this)
+"Ninguno: interactuable" --> "__:Casilla__"
+"Sano:Estado" -> "__:Gladiador__": actualizarSeniority()
+"__:Gladiador__" -> "novato: Seniority": actualizar(this)
+create "semiSenior: Seniority"
+"novato: Seniority" -> "semiSenior: Seniority"
+"novato: Seniority" -> "semiSenior: Seniority": modificarEnergia(puntosSeniority)
+"novato: Seniority" --> "__:Gladiador__": semisenior
+"Sano:Estado" -> "__:Gladiador__": actualizarEstado()
+"__:Gladiador__" -> "__:Energia__": actualizarEstado(estado)
+"__:Energia__" --> "__:Gladiador__": this
+
+"__:Gladiador__" -> "__:Tiradas__": verificarLimite(this,camino)
+"__:Tiradas__" --> "__:Gladiador__"
+
+@enduml

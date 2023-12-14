@@ -1,0 +1,18 @@
+@startuml
+autonumber
+title "Jugador se intenta mover sin energia y sigue sin energia"
+actor usuario
+
+usuario -> "__:AlgoRoma__": jugarTurno()
+"__:AlgoRoma__" -> "__:Turnos__": ejecutar(gladiadores, tablero)
+"__:Turnos__" -> "__:Tablero__": turnoDe(jugadorActual)
+"__:Tablero__" -> "__:Gladiador__": jugarTurno(camino)
+"__:Gladiador__" -> "SinEnergia:Estado": jugar(this, camino)
+"SinEnergia:Estado" -> "__:Gladiador__": modificarEnergia(5)
+"__:Gladiador__" -> "__:Energia__": modificarPuntos(5)
+note over "__:Energia__": "__:Energia__" = -10
+"SinEnergia:Estado" --> "__:Gladiador__": this
+
+"__:Gladiador__" -> "__:Tiradas__": verificarLimite(this,camino)
+"__:Tiradas__" --> "__:Gladiador__"
+@enduml

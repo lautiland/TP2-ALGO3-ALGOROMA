@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.view.TableroView;
+import edu.fiuba.algo3.view.oldView.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -17,7 +17,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
     private final AlgoRoma JUEGO;
     private final TableroView TABLERO;
 
-    private final static MediaPlayer dados = new MediaPlayer(new Media(Objects.requireNonNull(Objects.requireNonNull(BotonTirarDadosHandler.class.getResource("/dice.mp3")).toExternalForm())));
+    private final static MediaPlayer dados = new MediaPlayer(new Media(Objects.requireNonNull(Objects.requireNonNull(BotonTirarDadosHandler.class.getResource("/musica/dice.mp3")).toExternalForm())));
 
     public BotonTirarDadosHandler(Stage stage, AlgoRoma juego, TableroView tablero) {
         this.STAGE = stage;

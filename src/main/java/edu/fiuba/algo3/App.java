@@ -1,8 +1,8 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.view.InicioView;
-import edu.fiuba.algo3.view.View;
+import edu.fiuba.algo3.view.oldView.InicioView;
+import edu.fiuba.algo3.view.oldView.View;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
@@ -32,7 +32,7 @@ public class App extends Application {
 
     private void configurarVentana(Stage stage) {
         stage.setTitle("AlgoRoma");
-        Image icon = new Image(Objects.requireNonNull(getClass().getResource("/icono.png")).toExternalForm());
+        Image icon = new Image(Objects.requireNonNull(getClass().getResource("/equipamiento/casco.png")).toExternalForm());
         stage.getIcons().add(icon);
         stage.setMaximized(true);
         stage.setResizable(false);
@@ -43,7 +43,7 @@ public class App extends Application {
     }
 
     private void reproducirSonido() {
-        Media sonido = new Media(Objects.requireNonNull(getClass().getResource("/Pufino-ThereBeDragons.mp3")).toExternalForm());
+        Media sonido = new Media(Objects.requireNonNull(getClass().getResource("/musica/Pufino-ThereBeDragons.mp3")).toExternalForm());
         mediaPlayer = new MediaPlayer(sonido);
         mediaPlayer.play();
     }

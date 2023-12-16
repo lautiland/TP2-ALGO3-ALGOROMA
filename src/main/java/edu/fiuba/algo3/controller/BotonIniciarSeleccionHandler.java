@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.view.SeleccionView;
+import edu.fiuba.algo3.view.oldView.SeleccionView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.Media;
@@ -13,7 +13,7 @@ import java.util.Objects;
 public class BotonIniciarSeleccionHandler implements EventHandler<ActionEvent> {
     private final Stage STAGE;
     private final AlgoRoma JUEGO;
-    private final static MediaPlayer sonido = new MediaPlayer(new Media(Objects.requireNonNull(Objects.requireNonNull(BotonTirarDadosHandler.class.getResource("/select.mp3")).toExternalForm())));
+    private final static MediaPlayer sonido = new MediaPlayer(new Media(Objects.requireNonNull(Objects.requireNonNull(BotonTirarDadosHandler.class.getResource("/musica/select.mp3")).toExternalForm())));
 
 
     public BotonIniciarSeleccionHandler(Stage stage, AlgoRoma juego) {

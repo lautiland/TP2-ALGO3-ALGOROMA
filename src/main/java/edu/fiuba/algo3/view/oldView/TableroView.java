@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view;
+package edu.fiuba.algo3.view.oldView;
 
 import edu.fiuba.algo3.controller.BotonSiguienteJugadorHandler;
 import edu.fiuba.algo3.controller.BotonTirarDadosHandler;
@@ -25,7 +25,7 @@ public class TableroView extends View {
     private GridPane gridPane;
     private Gladiador jugadorActual;
 
-    private static final Image GLADIADOR = new Image(Objects.requireNonNull(CeldaView.class.getResource("/gladiador.png")).toExternalForm());
+    private static final Image GLADIADOR = new Image(Objects.requireNonNull(CeldaView.class.getResource("/gladiador/gladiador1.png")).toExternalForm());
 
     public TableroView(Stage stage, AlgoRoma juego) {
         this.STAGE = stage;

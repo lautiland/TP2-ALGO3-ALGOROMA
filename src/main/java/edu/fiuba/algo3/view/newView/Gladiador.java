@@ -1,23 +1,32 @@
 package edu.fiuba.algo3.view.newView;
 
-import java.util.HashMap;
-import java.util.List;
-
 public class Gladiador {
-    private int cantidadDeGladiadores;
-    private static final HashMap<edu.fiuba.algo3.model.Gladiador, String> gladiadorAImagen = new HashMap<>();    //acá se guardan las imagenes de los gladiadores
-    public Gladiador(List<edu.fiuba.algo3.model.Gladiador> gladiadores) {
-        this.cantidadDeGladiadores = 0;
-        for (edu.fiuba.algo3.model.Gladiador gladiador : gladiadores) {
-            agregarGladiador(gladiador);
-        }
+    private final String modelName;
+    private int posicionX;
+    private int posicionY;
+
+    public Gladiador(String gladiadorNombre, int numeroDeGladiador) {
+        modelName = gladiadorNombre;
     }
-    private void agregarGladiador(edu.fiuba.algo3.model.Gladiador gladiador) {
-        cantidadDeGladiadores++;
-        gladiadorAImagen.put(gladiador, "/gladiador/gladiador" + cantidadDeGladiadores + ".png");
+    public String getModelNombre() {
+        return modelName;
     }
-    public static String paint(edu.fiuba.algo3.model.Gladiador model) {
-        return gladiadorAImagen.get(model);
+    public void mover (int numeroDeCasillaX, int numeroDeCasillaY) {
+        posicionX = numeroDeCasillaX;
+        posicionY = numeroDeCasillaY;
     }
+    public int getPosicionX() {
+        return posicionX;
+    }
+    public int getPosicionY() {
+        return posicionY;
+    }
+
+//    @Override
+//    public void actualizar(String nombreDelJugador, int numeroDeCasilla) {
+//        modelName = nombreDelJugador;
+//    }
+
+
 }
 

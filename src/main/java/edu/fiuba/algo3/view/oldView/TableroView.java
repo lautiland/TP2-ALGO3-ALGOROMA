@@ -4,7 +4,6 @@ import edu.fiuba.algo3.controller.BotonSiguienteJugadorHandler;
 import edu.fiuba.algo3.controller.BotonTirarDadosHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.model.Gladiador;
-import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.tablero.Tablero;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,15 +23,17 @@ public class TableroView extends View {
     private final AlgoRoma JUEGO;
     private GridPane gridPane;
     private Gladiador jugadorActual;
+    private final edu.fiuba.algo3.view.newView.Tablero TABLERO;
 
     private static final Image GLADIADOR = new Image(Objects.requireNonNull(CeldaView.class.getResource("/gladiador/gladiador1.png")).toExternalForm());
 
-    public TableroView(Stage stage, AlgoRoma juego) {
+    public TableroView(Stage stage, AlgoRoma juego, edu.fiuba.algo3.view.newView.Tablero tablero) {
         this.STAGE = stage;
         this.LAYOUT = new VBox(SPACING);
         LAYOUT.setAlignment(Pos.CENTER);
         this.JUEGO = juego;
         this.jugadorActual = juego.obtenerJugadorActual();
+        this.TABLERO = tablero;
 
         actualizarTablero();
 
@@ -60,15 +61,9 @@ public class TableroView extends View {
         LAYOUT.getChildren().add(this.gridPane);
     }
 
-    private void agregarGladiador() {
-        DataClassCelda gladiadorPos = JUEGO.obtenerTablero().obtenerPosicionDe(this.jugadorActual);
-
-        ImageView imageView = new ImageView();
-        imageView.setFitWidth(CELL_SIZE);
-        imageView.setFitHeight(CELL_SIZE);
-        imageView.setImage(GLADIADOR);
-
-        gridPane.add(imageView, gladiadorPos.X, gladiadorPos.Y);
+    private void actualizarGladiadores() {
+        //TODO: agregar estilos
+        TABLERO.paint(gridPane);
     }
 
     public void agregarBotonSiguienteJugador() {
@@ -81,7 +76,7 @@ public class TableroView extends View {
     public void actualizarMovimientos() {
         LAYOUT.getChildren().clear();
         configurarJugador();
-        agregarGladiador();
+        actualizarGladiadores();
         agregarBotonSiguienteJugador();
     }
 
@@ -89,9 +84,8 @@ public class TableroView extends View {
         LAYOUT.getChildren().clear();
         this.jugadorActual = JUEGO.obtenerJugadorActual();
         configurarJugador();
-        //configurarBotonTirarDados(layout, stage, juego);
         configurarBackground();
-        agregarGladiador();
+        actualizarGladiadores();
         agregarBotonDados();
     }
 
@@ -107,7 +101,7 @@ public class TableroView extends View {
     }
 
     private void configurarBackground() {
-        Image pasto_tile = new Image(Objects.requireNonNull(View.class.getResource("/pasto_tile.png")).toExternalForm());
+        Image pasto_tile = new Image(Objects.requireNonNull(View.class.getResource("/tile/pasto_tile.png")).toExternalForm());
         ImageView backgroundImageView = new ImageView(pasto_tile);
         backgroundImageView.setPreserveRatio(true);
         backgroundImageView.setSmooth(true); // Opcional: hace que el escalado sea más suave

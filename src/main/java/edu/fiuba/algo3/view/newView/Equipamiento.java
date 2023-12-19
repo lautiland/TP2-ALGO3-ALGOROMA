@@ -1,25 +1,28 @@
 package edu.fiuba.algo3.view.newView;
 
+import javafx.scene.image.Image;
+
+import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 
-public class Equipamiento {
-    private static final HashMap<edu.fiuba.algo3.model.equipamiento.Equipamiento, String> equipamientoAImagen = new HashMap<>();    //acá se guardan las imagenes de los equipamientos
-    public Equipamiento(List<edu.fiuba.algo3.model.equipamiento.Equipamiento> equipamientos) {
-        for (edu.fiuba.algo3.model.equipamiento.Equipamiento equipamiento : equipamientos) {
-            agregarEquipamiento(equipamiento);
+public class Equipamiento implements ObserverEquipamiento {
+    private static edu.fiuba.algo3.model.equipamiento.Equipamiento equipamientoActual;
+    private static final HashMap<String, String> EQUIPAMIENTO_A_IMAGEN = new HashMap<>();    //acá se guardan las imagenes de los equipamientos
+    private void agregarEquipamiento(String equipamiento) {
+        String imagen = "/equipamiento/" + equipamiento + ".png";
+        File file = new File(imagen);
+        if (!file.exists()) {
+            imagen = "/equipamiento/sinEquipamiento.png";
         }
-    }
-    private void agregarEquipamiento(edu.fiuba.algo3.model.equipamiento.Equipamiento equipamiento) {
-        try {
-            String imagen = "/equipamiento/" + equipamiento.getClass().getSimpleName().toLowerCase() + ".png";
-            equipamientoAImagen.put(equipamiento, imagen);
+        EQUIPAMIENTO_A_IMAGEN.put(equipamiento, imagen);
 
-        }catch (Exception e) {
-            System.out.println("No se pudo agregar el equipamiento" + equipamiento.getClass().getSimpleName() + "a la vista, no se encontró la imagen");
-        }
     }
-    public static String paint(edu.fiuba.algo3.model.equipamiento.Equipamiento model) {
-        return equipamientoAImagen.get(model);
+    @Override
+    public void actualizar(edu.fiuba.algo3.model.equipamiento.Equipamiento equipamiento) {
+        equipamientoActual = equipamiento;
+        agregarEquipamiento(equipamiento.getClass().getSimpleName().toLowerCase());
+    }
+    public static Image paint() {
+        return new Image(EQUIPAMIENTO_A_IMAGEN.get(equipamientoActual.getClass().getSimpleName().toLowerCase()));
     }
 }

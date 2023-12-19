@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
+import edu.fiuba.algo3.view.newView.Equipamiento;
+import edu.fiuba.algo3.view.newView.ObserverTablero;
+import edu.fiuba.algo3.view.newView.Tablero;
 import edu.fiuba.algo3.view.oldView.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class BotonIniciarTableroHandler implements EventHandler<ActionEvent> {
@@ -29,16 +33,20 @@ public class BotonIniciarTableroHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         sonido.play();
+        List<String> nombresGladiadores = new ArrayList<>();
+        Equipamiento equipamientoObserver = new Equipamiento();
         for (TextField input : INPUTS) {
-            String nombre = input.getText();
-            JUEGO.agregarGladiador(nombre);
+            String nombreGladiador = input.getText();
+            JUEGO.agregarGladiador(nombreGladiador, equipamientoObserver);
+            nombresGladiadores.add(nombreGladiador);
         }
+        Tablero observerTablero = new Tablero(nombresGladiadores);
         try {
-            JUEGO.iniciarJuegoCompleto("mapa.json");
+            JUEGO.iniciarJuegoCompleto("mapa.json", observerTablero);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        TableroView tablero = new TableroView(STAGE, JUEGO);
+        TableroView tablero = new TableroView(STAGE, JUEGO, observerTablero);
         STAGE.setScene(tablero.getScene());
     }
 }

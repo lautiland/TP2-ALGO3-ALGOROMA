@@ -16,7 +16,7 @@ public class Camino {
 
     public Camino(List<Gladiador> gladiadores) {
         for (Gladiador gladiador : gladiadores) {
-            GLADIADOR_TO_NUMERO_CASILLA.put(gladiador, 0);
+            this.GLADIADOR_TO_NUMERO_CASILLA.put(gladiador, 0);
         }
     }
 

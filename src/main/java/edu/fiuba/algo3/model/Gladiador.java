@@ -8,8 +8,9 @@ import edu.fiuba.algo3.model.estado.Sano;
 import edu.fiuba.algo3.model.seniority.Novato;
 import edu.fiuba.algo3.model.seniority.Seniority;
 import edu.fiuba.algo3.model.tablero.Camino;
+import edu.fiuba.algo3.view.newView.ObserverEquipamiento;
 
-public class Gladiador {
+public class Gladiador{
 
     private final String NOMBRE;
     private final Energia ENERGIA = new Energia();
@@ -17,11 +18,14 @@ public class Gladiador {
     private Estado estado = new Sano();
     private Seniority seniority = new Novato();
     private Equipamiento equipamiento = new SinEquipamiento();
+    private final ObserverEquipamiento OBSERVER_EQUIPAMIENTO;
 
-    public Gladiador(String nombre, Dado dado) {
+    public Gladiador(String nombre, Dado dado, ObserverEquipamiento observerEquipamiento) {
         this.TIRADAS = new Tiradas(dado);
         this.NOMBRE = nombre;
+        this.OBSERVER_EQUIPAMIENTO = observerEquipamiento;
     }
+
 
     public void jugarTurno(Camino camino) {
         Logger.getInstance().info("Es el turno de " + this.NOMBRE);
@@ -29,8 +33,9 @@ public class Gladiador {
         this.TIRADAS.verificarLimite(this, camino);
     }
 
-    public void actualizarEquipo() {
+    public void actualizarEquipamiento() {
         this.equipamiento = this.equipamiento.actualizar();
+        OBSERVER_EQUIPAMIENTO.actualizar(this.equipamiento);
     }
 
     public void actualizarSeniority() {

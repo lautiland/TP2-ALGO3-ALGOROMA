@@ -12,9 +12,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class CeldaView extends View {
-    private static final Image PASTO_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/pasto_tile.png")).toExternalForm());
-    private static final Image ROCA_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/roca_tile.png")).toExternalForm());
-    private static final Image LLEGADA_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/llegada_tile.png")).toExternalForm());
+    private static final Image PASTO_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/tile/pasto_tile.png")).toExternalForm());
+    private static final Image ROCA_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/tile/roca_tile.png")).toExternalForm());
+    private static final Image LLEGADA_IMAGE = new Image(Objects.requireNonNull(CeldaView.class.getResource("/tile/llegada_tile.png")).toExternalForm());
     private static final Map<String, Image> IMAGE_CACHE = new HashMap<>();
     private static final int INTERACUABLE_SIZE = 32;
 
@@ -53,7 +53,7 @@ public class CeldaView extends View {
             ImageView premio = new ImageView();
             premio.setFitWidth(INTERACUABLE_SIZE);
             premio.setFitHeight(INTERACUABLE_SIZE);
-            Image imagenPremio = getCachedImage("/" + celda.nombrePremio().toLowerCase() + ".png");
+            Image imagenPremio = getCachedImage("/interactuable/" + celda.nombrePremio().toLowerCase() + ".png");
             premio.setImage(imagenPremio);
             stackPane.getChildren().addAll(premio);
             StackPane.setAlignment(premio, Pos.TOP_LEFT);
@@ -64,7 +64,7 @@ public class CeldaView extends View {
             ImageView obstaculo = new ImageView();
             obstaculo.setFitWidth(INTERACUABLE_SIZE);
             obstaculo.setFitHeight(INTERACUABLE_SIZE);
-            Image imagenObstaculo = getCachedImage("/" + celda.nombreObstaculo().toLowerCase() + ".png");
+            Image imagenObstaculo = getCachedImage("/interactuable/" + celda.nombreObstaculo().toLowerCase() + ".png");
             obstaculo.setImage(imagenObstaculo);
             stackPane.getChildren().addAll(obstaculo);
             StackPane.setAlignment(obstaculo, Pos.BOTTOM_RIGHT);

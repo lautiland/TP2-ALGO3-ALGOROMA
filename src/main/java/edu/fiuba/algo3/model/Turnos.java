@@ -23,7 +23,7 @@ public class Turnos {
             gladiadoresSinJugar.addAll(gladiadores);
             turnosActuales++;
         }
-        tablero.turnoDe(jugadorActual); // Solo es null cuando se recibe asi
+        tablero.turnoDe(jugadorActual); //TODO:Solo es null cuando se recibe asi
         if (this.turnosActuales >= TURNOS_MAXIMOS) {
             Logger.getInstance().error("Se han acabado los turnos, no hay ganador");
             throw new SinTurnos();

@@ -5,14 +5,28 @@ import edu.fiuba.algo3.model.interactuable.Interactuable;
 import edu.fiuba.algo3.model.interactuable.InteractuableFactory;
 import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.parser.DataClassTablero;
+import edu.fiuba.algo3.view.newView.ObserverTablero;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Tablero {
+public class Tablero{
     private final Celda[][] grilla;
     private final Camino camino;
     private final DataClassTablero MAPA;
+    private ObserverTablero observerTablero;
 
+    public Tablero(List<Gladiador> gladiadores, ObserverTablero observerTablero, DataClassTablero mapa) {
+        this.MAPA = mapa;
+        this.grilla = new Celda[this.MAPA.LARGO][this.MAPA.ANCHO];
+        this.camino = new Camino(gladiadores);
+        this.observerTablero = observerTablero;
+        this.crearCaminoEnTablero(this.MAPA);
+        this.construirElResto(this.MAPA);
+        for (Gladiador gladiador : gladiadores) {
+            notificarObserver(gladiador);
+        }
+    }
     public Tablero(List<Gladiador> gladiadores, DataClassTablero mapa) {
         this.MAPA = mapa;
         this.grilla = new Celda[this.MAPA.LARGO][this.MAPA.ANCHO];
@@ -20,9 +34,14 @@ public class Tablero {
         this.crearCaminoEnTablero(this.MAPA);
         this.construirElResto(this.MAPA);
     }
-
+    public void notificarObserver(Gladiador gladiador) {
+        int posicionX = this.obtenerPosicionDe(gladiador).X;
+        int posicionY = this.obtenerPosicionDe(gladiador).Y;
+        observerTablero.actualizar(gladiador.getNombre(), posicionX, posicionY);
+    }
     public void turnoDe(Gladiador gladiador) {
         gladiador.jugarTurno(this.camino);
+        notificarObserver(gladiador);
     }
 
     public DataClassCelda obtenerPosicionDe(Gladiador gladiador) {

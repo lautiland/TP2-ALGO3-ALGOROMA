@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.model;
 
 import edu.fiuba.algo3.model.excepciones.JuegoSinGladiadores;
+import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.parser.DataClassTablero;
 import edu.fiuba.algo3.model.parser.JuegoParser;
 import edu.fiuba.algo3.model.tablero.Tablero;
 import edu.fiuba.algo3.view.newView.ObserverEquipamiento;
-import edu.fiuba.algo3.view.newView.ObserverTablero;
+import edu.fiuba.algo3.view.newView.ObserverCamino;
+import javafx.scene.chart.PieChart;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,16 +17,17 @@ public class AlgoRoma {
 
     private Tablero tablero;
     private final List<Gladiador> gladiadores = new ArrayList<>();
+    private DataClassTablero mapa;
     private Turnos turnos;
 
-    public void iniciarJuegoCompleto(String rutaDelMapa, ObserverTablero observerTablero) throws IOException {
+    public void iniciarJuegoCompleto(String rutaDelMapa, ObserverCamino observerCamino) throws IOException {
         if (gladiadores.isEmpty()) {
             Logger.getInstance().error("No hay gladiadores para iniciar el juego, agregue gladiadores primero");
             throw new JuegoSinGladiadores();
         }
         JuegoParser parser = new JuegoParser();
-        DataClassTablero mapa = parser.parsear(rutaDelMapa, "json");
-        this.tablero = new Tablero(gladiadores, observerTablero, mapa);
+        this.mapa = parser.parsear(rutaDelMapa, "json");
+        this.tablero = new Tablero(gladiadores, observerCamino, mapa);
         this.turnos = new Turnos(gladiadores);
     }
     public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
@@ -47,6 +50,9 @@ public class AlgoRoma {
         Gladiador gladiador = new Gladiador(nombre, new Dado(), observerEquipamiento);
         this.gladiadores.add(gladiador);
     }
+    public DataClassTablero getMapa(){
+        return this.mapa;
+    }
 
     public void jugarTurno() {
         this.turnos.ejecutar(this.gladiadores, this.tablero);
@@ -58,10 +64,6 @@ public class AlgoRoma {
 
     public Gladiador obtenerGanador() {
         return this.tablero.obtenerGanador();
-    }
-
-    public Tablero obtenerTablero() {
-        return this.tablero;
     }
 
     public Gladiador obtenerJugadorActual() {

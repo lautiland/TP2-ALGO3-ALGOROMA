@@ -39,7 +39,8 @@ public class App extends Application {
         double width = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         double height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
         View.setDimensions(width, height);
-        reproducirSonido();
+        //reproducirSonido();
+        //TODO: hacer que se reproduzca el sonido
     }
 
     private void reproducirSonido() {

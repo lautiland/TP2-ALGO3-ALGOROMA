@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
+import edu.fiuba.algo3.view.newView.Camino;
 import edu.fiuba.algo3.view.newView.Equipamiento;
-import edu.fiuba.algo3.view.newView.ObserverTablero;
-import edu.fiuba.algo3.view.newView.Tablero;
 import edu.fiuba.algo3.view.oldView.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -40,13 +39,13 @@ public class BotonIniciarTableroHandler implements EventHandler<ActionEvent> {
             JUEGO.agregarGladiador(nombreGladiador, equipamientoObserver);
             nombresGladiadores.add(nombreGladiador);
         }
-        Tablero observerTablero = new Tablero(nombresGladiadores);
+        Camino observerCamino = new Camino(nombresGladiadores);
         try {
-            JUEGO.iniciarJuegoCompleto("mapa.json", observerTablero);
+            JUEGO.iniciarJuegoCompleto("mapa.json", observerCamino);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        TableroView tablero = new TableroView(STAGE, JUEGO, observerTablero);
+        TableroView tablero = new TableroView(STAGE, JUEGO, observerCamino);
         STAGE.setScene(tablero.getScene());
     }
 }

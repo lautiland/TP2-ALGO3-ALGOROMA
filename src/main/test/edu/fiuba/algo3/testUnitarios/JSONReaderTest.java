@@ -40,14 +40,14 @@ public class JSONReaderTest {
     public void test01SeCreaUnMapaConJSONValido() throws FileNotFoundException {
         Reader reader = new FileReader(mapaValido);
         DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson(reader);
-        DataClassCelda primerCelda = mapa.CAMINO.get(0);
-        DataClassCelda celdaRandom = mapa.CAMINO.get(INDICE_CAMINO_LESION_COMIDA);
-        DataClassCelda ultimaCelda = mapa.CAMINO.get(mapa.CAMINO.size() - 1);
+        DataClassCelda primerCelda = mapa.CELDAS.get(0);
+        DataClassCelda celdaRandom = mapa.CELDAS.get(INDICE_CAMINO_LESION_COMIDA);
+        DataClassCelda ultimaCelda = mapa.CELDAS.get(mapa.CELDAS.size() - 1);
         assertNotNull(mapa);
 
         assertEquals(MAPA_ANCHO, mapa.ANCHO);
         assertEquals(MAPA_LARGO, mapa.LARGO);
-        assertEquals(MAPA_CANTIDAD_CELDAS, mapa.CAMINO.size() - 1);
+        assertEquals(MAPA_CANTIDAD_CELDAS, mapa.CELDAS.size() - 1);
 
         assertEquals(PRIMER_CELDA_X, primerCelda.X);
         assertEquals(PRIMER_CELDA_Y, primerCelda.Y);

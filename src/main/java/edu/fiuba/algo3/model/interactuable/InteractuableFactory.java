@@ -17,7 +17,7 @@ public class InteractuableFactory {
             case "Llegada":
                 return new Llegada();
             default:
-                return new Ninguno();
+                return new SinInteraccion();
         }
     }
 }

@@ -16,6 +16,6 @@
 
 - En `Nivel.sumarPuntos` le pregunte como podríamos quitar el if de los turnos jugados, nos sugirió añadir una clase `Turno` con un hash con algo estilo asi `{8, SemiSenior}, {9, Senior}`
 - Dijo que le pareció un poco raro que el `Nivel.sumarPuntos` reciba `energia`
-- Finalmente le pregunte como podíamos plantear el tema del mapa/tablero y hizo un uml asi
+- Finalmente le pregunte como podíamos plantear el tema del mapa/camino y hizo un uml asi
 
-![UML](tablero.png)
+![UML](camino.png)

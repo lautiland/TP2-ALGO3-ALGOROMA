@@ -60,11 +60,11 @@ public class SegundaEntregaTest {
     public void test14ElJSONDeLosObstaculosEsValido() throws IOException {
         JuegoParser juegoParser = new JuegoParser();
         DataClassTablero DataTablero = juegoParser.parsear("mapa.json", "json");
-        assertEquals(TABLERO_CANTIDAD_ELEMENTOS, DataTablero.getCamino().size());
+        assertEquals(TABLERO_CANTIDAD_ELEMENTOS, DataTablero.getCeldasSinInicioNiLlegada().size());
 
-        DataClassCelda primerCelda = DataTablero.getCamino().get(0);
+        DataClassCelda primerCelda = DataTablero.getCeldasSinInicioNiLlegada().get(0);
         DataClassCelda ultimaCelda = DataTablero.getLlegada();
-        DataClassCelda celdaConDosObstaculos = DataTablero.getCamino().get(ELEMENTO_CON_LESION_COMIDA);
+        DataClassCelda celdaConDosObstaculos = DataTablero.getCeldasSinInicioNiLlegada().get(ELEMENTO_CON_LESION_COMIDA);
 
         assertEquals(PRIMER_CELDA_X, primerCelda.X);
         assertEquals(PRIMER_CELDA_Y, primerCelda.Y);

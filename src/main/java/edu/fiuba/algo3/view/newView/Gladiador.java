@@ -22,11 +22,5 @@ public class Gladiador {
         return posicionY;
     }
 
-//    @Override
-//    public void actualizar(String nombreDelJugador, int numeroDeCasilla) {
-//        modelName = nombreDelJugador;
-//    }
-
-
 }
 

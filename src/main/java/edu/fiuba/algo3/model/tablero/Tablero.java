@@ -12,7 +12,7 @@ import java.util.List;
 public class Tablero{
     private final Camino camino;
     private final DataClassTablero MAPA;
-    private ObserverCamino observerCamino;
+    private final ObserverCamino observerCamino;
 
     public Tablero(List<Gladiador> gladiadores, ObserverCamino observerCamino, DataClassTablero mapa) {
         this.MAPA = mapa;
@@ -27,6 +27,7 @@ public class Tablero{
         this.MAPA = mapa;
         this.camino = new Camino(gladiadores);
         this.crearCaminoEnTablero(this.MAPA);
+        this.observerCamino = new edu.fiuba.algo3.view.newView.Camino();
     }
     public void notificarObserver(Gladiador gladiador) {
         int posicionX = this.obtenerPosicionDe(gladiador).X;
@@ -40,7 +41,7 @@ public class Tablero{
 
     public DataClassCelda obtenerPosicionDe(Gladiador gladiador) {
         int casillasAvanzadas = this.camino.obtenerPosicionDe(gladiador);
-        return MAPA.getCeldas().get(casillasAvanzadas);
+        return this.MAPA.getCeldas().get(casillasAvanzadas);
     }
 
     private void crearCaminoEnTablero(DataClassTablero mapa) {
@@ -63,5 +64,7 @@ public class Tablero{
     public Gladiador obtenerGanador() {
         return this.camino.obtenerGanador();
     }
-
+    public Camino obtenerCamino(){
+        return this.camino;
+    }
 }

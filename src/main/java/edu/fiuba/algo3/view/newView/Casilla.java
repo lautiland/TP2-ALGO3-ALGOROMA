@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -39,15 +40,16 @@ public class Casilla implements Celda {
         this.PREMIO = new Premio();
     }
 
-    public void paint(GridPane gridPane, int fila, int columna) {
+    public StackPane paint() {
         StackPane stackPane = new StackPane();
         ImageView imagenViewCasilla = new ImageView();
         imagenViewCasilla.setFitWidth(CELL_SIZE);
         imagenViewCasilla.setFitHeight(CELL_SIZE);
         imagenViewCasilla.setImage(TIPO_DE_CELDA_A_IMAGEN.get(TIPO_DE_CELDA));
-        stackPane.getChildren().addAll(imagenViewCasilla);
+        stackPane.getChildren().add(imagenViewCasilla);
         OBSTACULO.paint(stackPane);
         PREMIO.paint(stackPane);
-        gridPane.add(stackPane, fila, columna);
+
+        return stackPane;
     }
 }

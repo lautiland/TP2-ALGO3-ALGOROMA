@@ -10,6 +10,6 @@ public class SinInteraccion implements Interactuable {
 
     @Override
     public String toString() {
-        return "Vacio";
+        return "sininteraccion";
     }
 }

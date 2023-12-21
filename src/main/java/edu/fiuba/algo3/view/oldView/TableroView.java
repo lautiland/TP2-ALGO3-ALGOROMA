@@ -20,16 +20,17 @@ import java.util.Objects;
 public class TableroView extends View {
     private final Stage STAGE;
     private final Scene SCENE;
-    private final VBox LAYOUT;
+    private final VBox LAYOUT = new VBox();
     private final AlgoRoma JUEGO;
-    private GridPane gridPane = new GridPane();
+    private GridPane displayLayout = new GridPane();
+    private GridPane grillaTablero = new GridPane();
     private Gladiador jugadorActual;
     private final Camino CAMINO;
     private final edu.fiuba.algo3.view.newView.Tablero TABLERO;
 
     public TableroView(Stage stage, AlgoRoma juego, Camino camino) {
         this.STAGE = stage;
-        this.LAYOUT = new VBox(SPACING);
+        this.displayLayout.setAlignment(Pos.CENTER);
         LAYOUT.setAlignment(Pos.CENTER);
         this.JUEGO = juego;
         this.jugadorActual = juego.obtenerJugadorActual();
@@ -58,31 +59,29 @@ public class TableroView extends View {
     public void actualizarMovimientos() {
         LAYOUT.getChildren().clear();
         configurarJugador();
-        this.gridPane = TABLERO.paint();
-        LAYOUT.getChildren().add(gridPane);
-        CAMINO.paint(gridPane);
+        this.grillaTablero = TABLERO.paint();
+        CAMINO.paint(grillaTablero);
+        LAYOUT.getChildren().add(grillaTablero);
         agregarBotonSiguienteJugador();
+        this.jugadorActual = JUEGO.obtenerJugadorActual();
     }
 
     public void actualizarTablero() {
         LAYOUT.getChildren().clear();
         configurarBackground();
         configurarJugador();
-        this.jugadorActual = JUEGO.obtenerJugadorActual();
-        this.gridPane = TABLERO.paint();
-        LAYOUT.getChildren().add(gridPane);
+        this.grillaTablero = TABLERO.paint();
+        CAMINO.paint(grillaTablero);
+        LAYOUT.getChildren().add(grillaTablero);
         agregarBotonDados();
-        CAMINO.paint(gridPane);
     }
 
     private void configurarJugador() {
-        Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
+        Label jugadorLabel = new Label(this.jugadorActual.getNombre());
         Label energiaLabel = new Label("Energía: " + this.jugadorActual.obtenerPuntosEnergia());
-        configurarTitulo(jugadorLabel, TXT_FONT, TITULO_FS);
+        configurarTitulo(jugadorLabel, TITULO_PRINCIPAL_FONT, TITULO_FS);
         configurarTitulo(energiaLabel, TXT_FONT, TITULO_FS);
-        LAYOUT.getChildren().add(jugadorLabel);
-        LAYOUT.getChildren().add(energiaLabel);
-
+        LAYOUT.getChildren().addAll(jugadorLabel, energiaLabel);
     }
 
     private void configurarBackground() {
@@ -98,4 +97,5 @@ public class TableroView extends View {
     public Scene getScene() {
         return SCENE;
     }
+
 }

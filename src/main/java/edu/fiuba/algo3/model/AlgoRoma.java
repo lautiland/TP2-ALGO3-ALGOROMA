@@ -4,7 +4,9 @@ import edu.fiuba.algo3.model.excepciones.JuegoSinGladiadores;
 import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.parser.DataClassTablero;
 import edu.fiuba.algo3.model.parser.JuegoParser;
+import edu.fiuba.algo3.model.tablero.Camino;
 import edu.fiuba.algo3.model.tablero.Tablero;
+import edu.fiuba.algo3.view.newView.Equipamiento;
 import edu.fiuba.algo3.view.newView.ObserverEquipamiento;
 import edu.fiuba.algo3.view.newView.ObserverCamino;
 import javafx.scene.chart.PieChart;
@@ -41,13 +43,17 @@ public class AlgoRoma {
         this.turnos = new Turnos(gladiadores);
     }
 
-    public void agregarGladiador(Gladiador gladiador) {
-        this.gladiadores.add(gladiador);
-    }
-
     public void agregarGladiador(String nombre, ObserverEquipamiento observerEquipamiento) {
         Logger.getInstance().info("Se agrego el gladiador " + nombre);
         Gladiador gladiador = new Gladiador(nombre, new Dado(), observerEquipamiento);
+        this.gladiadores.add(gladiador);
+    }
+    public void agregarGladiador(String nombre) {
+        Logger.getInstance().info("Se agrego el gladiador " + nombre);
+        Gladiador gladiador = new Gladiador(nombre, new Dado(), new Equipamiento());
+        this.gladiadores.add(gladiador);
+    }
+    public void agregarGladiador(Gladiador gladiador) {
         this.gladiadores.add(gladiador);
     }
     public DataClassTablero getMapa(){
@@ -68,5 +74,9 @@ public class AlgoRoma {
 
     public Gladiador obtenerJugadorActual() {
         return this.turnos.obtenerJugadorActual();
+    }
+
+    public Camino obtenerTablero() {
+        return this.tablero.obtenerCamino();
     }
 }

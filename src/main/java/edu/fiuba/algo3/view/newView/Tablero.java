@@ -36,7 +36,8 @@ public class Tablero {
         gridPane.setAlignment(Pos.CENTER);
         for (int columna = 0; columna < GRILLA[0].length; columna++) {
             for (int fila = 0; fila < GRILLA.length; fila++) {
-                GRILLA[fila][columna].paint(gridPane, fila, columna);
+                StackPane celda = GRILLA[fila][columna].paint();
+                gridPane.add(celda, fila, columna);
             }
         }
         return gridPane;

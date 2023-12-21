@@ -15,6 +15,6 @@ public class Llegada implements Interactuable {
 
     @Override
     public String toString() {
-        return "Llegada";
+        return "llegada";
     }
 }

@@ -14,7 +14,7 @@ public class InteractuableTest {
     @Test
     public void test01GladiadorCaeEnBacanalYModificaSuEnergia() {
         // Arrange
-        Interactuable bacanal = InteractuableFactory.crearInteractuable("Bacanal");
+        Interactuable bacanal = InteractuableFactory.crearInteractuable("bacanal");
         Gladiador gladiadorMock = mock(Gladiador.class);
         Camino caminoMock = mock(Camino.class);
 
@@ -28,7 +28,7 @@ public class InteractuableTest {
     @Test
     public void test02GladiadorPateaUnaPiedraYSeLesiona() {
         // Arrange
-        Interactuable lesion = InteractuableFactory.crearInteractuable("Lesion");
+        Interactuable lesion = InteractuableFactory.crearInteractuable("lesion");
         Gladiador gladiadorMock = mock(Gladiador.class);
         Camino caminoMock = mock(Camino.class);
 
@@ -41,20 +41,20 @@ public class InteractuableTest {
 
     @Test
     public void test03SePuedenConvertirAStringCorrectamente() {
-        Interactuable ninguno = InteractuableFactory.crearInteractuable("Ninguno");
-        Interactuable lesion = InteractuableFactory.crearInteractuable("Lesion");
-        Interactuable bacanal = InteractuableFactory.crearInteractuable("Bacanal");
-        Interactuable comida = InteractuableFactory.crearInteractuable("Comida");
-        Interactuable equipamiento = InteractuableFactory.crearInteractuable("Equipamiento");
-        Interactuable llegada = InteractuableFactory.crearInteractuable("Llegada");
-        Interactuable Fiera = InteractuableFactory.crearInteractuable("Fiera");
+        Interactuable sinInteraccion = InteractuableFactory.crearInteractuable("sininteraccion");
+        Interactuable lesion = InteractuableFactory.crearInteractuable("lesion");
+        Interactuable bacanal = InteractuableFactory.crearInteractuable("bacanal");
+        Interactuable comida = InteractuableFactory.crearInteractuable("comida");
+        Interactuable equipamiento = InteractuableFactory.crearInteractuable("equipamiento");
+        Interactuable llegada = InteractuableFactory.crearInteractuable("llegada");
+        Interactuable Fiera = InteractuableFactory.crearInteractuable("fiera");
 
-        assertEquals("Vacio", ninguno.toString());
-        assertEquals("Lesion", lesion.toString());
-        assertEquals("Bacanal", bacanal.toString());
-        assertEquals("Comida", comida.toString());
-        assertEquals("Equipamiento", equipamiento.toString());
-        assertEquals("Llegada", llegada.toString());
-        assertEquals("Fiera", Fiera.toString());
+        assertEquals("sininteraccion", sinInteraccion.toString());
+        assertEquals("lesion", lesion.toString());
+        assertEquals("bacanal", bacanal.toString());
+        assertEquals("comida", comida.toString());
+        assertEquals("equipamiento", equipamiento.toString());
+        assertEquals("llegada", llegada.toString());
+        assertEquals("fiera", Fiera.toString());
     }
 }

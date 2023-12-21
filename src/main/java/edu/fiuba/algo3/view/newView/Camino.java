@@ -21,10 +21,10 @@ public class Camino implements ObserverCamino {
         for (String gladiadorNombre : nombresGladiadores) {
             numeroDeGladiador++;
             this.gladiadores.add(new Gladiador(gladiadorNombre, numeroDeGladiador));
-            System.out.println(gladiadorNombre + "se agrego al tablero");
             gladiadorAImagen.put(gladiadorNombre, "/gladiador/gladiador" + numeroDeGladiador + ".png");
         }
     }
+    public Camino (){}
     @Override
     public void actualizar(String nombreGladiador, int numeroDeCasillaX, int numeroDeCasillaY) {
         for (Gladiador gladiador : gladiadores) {

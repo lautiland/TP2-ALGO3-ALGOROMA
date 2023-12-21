@@ -12,6 +12,6 @@ public class Equipamiento implements Interactuable {
 
     @Override
     public String toString() {
-        return "Equipamiento";
+        return "equipamiento";
     }
 }

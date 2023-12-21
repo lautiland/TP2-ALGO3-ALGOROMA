@@ -14,19 +14,6 @@ public class DataClassTablero {
         this.ANCHO = ancho;
         this.LARGO = largo;
     }
-    public DataClassCelda getInicio() {
-        return CELDAS.get(0);
-    }
-
-    public List<DataClassCelda> getCeldasSinInicioNiLlegada() {
-        List<DataClassCelda> camino = new ArrayList<>();
-        for (DataClassCelda celda : this.CELDAS) {
-            if (Objects.equals(celda.TIPO, "camino")) {
-                camino.add(celda);
-            }
-        }
-        return camino;
-    }
     public List<DataClassCelda> getCeldas() {
         return CELDAS;
     }

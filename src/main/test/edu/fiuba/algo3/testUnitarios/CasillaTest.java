@@ -12,27 +12,27 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasillaTest {
     @Test
     public void test01PuedoObtenerLosNombresDePremiosYObstaculos() {
-        Interactuable lesion = InteractuableFactory.crearInteractuable("Lesion");
-        Interactuable Comida = InteractuableFactory.crearInteractuable("Comida");
+        Interactuable lesion = InteractuableFactory.crearInteractuable("lesion");
+        Interactuable comida = InteractuableFactory.crearInteractuable("comida");
 
-        Casilla casilla = new Casilla(Comida, lesion);
+        Casilla casilla = new Casilla(comida, lesion);
         CeldaSinCasilla celdaVacia = new CeldaSinCasilla();
 
-        assertEquals("Comida", casilla.nombrePremio());
-        assertEquals("Lesion", casilla.nombreObstaculo());
+        assertEquals("comida", casilla.nombrePremio());
+        assertEquals("lesion", casilla.nombreObstaculo());
 
-        assertEquals("vacio", celdaVacia.nombrePremio());
-        assertEquals("vacio", celdaVacia.nombreObstaculo());
+        assertEquals("sininteraccion", celdaVacia.nombrePremio());
+        assertEquals("sininteraccion", celdaVacia.nombreObstaculo());
     }
 
     @Test
     public void test02PuedoDistinguirEntreUnaCeldaVaciaYUnaConCasilla() {
-        Interactuable lesion = InteractuableFactory.crearInteractuable("Lesion");
-        Interactuable Comida = InteractuableFactory.crearInteractuable("Comida");
+        Interactuable lesion = InteractuableFactory.crearInteractuable("lesion");
+        Interactuable comida = InteractuableFactory.crearInteractuable("comida");
         Celda celdaVacia = new CeldaSinCasilla();
-        Celda celdaConCasilla = new Casilla(Comida, lesion);
+        Celda celdaConCasilla = new Casilla(comida, lesion);
 
-        assertTrue(celdaVacia.equals("vacio"));
-        assertFalse(celdaConCasilla.equals("vacio"));
+        assertTrue(celdaVacia.equals("sininteraccion"));
+        assertFalse(celdaConCasilla.equals("sininteraccion"));
     }
 }

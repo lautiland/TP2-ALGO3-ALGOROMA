@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.view.newView;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 
 public interface Celda {
-    void paint(GridPane gridPane, int fila, int columna);
+    StackPane paint();
 }

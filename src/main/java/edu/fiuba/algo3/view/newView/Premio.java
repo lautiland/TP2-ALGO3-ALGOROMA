@@ -13,6 +13,6 @@ public class Premio extends Interactuable{
     }
     @Override
     void agregarInteractuable(StackPane stackPane, ImageView premioView) {
-        StackPane.setAlignment(premioView, Pos.BOTTOM_RIGHT);
+        StackPane.setAlignment(premioView, Pos.TOP_LEFT);
     }
 }

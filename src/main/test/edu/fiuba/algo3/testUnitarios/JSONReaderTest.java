@@ -25,8 +25,8 @@ public class JSONReaderTest {
     private static final int ULTIMA_CELDA_Y = 1;
     private static final int CELDA_RANDOM_X = 13;
     private static final int CELDA_RANDOM_Y = 9;
-    private static final String CELDA_RANDOM_OBSTACULO = "Lesion";
-    private static final String CELDA_RANDOM_PREMIO = "Comida";
+    private static final String CELDA_RANDOM_OBSTACULO = "lesion";
+    private static final String CELDA_RANDOM_PREMIO = "comida";
 
     private static final String mapaValido = "mapa.json";
     private static final String mapaInvalido = "src/main/test/edu/fiuba/algo3/testUnitarios/examples/mapaInvalido.json";

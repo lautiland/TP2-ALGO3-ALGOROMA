@@ -25,6 +25,11 @@ public class Gladiador{
         this.NOMBRE = nombre;
         this.OBSERVER_EQUIPAMIENTO = observerEquipamiento;
     }
+    public Gladiador(String nombre, Dado dado) {
+        this.TIRADAS = new Tiradas(dado);
+        this.NOMBRE = nombre;
+        this.OBSERVER_EQUIPAMIENTO = new edu.fiuba.algo3.view.newView.Equipamiento();
+    }
 
 
     public void jugarTurno(Camino camino) {

@@ -18,6 +18,6 @@ public class Bacanal implements Interactuable {
 
     @Override
     public String toString() {
-        return "Bacanal";
+        return "bacanal";
     }
 }

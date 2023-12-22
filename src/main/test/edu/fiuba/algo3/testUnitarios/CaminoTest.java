@@ -27,11 +27,11 @@ public class CaminoTest {
         camino.agregarCasilla(new Casilla(vacio, vacio));
         camino.agregarCasilla(new Casilla(vacio, vacio));
 
-        camino.mover(gladiador, 2);
-        assertTrue(camino.estaEl(gladiador, 2));
+        camino.mover(gladiador, 1);
+        assertTrue(camino.estaEl(gladiador, 1));
 
         camino.mover(gladiador, 2); // Se sale del mapa
-        assertTrue(camino.estaEl(gladiador, 3));
+        assertTrue(camino.estaEl(gladiador, 2));
     }
 
     @Test

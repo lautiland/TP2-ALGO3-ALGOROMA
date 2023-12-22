@@ -15,4 +15,9 @@ public abstract class Equipamiento {
         camino.moverAMitad(gladiador);
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "sinequipamiento";
+    }
 }

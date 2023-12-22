@@ -2,7 +2,7 @@ package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.view.modelview.Camino;
-import edu.fiuba.algo3.view.modelview.Equipamiento;
+import edu.fiuba.algo3.view.modelview.Gladiador;
 import edu.fiuba.algo3.view.scenes.TableroScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,10 +33,10 @@ public class BotonIniciarTableroHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         sonido.play();
         List<String> nombresGladiadores = new ArrayList<>();
-        Equipamiento equipamientoObserver = new Equipamiento();
+        Gladiador gladiadorObserver = new Gladiador();
         for (TextField input : INPUTS) {
             String nombreGladiador = input.getText();
-            JUEGO.agregarGladiador(nombreGladiador, equipamientoObserver);
+            JUEGO.agregarGladiador(nombreGladiador, gladiadorObserver);
             nombresGladiadores.add(nombreGladiador);
         }
         Camino observerCamino = new Camino(nombresGladiadores);
@@ -45,7 +45,7 @@ public class BotonIniciarTableroHandler implements EventHandler<ActionEvent> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        TableroScene tablero = new TableroScene(STAGE, JUEGO, observerCamino);
+        TableroScene tablero = new TableroScene(STAGE, JUEGO, observerCamino, gladiadorObserver);
         STAGE.setScene(tablero.getScene());
     }
 }

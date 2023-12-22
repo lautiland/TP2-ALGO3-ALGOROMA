@@ -16,4 +16,9 @@ public class Armadura extends Equipamiento {
         Logger.getInstance().info("El gladiador recibe un escudo y una espada");
         return new EscudoYEspada();
     }
+
+    @Override
+    public String toString() {
+        return "armadura";
+    }
 }

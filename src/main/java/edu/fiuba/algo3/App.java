@@ -5,7 +5,6 @@ import edu.fiuba.algo3.view.scenes.InicioScene;
 import edu.fiuba.algo3.view.scenes.SceneUtil;
 import javafx.application.Application;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -17,7 +16,7 @@ import java.util.Objects;
  */
 public class App extends Application {
 
-    private MediaPlayer mediaPlayer;    //para que el recolector de basura no lo borre y se siga reproduciendo
+    private MediaPlayer mediaPlayer;   //para que el recolector de basura no lo borre y se siga reproduciendo
 
     @Override
     public void start(Stage stage) {
@@ -41,7 +40,6 @@ public class App extends Application {
         stage.setMaximized(true);
         stage.setResizable(false);
         reproducirSonido();
-        //TODO: hacer que se reproduzca el sonido
     }
 
     private void reproducirSonido() {

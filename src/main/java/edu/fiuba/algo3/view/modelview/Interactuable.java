@@ -11,22 +11,19 @@ public abstract class Interactuable {
     protected final int INTERACUABLE_SIZE = 32;
     protected final String NOMBRE_INTERACTUABLE;
     protected static final HashMap<String, Image> INTERACTUABLE_A_IMAGEN = new HashMap<>();
+
     public Interactuable(String nombreInteractuable) {
-        String nombreTemp  = nombreInteractuable;
+        this.NOMBRE_INTERACTUABLE = nombreInteractuable;
         String imagen = "/interactuable/" + nombreInteractuable + ".png";
-        if (Interactuable.class.getResource(imagen) == null) {
-            nombreInteractuable = "SinInteraccion";
-            imagen = "/interactuable/" + nombreInteractuable + ".png";
-        } else {
-            if (!INTERACTUABLE_A_IMAGEN.containsKey(nombreInteractuable) || !nombreInteractuable.equals("SinInteraccion")){
-                INTERACTUABLE_A_IMAGEN.put(nombreInteractuable, new Image(Objects.requireNonNull(Interactuable.class.getResource(imagen)).toExternalForm()));
-            }
+        if (!INTERACTUABLE_A_IMAGEN.containsKey(nombreInteractuable) || !nombreInteractuable.equals("SinInteraccion")) {
+            INTERACTUABLE_A_IMAGEN.put(nombreInteractuable, new Image(Objects.requireNonNull(Interactuable.class.getResource(imagen)).toExternalForm()));
         }
-        this.NOMBRE_INTERACTUABLE = nombreTemp;
     }
+
     public Interactuable() {
         this.NOMBRE_INTERACTUABLE = "SinInteraccion";
     }
+
     public void paint(StackPane stackPane) {
         if (!NOMBRE_INTERACTUABLE.equals("SinInteraccion")) {
             ImageView interactuableView = new ImageView();

@@ -23,4 +23,8 @@ public class Llave extends Equipamiento {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "llave";
+    }
 }

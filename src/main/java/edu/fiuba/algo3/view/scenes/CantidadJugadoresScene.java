@@ -1,79 +1,56 @@
 package edu.fiuba.algo3.view.scenes;
 
-import edu.fiuba.algo3.controller.BotonIniciarTableroHandler;
+import edu.fiuba.algo3.controller.BotonCantidadJugadorHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 public class CantidadJugadoresScene extends SceneUtil {
-
-    private static final int TEXTFIELD_W = 150;
     private final Stage STAGE;
     private final Scene SCENE;
     private final VBox LAYOUT;
     private final AlgoRoma JUEGO;
-    private final ArrayList<TextField> INPUTS = new ArrayList<>();
 
-    public CantidadJugadoresScene(Stage stage, int cantidadJugdores, AlgoRoma juego) {
+    public CantidadJugadoresScene(Stage stage, AlgoRoma juego) {
         this.STAGE = stage;
         this.LAYOUT = new VBox(SPACING);
         LAYOUT.setAlignment(Pos.CENTER);
         this.JUEGO = juego;
 
-        configurarTitulo();
-        configurarInputs(cantidadJugdores);
-        configurarBotonComenzar();
+        configurarContenido();
         configurarBackground(LAYOUT);
 
         SCENE = new Scene(LAYOUT, WIDTH, HEIGHT);
     }
 
-    private void configurarTitulo() {
-        Label titulo = new Label("Elige a los jugadores");
-        configurarTitulo(titulo, TXT_FONT, TITULO_FS);
-        LAYOUT.getChildren().add(titulo);
+    public void configurarContenido() {
+        HBox subLayout = new HBox(SPACING);
+        subLayout.setAlignment(Pos.CENTER);
+
+        configurarTexto();
+        configurarBotones(subLayout);
+
+        LAYOUT.getChildren().add(subLayout);
     }
 
-    private void configurarInputs(int cantidadJugadores) {
-        for (int i = 0; i < cantidadJugadores; i++) {
-            Label jugador = new Label("Gladiador " + (i + 1));
-            configurarTitulo(jugador, TXT_FONT, TXT_FS);
+    public void configurarTexto() {
+        Label texto = new Label("Seleccione la cantidad de jugadores");
+        configurarTitulo(texto, TXT_FONT, TITULO_FS);
+        LAYOUT.getChildren().add(texto);
+    }
 
-            TextField nombre = new TextField();
-            configurarTextField(nombre);
-            INPUTS.add(nombre);
-
-            HBox inputContainer = new HBox(SPACING);
-            inputContainer.setAlignment(Pos.CENTER);
-            inputContainer.getChildren().addAll(jugador, nombre);
-
-            LAYOUT.getChildren().add(inputContainer);
+    public void configurarBotones(HBox subLayout) {
+        for (int i = 2; i <= 6; i++) {
+            Button boton = new Button(Integer.toString(i));
+            configurarBoton(boton);
+            boton.setOnAction(new BotonCantidadJugadorHandler(STAGE, i, JUEGO));
+            subLayout.getChildren().add(boton);
         }
-    }
-
-    private void configurarTextField(TextField textField) {
-        textField.setFont(Font.loadFont(getClass().getResourceAsStream(TXT_FONT), BTN_FS));
-        textField.setStyle("-fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
-        textField.setPromptText("Nombre");
-        textField.setMaxWidth(TEXTFIELD_W);
-        textField.setMaxHeight(BTN_HEIGHT);
-    }
-
-    private void configurarBotonComenzar() {
-        Button comenzar = new Button("Comenzar");
-        configurarBoton(comenzar);
-        comenzar.setOnAction(new BotonIniciarTableroHandler(INPUTS, STAGE, JUEGO));
-
-        LAYOUT.getChildren().add(comenzar);
     }
 
     public Scene getScene() {

@@ -17,4 +17,8 @@ public class EscudoYEspada extends Equipamiento {
         return new Llave();
     }
 
+    @Override
+    public String toString() {
+        return "escudoyespada";
+    }
 }

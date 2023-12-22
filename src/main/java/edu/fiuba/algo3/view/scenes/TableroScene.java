@@ -3,18 +3,16 @@ package edu.fiuba.algo3.view.scenes;
 import edu.fiuba.algo3.controller.BotonSiguienteJugadorHandler;
 import edu.fiuba.algo3.controller.BotonTirarDadosHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.model.Gladiador;
 import edu.fiuba.algo3.view.modelview.Camino;
 import edu.fiuba.algo3.view.modelview.Tablero;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.geometry.Insets;
 
 import java.util.Objects;
 
@@ -23,17 +21,16 @@ public class TableroScene extends SceneUtil {
     private final Scene SCENE;
     private final BorderPane LAYOUT = new BorderPane();
     private final AlgoRoma JUEGO;
-    private final HBox grillaInfo = new HBox();
     private GridPane grillaTablero;
-    private Gladiador jugadorActual;
     private final Camino CAMINO;
     private final edu.fiuba.algo3.view.modelview.Tablero TABLERO;
 
-    public TableroScene(Stage stage, AlgoRoma juego, Camino camino) {
+    private final edu.fiuba.algo3.view.modelview.Gladiador observadorGladiador;
+
+    public TableroScene(Stage stage, AlgoRoma juego, Camino camino, edu.fiuba.algo3.view.modelview.Gladiador observadorGladiador) {
         this.STAGE = stage;
-        this.grillaInfo.setAlignment(Pos.CENTER);
+        this.observadorGladiador = observadorGladiador;
         this.JUEGO = juego;
-        this.jugadorActual = juego.obtenerJugadorActual();
         this.CAMINO = camino;
         this.TABLERO = new Tablero(juego.getMapa());
 
@@ -80,35 +77,12 @@ public class TableroScene extends SceneUtil {
     }
 
     public void actualizarSiguienteTurno() {
-        this.jugadorActual = JUEGO.obtenerJugadorActual();
         configurarGrillaInfo();
         agregarBotonDados();
     }
 
     private void configurarGrillaInfo() {
-        LAYOUT.setTop(null);
-        grillaInfo.getChildren().clear();
-        grillaInfo.setAlignment(Pos.CENTER);
-        VBox subGrilla = new VBox(SPACING);
-        subGrilla.setPadding(new Insets(0 , 2 * CELL_SIZE, 0, 0));
-        subGrilla.setAlignment(Pos.CENTER);
-
-        Label jugadorLabel = new Label(this.jugadorActual.getNombre());
-        Label energiaLabel = new Label("Energía: " + this.jugadorActual.obtenerPuntosEnergia());
-        configurarTitulo(energiaLabel, TXT_FONT, TITULO_FS);
-        configurarTitulo(jugadorLabel, TITULO_PRINCIPAL_FONT, TITULO_FS);
-        String nombreEquipamiento = this.jugadorActual.getEquipamiento().getClass().getSimpleName().toLowerCase();
-        //TODO: ver si se puede hacer esto de otra forma con el observer de equipamiento
-        Image imagenEquip = new Image(Objects.requireNonNull(SceneUtil.class.getResource("/equipamiento/" + nombreEquipamiento + ".png")).toExternalForm());
-        ImageView imageViewEquip = new ImageView(imagenEquip);
-        imageViewEquip.setFitHeight(CELL_SIZE * 1.5);
-        imageViewEquip.setFitWidth(CELL_SIZE * 1.5);
-
-        subGrilla.getChildren().addAll(jugadorLabel, energiaLabel);
-        grillaInfo.getChildren().add(subGrilla);
-        grillaInfo.getChildren().addAll(imageViewEquip);
-        grillaInfo.setPadding(new Insets(CELL_SIZE, 0, 0, 0));
-        LAYOUT.setTop(grillaInfo);
+        observadorGladiador.paint(LAYOUT);
     }
 
     private void configurarBackground() {

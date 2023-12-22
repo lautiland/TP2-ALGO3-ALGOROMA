@@ -5,9 +5,8 @@ import edu.fiuba.algo3.model.parser.DataClassTablero;
 import edu.fiuba.algo3.model.parser.JuegoParser;
 import edu.fiuba.algo3.model.tablero.Camino;
 import edu.fiuba.algo3.model.tablero.Tablero;
-import edu.fiuba.algo3.view.modelview.Equipamiento;
-import edu.fiuba.algo3.view.modelview.ObserverEquipamiento;
 import edu.fiuba.algo3.view.modelview.ObserverCamino;
+import edu.fiuba.algo3.view.modelview.ObserverGladiador;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,6 +29,7 @@ public class AlgoRoma {
         this.tablero = new Tablero(gladiadores, observerCamino, mapa);
         this.turnos = new Turnos(gladiadores);
     }
+
     public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
         if (gladiadores.isEmpty()) {
             Logger.getInstance().error("No hay gladiadores para iniciar el juego, agregue gladiadores primero");
@@ -41,20 +41,23 @@ public class AlgoRoma {
         this.turnos = new Turnos(gladiadores);
     }
 
-    public void agregarGladiador(String nombre, ObserverEquipamiento observerEquipamiento) {
+    public void agregarGladiador(String nombre, ObserverGladiador observerGladiador) {
         Logger.getInstance().info("Se agrego el gladiador " + nombre);
-        Gladiador gladiador = new Gladiador(nombre, new Dado(), observerEquipamiento);
+        Gladiador gladiador = new Gladiador(nombre, new Dado(), observerGladiador);
         this.gladiadores.add(gladiador);
     }
+
     public void agregarGladiador(String nombre) {
         Logger.getInstance().info("Se agrego el gladiador " + nombre);
-        Gladiador gladiador = new Gladiador(nombre, new Dado(), new Equipamiento());
+        Gladiador gladiador = new Gladiador(nombre, new Dado());
         this.gladiadores.add(gladiador);
     }
+
     public void agregarGladiador(Gladiador gladiador) {
         this.gladiadores.add(gladiador);
     }
-    public DataClassTablero getMapa(){
+
+    public DataClassTablero getMapa() {
         return this.mapa;
     }
 

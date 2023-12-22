@@ -8,9 +8,9 @@ import edu.fiuba.algo3.model.estado.Sano;
 import edu.fiuba.algo3.model.seniority.Novato;
 import edu.fiuba.algo3.model.seniority.Seniority;
 import edu.fiuba.algo3.model.tablero.Camino;
-import edu.fiuba.algo3.view.modelview.ObserverEquipamiento;
+import edu.fiuba.algo3.view.modelview.ObserverGladiador;
 
-public class Gladiador{
+public class Gladiador {
 
     private final String NOMBRE;
     private final Energia ENERGIA = new Energia();
@@ -18,29 +18,30 @@ public class Gladiador{
     private Estado estado = new Sano();
     private Seniority seniority = new Novato();
     private Equipamiento equipamiento = new SinEquipamiento();
-    private final ObserverEquipamiento OBSERVER_EQUIPAMIENTO;
+    private final ObserverGladiador OBSERVER_GLADIADOR;
 
-    public Gladiador(String nombre, Dado dado, ObserverEquipamiento observerEquipamiento) {
+    public Gladiador(String nombre, Dado dado, ObserverGladiador observerGladiador) {
         this.TIRADAS = new Tiradas(dado);
         this.NOMBRE = nombre;
-        this.OBSERVER_EQUIPAMIENTO = observerEquipamiento;
+        this.OBSERVER_GLADIADOR = observerGladiador;
+        observerGladiador.actualizar(this.NOMBRE, this.ENERGIA.obtenerPuntos(), this.equipamiento.toString().toLowerCase());
     }
+
     public Gladiador(String nombre, Dado dado) {
         this.TIRADAS = new Tiradas(dado);
         this.NOMBRE = nombre;
-        this.OBSERVER_EQUIPAMIENTO = new edu.fiuba.algo3.view.modelview.Equipamiento();
+        this.OBSERVER_GLADIADOR = new edu.fiuba.algo3.view.modelview.Gladiador();
     }
-
 
     public void jugarTurno(Camino camino) {
         Logger.getInstance().info("Es el turno de " + this.NOMBRE);
         this.estado = this.estado.jugar(this, camino);
         this.TIRADAS.verificarLimite(this, camino);
+        OBSERVER_GLADIADOR.actualizar(this.NOMBRE, this.ENERGIA.obtenerPuntos(), this.equipamiento.toString().toLowerCase());
     }
 
     public void actualizarEquipamiento() {
         this.equipamiento = this.equipamiento.actualizar();
-        OBSERVER_EQUIPAMIENTO.actualizar(this.equipamiento);
     }
 
     public void actualizarSeniority() {

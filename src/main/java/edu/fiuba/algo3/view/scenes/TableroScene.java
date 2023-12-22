@@ -1,12 +1,11 @@
-package edu.fiuba.algo3.view.oldView;
+package edu.fiuba.algo3.view.scenes;
 
 import edu.fiuba.algo3.controller.BotonSiguienteJugadorHandler;
 import edu.fiuba.algo3.controller.BotonTirarDadosHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.model.Gladiador;
-import edu.fiuba.algo3.model.Logger;
-import edu.fiuba.algo3.view.newView.Camino;
-import edu.fiuba.algo3.view.newView.Tablero;
+import edu.fiuba.algo3.view.modelview.Camino;
+import edu.fiuba.algo3.view.modelview.Tablero;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,7 +18,7 @@ import javafx.geometry.Insets;
 
 import java.util.Objects;
 
-public class TableroView extends View {
+public class TableroScene extends SceneUtil {
     private final Stage STAGE;
     private final Scene SCENE;
     private final BorderPane LAYOUT = new BorderPane();
@@ -28,9 +27,9 @@ public class TableroView extends View {
     private GridPane grillaTablero;
     private Gladiador jugadorActual;
     private final Camino CAMINO;
-    private final edu.fiuba.algo3.view.newView.Tablero TABLERO;
+    private final edu.fiuba.algo3.view.modelview.Tablero TABLERO;
 
-    public TableroView(Stage stage, AlgoRoma juego, Camino camino) {
+    public TableroScene(Stage stage, AlgoRoma juego, Camino camino) {
         this.STAGE = stage;
         this.grillaInfo.setAlignment(Pos.CENTER);
         this.JUEGO = juego;
@@ -96,14 +95,14 @@ public class TableroView extends View {
 
         Label jugadorLabel = new Label(this.jugadorActual.getNombre());
         Label energiaLabel = new Label("Energía: " + this.jugadorActual.obtenerPuntosEnergia());
-        configurarTitulo(jugadorLabel, TITULO_PRINCIPAL_FONT, TITULO_FS);
         configurarTitulo(energiaLabel, TXT_FONT, TITULO_FS);
+        configurarTitulo(jugadorLabel, TITULO_PRINCIPAL_FONT, TITULO_FS);
         String nombreEquipamiento = this.jugadorActual.getEquipamiento().getClass().getSimpleName().toLowerCase();
         //TODO: ver si se puede hacer esto de otra forma con el observer de equipamiento
-        Image imagenEquip = new Image(Objects.requireNonNull(View.class.getResource("/equipamiento/" + nombreEquipamiento + ".png")).toExternalForm());
+        Image imagenEquip = new Image(Objects.requireNonNull(SceneUtil.class.getResource("/equipamiento/" + nombreEquipamiento + ".png")).toExternalForm());
         ImageView imageViewEquip = new ImageView(imagenEquip);
-        imageViewEquip.setFitHeight(CELL_SIZE);
-        imageViewEquip.setFitWidth(CELL_SIZE);
+        imageViewEquip.setFitHeight(CELL_SIZE * 1.5);
+        imageViewEquip.setFitWidth(CELL_SIZE * 1.5);
 
         subGrilla.getChildren().addAll(jugadorLabel, energiaLabel);
         grillaInfo.getChildren().add(subGrilla);
@@ -113,7 +112,7 @@ public class TableroView extends View {
     }
 
     private void configurarBackground() {
-        Image pasto_tile = new Image(Objects.requireNonNull(View.class.getResource("/tile/pasto_tile.png")).toExternalForm());
+        Image pasto_tile = new Image(Objects.requireNonNull(SceneUtil.class.getResource("/tile/pasto_tile.png")).toExternalForm());
         ImageView backgroundImageView = new ImageView(pasto_tile);
         backgroundImageView.setPreserveRatio(true);
         backgroundImageView.setSmooth(true); // Opcional: hace que el escalado sea más suave

@@ -5,7 +5,7 @@ import edu.fiuba.algo3.model.interactuable.Interactuable;
 import edu.fiuba.algo3.model.interactuable.InteractuableFactory;
 import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.parser.DataClassTablero;
-import edu.fiuba.algo3.view.newView.ObserverCamino;
+import edu.fiuba.algo3.view.modelview.ObserverCamino;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class Tablero{
         this.MAPA = mapa;
         this.camino = new Camino(gladiadores);
         this.crearCaminoEnTablero(this.MAPA);
-        this.observerCamino = new edu.fiuba.algo3.view.newView.Camino();
+        this.observerCamino = new edu.fiuba.algo3.view.modelview.Camino();
     }
     public void notificarObserver(Gladiador gladiador) {
         int posicionX = this.obtenerPosicionDe(gladiador).X;

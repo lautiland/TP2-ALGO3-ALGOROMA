@@ -1,15 +1,13 @@
 package edu.fiuba.algo3.model;
 
 import edu.fiuba.algo3.model.excepciones.JuegoSinGladiadores;
-import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.parser.DataClassTablero;
 import edu.fiuba.algo3.model.parser.JuegoParser;
 import edu.fiuba.algo3.model.tablero.Camino;
 import edu.fiuba.algo3.model.tablero.Tablero;
-import edu.fiuba.algo3.view.newView.Equipamiento;
-import edu.fiuba.algo3.view.newView.ObserverEquipamiento;
-import edu.fiuba.algo3.view.newView.ObserverCamino;
-import javafx.scene.chart.PieChart;
+import edu.fiuba.algo3.view.modelview.Equipamiento;
+import edu.fiuba.algo3.view.modelview.ObserverEquipamiento;
+import edu.fiuba.algo3.view.modelview.ObserverCamino;
 
 import java.io.IOException;
 import java.util.ArrayList;

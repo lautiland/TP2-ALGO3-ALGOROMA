@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view.newView;
+package edu.fiuba.algo3.view.modelview;
 
 
 public interface ObserverEquipamiento {

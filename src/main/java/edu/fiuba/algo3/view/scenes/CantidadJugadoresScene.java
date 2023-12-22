@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view.oldView;
+package edu.fiuba.algo3.view.scenes;
 
 import edu.fiuba.algo3.controller.BotonIniciarTableroHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class JugadoresView extends View {
+public class CantidadJugadoresScene extends SceneUtil {
 
     private static final int TEXTFIELD_W = 150;
     private final Stage STAGE;
@@ -23,7 +23,7 @@ public class JugadoresView extends View {
     private final AlgoRoma JUEGO;
     private final ArrayList<TextField> INPUTS = new ArrayList<>();
 
-    public JugadoresView(Stage stage, int cantidadJugdores, AlgoRoma juego) {
+    public CantidadJugadoresScene(Stage stage, int cantidadJugdores, AlgoRoma juego) {
         this.STAGE = stage;
         this.LAYOUT = new VBox(SPACING);
         LAYOUT.setAlignment(Pos.CENTER);

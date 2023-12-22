@@ -1,13 +1,10 @@
-package edu.fiuba.algo3.view.newView;
+package edu.fiuba.algo3.view.modelview;
 
 import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.parser.DataClassTablero;
 import javafx.geometry.Pos;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 
 public class Tablero {

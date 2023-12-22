@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.view.newView;
+package edu.fiuba.algo3.view.modelview;
 
-import edu.fiuba.algo3.view.oldView.View;
+import edu.fiuba.algo3.view.scenes.SceneUtil;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -36,7 +36,7 @@ public class Camino implements ObserverCamino {
     public void paint(GridPane gridPane) {
         for (Gladiador gladiador : gladiadores) {
             String url = gladiadorAImagen.get(gladiador.getModelNombre());
-            Image image = new Image(Objects.requireNonNull(View.class.getResource(url)).toExternalForm());
+            Image image = new Image(Objects.requireNonNull(SceneUtil.class.getResource(url)).toExternalForm());
             ImageView imageView = new ImageView();
             imageView.setFitWidth(CELL_SIZE);
             imageView.setFitHeight(CELL_SIZE);

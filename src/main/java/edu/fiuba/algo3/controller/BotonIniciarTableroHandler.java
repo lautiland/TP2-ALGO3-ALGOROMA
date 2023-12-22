@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.view.newView.Camino;
-import edu.fiuba.algo3.view.newView.Equipamiento;
-import edu.fiuba.algo3.view.oldView.TableroView;
+import edu.fiuba.algo3.view.modelview.Camino;
+import edu.fiuba.algo3.view.modelview.Equipamiento;
+import edu.fiuba.algo3.view.scenes.TableroScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -45,7 +45,7 @@ public class BotonIniciarTableroHandler implements EventHandler<ActionEvent> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        TableroView tablero = new TableroView(STAGE, JUEGO, observerCamino);
+        TableroScene tablero = new TableroScene(STAGE, JUEGO, observerCamino);
         STAGE.setScene(tablero.getScene());
     }
 }

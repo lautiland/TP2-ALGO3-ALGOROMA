@@ -8,7 +8,7 @@ import edu.fiuba.algo3.model.estado.Sano;
 import edu.fiuba.algo3.model.seniority.Novato;
 import edu.fiuba.algo3.model.seniority.Seniority;
 import edu.fiuba.algo3.model.tablero.Camino;
-import edu.fiuba.algo3.view.newView.ObserverEquipamiento;
+import edu.fiuba.algo3.view.modelview.ObserverEquipamiento;
 
 public class Gladiador{
 
@@ -28,7 +28,7 @@ public class Gladiador{
     public Gladiador(String nombre, Dado dado) {
         this.TIRADAS = new Tiradas(dado);
         this.NOMBRE = nombre;
-        this.OBSERVER_EQUIPAMIENTO = new edu.fiuba.algo3.view.newView.Equipamiento();
+        this.OBSERVER_EQUIPAMIENTO = new edu.fiuba.algo3.view.modelview.Equipamiento();
     }
 
 

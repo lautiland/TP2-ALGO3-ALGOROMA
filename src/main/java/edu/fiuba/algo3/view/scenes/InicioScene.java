@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view.oldView;
+package edu.fiuba.algo3.view.scenes;
 
 import edu.fiuba.algo3.controller.BotonIniciarSeleccionHandler;
 import edu.fiuba.algo3.controller.BotonSalirHandler;
@@ -10,13 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class InicioView extends View {
+public class InicioScene extends SceneUtil {
     private final Stage STAGE;
     private final Scene SCENE;
     private final VBox LAYOUT;
     private final AlgoRoma JUEGO;
 
-    public InicioView(Stage stage, AlgoRoma juego) {
+    public InicioScene(Stage stage, AlgoRoma juego) {
         this.STAGE = stage;
         this.LAYOUT = new VBox(SPACING);
         LAYOUT.setAlignment(Pos.CENTER);

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view.newView;
+package edu.fiuba.algo3.view.modelview;
 
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;

@@ -78,4 +78,8 @@ public class Gladiador{
     public boolean abrirPuerta(Camino camino) {
         return this.equipamiento.abrirPuerta(this, camino);
     }
+
+    public Equipamiento getEquipamiento() {
+        return this.equipamiento;
+    }
 }

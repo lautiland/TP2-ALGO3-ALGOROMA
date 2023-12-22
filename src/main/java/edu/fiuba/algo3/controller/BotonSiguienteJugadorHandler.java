@@ -25,6 +25,6 @@ public class BotonSiguienteJugadorHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         reproducirSonido();
-        tableroView.actualizarTablero();
+        tableroView.actualizarSiguienteTurno();
     }
 }

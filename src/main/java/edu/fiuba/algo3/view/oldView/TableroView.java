@@ -1,11 +1,11 @@
-package edu.fiuba.algo3.view;
+package edu.fiuba.algo3.view.oldView;
 
 import edu.fiuba.algo3.controller.BotonSiguienteJugadorHandler;
 import edu.fiuba.algo3.controller.BotonTirarDadosHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.model.Gladiador;
-import edu.fiuba.algo3.model.parser.DataClassCelda;
-import edu.fiuba.algo3.model.tablero.Tablero;
+import edu.fiuba.algo3.view.newView.Camino;
+import edu.fiuba.algo3.view.newView.Tablero;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,19 +20,22 @@ import java.util.Objects;
 public class TableroView extends View {
     private final Stage STAGE;
     private final Scene SCENE;
-    private final VBox LAYOUT;
+    private final VBox LAYOUT = new VBox();
     private final AlgoRoma JUEGO;
-    private GridPane gridPane;
+    private GridPane displayLayout = new GridPane();
+    private GridPane grillaTablero = new GridPane();
     private Gladiador jugadorActual;
+    private final Camino CAMINO;
+    private final edu.fiuba.algo3.view.newView.Tablero TABLERO;
 
-    private static final Image GLADIADOR = new Image(Objects.requireNonNull(CeldaView.class.getResource("/gladiador.png")).toExternalForm());
-
-    public TableroView(Stage stage, AlgoRoma juego) {
+    public TableroView(Stage stage, AlgoRoma juego, Camino camino) {
         this.STAGE = stage;
-        this.LAYOUT = new VBox(SPACING);
+        this.displayLayout.setAlignment(Pos.CENTER);
         LAYOUT.setAlignment(Pos.CENTER);
         this.JUEGO = juego;
         this.jugadorActual = juego.obtenerJugadorActual();
+        this.CAMINO = camino;
+        this.TABLERO = new Tablero(juego.getMapa());
 
         actualizarTablero();
 
@@ -46,31 +49,6 @@ public class TableroView extends View {
         LAYOUT.getChildren().add(tirarDados);
     }
 
-    private void configurarTablero(Tablero tablero) {
-        GridPane gridPane = new GridPane();
-        gridPane.setAlignment(Pos.CENTER);
-        CeldaView celdaView = new CeldaView();
-        for (int columna = 0; columna < tablero.obtenerGrilla().length; columna++) {
-            for (int fila = 0; fila < tablero.obtenerGrilla()[columna].length; fila++) {
-                HBox celdaVista = celdaView.generarVista(tablero.obtenerGrilla()[columna][fila]);
-                gridPane.add(celdaVista, columna, fila);
-            }
-        }
-        this.gridPane = gridPane;
-        LAYOUT.getChildren().add(this.gridPane);
-    }
-
-    private void agregarGladiador() {
-        DataClassCelda gladiadorPos = JUEGO.obtenerTablero().obtenerPosicionDe(this.jugadorActual);
-
-        ImageView imageView = new ImageView();
-        imageView.setFitWidth(CELL_SIZE);
-        imageView.setFitHeight(CELL_SIZE);
-        imageView.setImage(GLADIADOR);
-
-        gridPane.add(imageView, gladiadorPos.X, gladiadorPos.Y);
-    }
-
     public void agregarBotonSiguienteJugador() {
         Button siguienteJugador = new Button("Siguiente");
         siguienteJugador.setOnAction(new BotonSiguienteJugadorHandler(this));
@@ -81,33 +59,33 @@ public class TableroView extends View {
     public void actualizarMovimientos() {
         LAYOUT.getChildren().clear();
         configurarJugador();
-        agregarGladiador();
+        this.grillaTablero = TABLERO.paint();
+        CAMINO.paint(grillaTablero);
+        LAYOUT.getChildren().add(grillaTablero);
         agregarBotonSiguienteJugador();
+        this.jugadorActual = JUEGO.obtenerJugadorActual();
     }
 
     public void actualizarTablero() {
         LAYOUT.getChildren().clear();
-        this.jugadorActual = JUEGO.obtenerJugadorActual();
-        configurarJugador();
-        //configurarBotonTirarDados(layout, stage, juego);
         configurarBackground();
-        agregarGladiador();
+        configurarJugador();
+        this.grillaTablero = TABLERO.paint();
+        CAMINO.paint(grillaTablero);
+        LAYOUT.getChildren().add(grillaTablero);
         agregarBotonDados();
     }
 
     private void configurarJugador() {
-        Label jugadorLabel = new Label("Jugador actual: " + this.jugadorActual.getNombre());
+        Label jugadorLabel = new Label(this.jugadorActual.getNombre());
         Label energiaLabel = new Label("Energía: " + this.jugadorActual.obtenerPuntosEnergia());
-        configurarTitulo(jugadorLabel, TXT_FONT, TITULO_FS);
+        configurarTitulo(jugadorLabel, TITULO_PRINCIPAL_FONT, TITULO_FS);
         configurarTitulo(energiaLabel, TXT_FONT, TITULO_FS);
-        LAYOUT.getChildren().add(jugadorLabel);
-        LAYOUT.getChildren().add(energiaLabel);
-
-        configurarTablero(JUEGO.obtenerTablero());
+        LAYOUT.getChildren().addAll(jugadorLabel, energiaLabel);
     }
 
     private void configurarBackground() {
-        Image pasto_tile = new Image(Objects.requireNonNull(View.class.getResource("/pasto_tile.png")).toExternalForm());
+        Image pasto_tile = new Image(Objects.requireNonNull(View.class.getResource("/tile/pasto_tile.png")).toExternalForm());
         ImageView backgroundImageView = new ImageView(pasto_tile);
         backgroundImageView.setPreserveRatio(true);
         backgroundImageView.setSmooth(true); // Opcional: hace que el escalado sea más suave
@@ -119,4 +97,5 @@ public class TableroView extends View {
     public Scene getScene() {
         return SCENE;
     }
+
 }

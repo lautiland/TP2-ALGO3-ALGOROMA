@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.model.tablero;
 
 import edu.fiuba.algo3.model.Gladiador;
+import edu.fiuba.algo3.model.Logger;
 import edu.fiuba.algo3.model.interactuable.Interactuable;
 
 public class Casilla implements Celda {

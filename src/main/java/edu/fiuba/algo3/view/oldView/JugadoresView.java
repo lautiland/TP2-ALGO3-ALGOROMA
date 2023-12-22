@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view;
+package edu.fiuba.algo3.view.oldView;
 
 import edu.fiuba.algo3.controller.BotonIniciarTableroHandler;
 import edu.fiuba.algo3.model.AlgoRoma;

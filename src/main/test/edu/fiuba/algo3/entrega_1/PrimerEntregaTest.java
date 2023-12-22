@@ -8,7 +8,7 @@ import edu.fiuba.algo3.model.excepciones.SinTurnos;
 import edu.fiuba.algo3.model.interactuable.Interactuable;
 import edu.fiuba.algo3.model.interactuable.InteractuableFactory;
 import edu.fiuba.algo3.model.interactuable.Llegada;
-import edu.fiuba.algo3.model.interactuable.Ninguno;
+import edu.fiuba.algo3.model.interactuable.SinInteraccion;
 import edu.fiuba.algo3.model.tablero.Camino;
 import edu.fiuba.algo3.model.tablero.Casilla;
 import edu.fiuba.algo3.model.tablero.Tablero;
@@ -35,7 +35,7 @@ public class PrimerEntregaTest {
     public void beforeEach() {
         dadoMock = mock(Dado.class);
         when(dadoMock.tirar()).thenReturn(1);
-        sinInteraccion = InteractuableFactory.crearInteractuable("Ninguno");
+        sinInteraccion = InteractuableFactory.crearInteractuable("sininteraccion");
         loggerMock = mock(Logger.class);
         new Logger(loggerMock);
     }
@@ -45,7 +45,7 @@ public class PrimerEntregaTest {
         //Arrange
         Gladiador gladiador = new Gladiador("Atticus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
-        Interactuable fiera = InteractuableFactory.crearInteractuable("Fiera");
+        Interactuable fiera = InteractuableFactory.crearInteractuable("fiera");
 
         camino.agregarCasilla(new Casilla(sinInteraccion, sinInteraccion));
         camino.agregarCasilla(new Casilla(sinInteraccion, fiera));
@@ -81,7 +81,7 @@ public class PrimerEntregaTest {
         //Arrange
         Gladiador gladiadorAtticus = new Gladiador("Atticus", dadoMock);
         Camino camino = new Camino(List.of(gladiadorAtticus));
-        Interactuable fiera = InteractuableFactory.crearInteractuable("Fiera");
+        Interactuable fiera = InteractuableFactory.crearInteractuable("fiera");
         camino.agregarCasilla(new Casilla(sinInteraccion, sinInteraccion));
         camino.agregarCasilla(new Casilla(sinInteraccion, fiera));
         camino.agregarCasilla(new Casilla(sinInteraccion, sinInteraccion));
@@ -104,7 +104,7 @@ public class PrimerEntregaTest {
     public void test04RecibeComidaIncrementaEnergiaEn10() {
         //Arrange
         Gladiador gladiador = new Gladiador("Atticus", dadoMock);
-        Interactuable comida = InteractuableFactory.crearInteractuable("Comida");
+        Interactuable comida = InteractuableFactory.crearInteractuable("comida");
         Camino camino = new Camino(List.of(gladiador));
         camino.agregarCasilla(new Casilla(sinInteraccion, sinInteraccion));
         camino.agregarCasilla(new Casilla(sinInteraccion, comida));
@@ -125,8 +125,8 @@ public class PrimerEntregaTest {
         Gladiador gladiador = new Gladiador("Atticus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
 
-        Interactuable premio = InteractuableFactory.crearInteractuable("Equipamiento");
-        Interactuable fiera = InteractuableFactory.crearInteractuable("Fiera");
+        Interactuable premio = InteractuableFactory.crearInteractuable("equipamiento");
+        Interactuable fiera = InteractuableFactory.crearInteractuable("fiera");
 
         camino.agregarCasilla(new Casilla(sinInteraccion, sinInteraccion));
         camino.agregarCasilla(new Casilla(sinInteraccion, premio));
@@ -146,8 +146,8 @@ public class PrimerEntregaTest {
         //Arrange
         Gladiador gladiador = new Gladiador("Atticus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
-        Interactuable premio = InteractuableFactory.crearInteractuable("Equipamiento");
-        Interactuable fiera = InteractuableFactory.crearInteractuable("Fiera");
+        Interactuable premio = InteractuableFactory.crearInteractuable("equipamiento");
+        Interactuable fiera = InteractuableFactory.crearInteractuable("fiera");
         camino.agregarCasilla(new Casilla(sinInteraccion, sinInteraccion));
         camino.agregarCasilla(new Casilla(sinInteraccion, premio));
         camino.agregarCasilla(new Casilla(sinInteraccion, premio));
@@ -170,8 +170,8 @@ public class PrimerEntregaTest {
         //Arrange
         Gladiador gladiador = new Gladiador("Atticus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
-        Interactuable premio = InteractuableFactory.crearInteractuable("Equipamiento");
-        Interactuable fiera = InteractuableFactory.crearInteractuable("Fiera");
+        Interactuable premio = InteractuableFactory.crearInteractuable("equipamiento");
+        Interactuable fiera = InteractuableFactory.crearInteractuable("fiera");
         camino.agregarCasilla(new Casilla(sinInteraccion, sinInteraccion));
         camino.agregarCasilla(new Casilla(sinInteraccion, premio));
         camino.agregarCasilla(new Casilla(sinInteraccion, fiera));
@@ -212,9 +212,9 @@ public class PrimerEntregaTest {
         //Arrange
         Gladiador gladiador = new Gladiador("Atticus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
-        camino.agregarCasilla(new Casilla(new Ninguno(), new Ninguno()));
-        camino.agregarCasilla(new Casilla(new Llegada(), new Ninguno()));
+        camino.agregarCasilla(new Casilla(new SinInteraccion(), new SinInteraccion()));
+        camino.agregarCasilla(new Casilla(new SinInteraccion(), new SinInteraccion()));
+        camino.agregarCasilla(new Casilla(new Llegada(), new SinInteraccion()));
 
         //Act gladiador se mueve hasta el fin
         gladiador.jugarTurno(camino);
@@ -232,8 +232,8 @@ public class PrimerEntregaTest {
         //Arrange
         Gladiador gladiador = new Gladiador("Atticus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
-        Interactuable premio = InteractuableFactory.crearInteractuable("Equipamiento");
-        Interactuable fiera = InteractuableFactory.crearInteractuable("Fiera");
+        Interactuable premio = InteractuableFactory.crearInteractuable("equipamiento");
+        Interactuable fiera = InteractuableFactory.crearInteractuable("fiera");
         camino.agregarCasilla(new Casilla(sinInteraccion, sinInteraccion));
         camino.agregarCasilla(new Casilla(sinInteraccion, premio));
         camino.agregarCasilla(new Casilla(sinInteraccion, premio));
@@ -259,8 +259,8 @@ public class PrimerEntregaTest {
         //Arrange
         Gladiador gladiador = new Gladiador("Atticus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
-        Interactuable premio = InteractuableFactory.crearInteractuable("Equipamiento");
-        Interactuable fiera = InteractuableFactory.crearInteractuable("Fiera");
+        Interactuable premio = InteractuableFactory.crearInteractuable("equipamiento");
+        Interactuable fiera = InteractuableFactory.crearInteractuable("fiera");
 
         camino.agregarCasilla(new Casilla(sinInteraccion, sinInteraccion));
         camino.agregarCasilla(new Casilla(sinInteraccion, premio));

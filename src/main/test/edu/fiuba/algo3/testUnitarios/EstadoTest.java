@@ -39,8 +39,8 @@ public class EstadoTest {
         when(dadoMock.tirar()).thenReturn(1);
         Gladiador gladiador = new Gladiador("Augustus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
-        Interactuable sinInteractuable = InteractuableFactory.crearInteractuable("Ninguno");
-        Interactuable obstaculo = InteractuableFactory.crearInteractuable("Lesion");
+        Interactuable sinInteractuable = InteractuableFactory.crearInteractuable("sininteraccion");
+        Interactuable obstaculo = InteractuableFactory.crearInteractuable("lesion");
         camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
         camino.agregarCasilla(new Casilla(sinInteractuable, obstaculo));
         camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
@@ -60,8 +60,8 @@ public class EstadoTest {
         when(dadoMock.tirar()).thenReturn(1);
         Gladiador gladiador = new Gladiador("Augustus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
-        Interactuable sinInteractuable = InteractuableFactory.crearInteractuable("Ninguno");
-        Interactuable Fiera = InteractuableFactory.crearInteractuable("Fiera");
+        Interactuable sinInteractuable = InteractuableFactory.crearInteractuable("sininteraccion");
+        Interactuable Fiera = InteractuableFactory.crearInteractuable("fiera");
         camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
         camino.agregarCasilla(new Casilla(sinInteractuable, Fiera));
         camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
@@ -79,9 +79,9 @@ public class EstadoTest {
         when(dadoMock.tirar()).thenReturn(1);
         Gladiador gladiador = new Gladiador("Augustus", dadoMock);
         Camino camino = new Camino(List.of(gladiador));
-        Interactuable sinInteractuable = InteractuableFactory.crearInteractuable("Ninguno");
-        Interactuable Fiera = InteractuableFactory.crearInteractuable("Fiera");
-        Interactuable bacanal = InteractuableFactory.crearInteractuable("Bacanal");
+        Interactuable sinInteractuable = InteractuableFactory.crearInteractuable("sininteraccion");
+        Interactuable Fiera = InteractuableFactory.crearInteractuable("fiera");
+        Interactuable bacanal = InteractuableFactory.crearInteractuable("bacanal");
         camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));
         camino.agregarCasilla(new Casilla(sinInteractuable, Fiera));
         camino.agregarCasilla(new Casilla(sinInteractuable, sinInteractuable));

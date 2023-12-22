@@ -13,6 +13,6 @@ public class Lesion implements Interactuable {
 
     @Override
     public String toString() {
-        return "Lesion";
+        return "lesion";
     }
 }

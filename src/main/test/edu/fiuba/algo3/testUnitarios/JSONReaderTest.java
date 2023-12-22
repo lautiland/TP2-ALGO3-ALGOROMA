@@ -25,8 +25,8 @@ public class JSONReaderTest {
     private static final int ULTIMA_CELDA_Y = 1;
     private static final int CELDA_RANDOM_X = 13;
     private static final int CELDA_RANDOM_Y = 9;
-    private static final String CELDA_RANDOM_OBSTACULO = "Lesion";
-    private static final String CELDA_RANDOM_PREMIO = "Comida";
+    private static final String CELDA_RANDOM_OBSTACULO = "lesion";
+    private static final String CELDA_RANDOM_PREMIO = "comida";
 
     private static final String mapaValido = "mapa.json";
     private static final String mapaInvalido = "src/main/test/edu/fiuba/algo3/testUnitarios/examples/mapaInvalido.json";
@@ -40,14 +40,14 @@ public class JSONReaderTest {
     public void test01SeCreaUnMapaConJSONValido() throws FileNotFoundException {
         Reader reader = new FileReader(mapaValido);
         DataClassTablero mapa = JSONReader.obtenerMapaDesdeJson(reader);
-        DataClassCelda primerCelda = mapa.CAMINO.get(0);
-        DataClassCelda celdaRandom = mapa.CAMINO.get(INDICE_CAMINO_LESION_COMIDA);
-        DataClassCelda ultimaCelda = mapa.CAMINO.get(mapa.CAMINO.size() - 1);
+        DataClassCelda primerCelda = mapa.CELDAS.get(0);
+        DataClassCelda celdaRandom = mapa.CELDAS.get(INDICE_CAMINO_LESION_COMIDA);
+        DataClassCelda ultimaCelda = mapa.CELDAS.get(mapa.CELDAS.size() - 1);
         assertNotNull(mapa);
 
         assertEquals(MAPA_ANCHO, mapa.ANCHO);
         assertEquals(MAPA_LARGO, mapa.LARGO);
-        assertEquals(MAPA_CANTIDAD_CELDAS, mapa.CAMINO.size() - 1);
+        assertEquals(MAPA_CANTIDAD_CELDAS, mapa.CELDAS.size() - 1);
 
         assertEquals(PRIMER_CELDA_X, primerCelda.X);
         assertEquals(PRIMER_CELDA_Y, primerCelda.Y);

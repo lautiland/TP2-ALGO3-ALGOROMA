@@ -50,7 +50,7 @@ public class JSONReader {
 
         DataClassTablero dataTablero = obtenerTamanioMapa(jsonObject);
 
-        obtenerCamino(jsonObject, dataTablero);
+        obtenerCeldas(jsonObject, dataTablero);
         return dataTablero;
     }
 
@@ -62,7 +62,7 @@ public class JSONReader {
         return new DataClassTablero(ancho, largo);
     }
 
-    private static void obtenerCamino(JsonObject jsonObject, DataClassTablero dataTablero) {
+    private static void obtenerCeldas(JsonObject jsonObject, DataClassTablero dataTablero) {
         JsonObject caminoObject = jsonObject.getAsJsonObject("camino");
         JsonArray celdasArray = caminoObject.getAsJsonArray("celdas");
 
@@ -71,10 +71,11 @@ public class JSONReader {
                 JsonObject celdaObject = celdaElement.getAsJsonObject();
                 int x = celdaObject.get("x").getAsInt();
                 int y = celdaObject.get("y").getAsInt();
-                String premioString = obtenerValorSinComillas(celdaObject.get("premio"));
-                String obstaculoString = obtenerValorSinComillas(celdaObject.get("obstaculo"));
-                DataClassCelda celdaCamino = new DataClassCelda(x, y, premioString, obstaculoString);
-                dataTablero.agregarCelda(celdaCamino);
+                String premioString = obtenerValorSinComillas(celdaObject.get("premio")).toLowerCase();
+                String obstaculoString = obtenerValorSinComillas(celdaObject.get("obstaculo")).toLowerCase();
+                String tipoDeCeldaString = obtenerValorSinComillas(celdaObject.get("tipo")).toLowerCase();
+                DataClassCelda celda = new DataClassCelda(x, y, premioString, obstaculoString, tipoDeCeldaString);
+                dataTablero.agregarCelda(celda);
             }
         }
     }

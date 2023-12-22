@@ -1,9 +1,15 @@
 package edu.fiuba.algo3.model;
 
 import edu.fiuba.algo3.model.excepciones.JuegoSinGladiadores;
+import edu.fiuba.algo3.model.parser.DataClassCelda;
 import edu.fiuba.algo3.model.parser.DataClassTablero;
 import edu.fiuba.algo3.model.parser.JuegoParser;
+import edu.fiuba.algo3.model.tablero.Camino;
 import edu.fiuba.algo3.model.tablero.Tablero;
+import edu.fiuba.algo3.view.newView.Equipamiento;
+import edu.fiuba.algo3.view.newView.ObserverEquipamiento;
+import edu.fiuba.algo3.view.newView.ObserverCamino;
+import javafx.scene.chart.PieChart;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,27 +19,45 @@ public class AlgoRoma {
 
     private Tablero tablero;
     private final List<Gladiador> gladiadores = new ArrayList<>();
+    private DataClassTablero mapa;
     private Turnos turnos;
 
+    public void iniciarJuegoCompleto(String rutaDelMapa, ObserverCamino observerCamino) throws IOException {
+        if (gladiadores.isEmpty()) {
+            Logger.getInstance().error("No hay gladiadores para iniciar el juego, agregue gladiadores primero");
+            throw new JuegoSinGladiadores();
+        }
+        JuegoParser parser = new JuegoParser();
+        this.mapa = parser.parsear(rutaDelMapa, "json");
+        this.tablero = new Tablero(gladiadores, observerCamino, mapa);
+        this.turnos = new Turnos(gladiadores);
+    }
     public void iniciarJuegoCompleto(String rutaDelMapa) throws IOException {
         if (gladiadores.isEmpty()) {
             Logger.getInstance().error("No hay gladiadores para iniciar el juego, agregue gladiadores primero");
             throw new JuegoSinGladiadores();
         }
-
         JuegoParser parser = new JuegoParser();
         DataClassTablero mapa = parser.parsear(rutaDelMapa, "json");
         this.tablero = new Tablero(gladiadores, mapa);
         this.turnos = new Turnos(gladiadores);
     }
 
+    public void agregarGladiador(String nombre, ObserverEquipamiento observerEquipamiento) {
+        Logger.getInstance().info("Se agrego el gladiador " + nombre);
+        Gladiador gladiador = new Gladiador(nombre, new Dado(), observerEquipamiento);
+        this.gladiadores.add(gladiador);
+    }
+    public void agregarGladiador(String nombre) {
+        Logger.getInstance().info("Se agrego el gladiador " + nombre);
+        Gladiador gladiador = new Gladiador(nombre, new Dado(), new Equipamiento());
+        this.gladiadores.add(gladiador);
+    }
     public void agregarGladiador(Gladiador gladiador) {
         this.gladiadores.add(gladiador);
     }
-
-    public void agregarGladiador(String nombre) {
-        Logger.getInstance().info("Se agrego el gladiador " + nombre);
-        this.gladiadores.add(new Gladiador(nombre, new Dado()));
+    public DataClassTablero getMapa(){
+        return this.mapa;
     }
 
     public void jugarTurno() {
@@ -48,11 +72,11 @@ public class AlgoRoma {
         return this.tablero.obtenerGanador();
     }
 
-    public Tablero obtenerTablero() {
-        return this.tablero;
-    }
-
     public Gladiador obtenerJugadorActual() {
         return this.turnos.obtenerJugadorActual();
+    }
+
+    public Camino obtenerTablero() {
+        return this.tablero.obtenerCamino();
     }
 }

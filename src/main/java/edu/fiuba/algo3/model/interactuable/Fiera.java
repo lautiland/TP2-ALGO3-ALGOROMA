@@ -14,6 +14,6 @@ public class Fiera implements Interactuable {
 
     @Override
     public String toString() {
-        return "Fiera";
+        return "fiera";
     }
 }

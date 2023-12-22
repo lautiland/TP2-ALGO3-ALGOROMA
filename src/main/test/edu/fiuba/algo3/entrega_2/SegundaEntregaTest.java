@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 public class SegundaEntregaTest {
     private static final int TABLERO_LARGO = 19;
     private static final int TABLERO_ANCHO = 11;
-    private static final int TABLERO_CANTIDAD_ELEMENTOS = 38;
+    private static final int TABLERO_CANTIDAD_ELEMENTOS = 39;
     private static final int ELEMENTO_CON_LESION_COMIDA = 26;
     private static final int ULTIMA_CELDA_X = 17;
     private static final int CELDA_RANDOM_X = 13;
@@ -29,8 +29,8 @@ public class SegundaEntregaTest {
     private static final String SIN_INTERACTUABLE = "";
     private static final int PRIMER_CELDA_Y = 7;
     private static final int CELDA_RANDOM_Y = 9;
-    private static final String CELDA_RANDOM_OBSTACULO = "Lesion";
-    private static final String CELDA_RANDOM_PREMIO = "Comida";
+    private static final String CELDA_RANDOM_OBSTACULO = "lesion";
+    private static final String CELDA_RANDOM_PREMIO = "comida";
     private static final int PUNTOS_DESPUES_UN_TRAGO = 15;
     private static final int PUNTOS_DESPUES_UN_TRAGO_FIERA = -5;
     private static final int PUNTOS_DESPUES_COMIDA = 30;
@@ -60,11 +60,11 @@ public class SegundaEntregaTest {
     public void test14ElJSONDeLosObstaculosEsValido() throws IOException {
         JuegoParser juegoParser = new JuegoParser();
         DataClassTablero DataTablero = juegoParser.parsear("mapa.json", "json");
-        assertEquals(TABLERO_CANTIDAD_ELEMENTOS, DataTablero.getCamino().size());
+        assertEquals(TABLERO_CANTIDAD_ELEMENTOS, DataTablero.getCeldas().size());
 
-        DataClassCelda primerCelda = DataTablero.getCamino().get(0);
+        DataClassCelda primerCelda = DataTablero.getCeldas().get(0);
         DataClassCelda ultimaCelda = DataTablero.getLlegada();
-        DataClassCelda celdaConDosObstaculos = DataTablero.getCamino().get(ELEMENTO_CON_LESION_COMIDA);
+        DataClassCelda celdaConDosObstaculos = DataTablero.getCeldas().get(ELEMENTO_CON_LESION_COMIDA);
 
         assertEquals(PRIMER_CELDA_X, primerCelda.X);
         assertEquals(PRIMER_CELDA_Y, primerCelda.Y);

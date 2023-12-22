@@ -3,21 +3,21 @@ package edu.fiuba.algo3.model.interactuable;
 public class InteractuableFactory {
 
     public static Interactuable crearInteractuable(String interactuable) {
-        switch (interactuable) {
-            case "Comida":
+        switch (interactuable.toLowerCase()) {
+            case "comida":
                 return new Comida();
-            case "Equipamiento":
+            case "equipamiento":
                 return new Equipamiento();
-            case "Bacanal":
+            case "bacanal":
                 return new Bacanal();
-            case "Fiera":
+            case "fiera":
                 return new Fiera();
-            case "Lesion":
+            case "lesion":
                 return new Lesion();
-            case "Llegada":
+            case "llegada":
                 return new Llegada();
             default:
-                return new Ninguno();
+                return new SinInteraccion();
         }
     }
 }

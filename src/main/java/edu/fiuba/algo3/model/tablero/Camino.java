@@ -16,7 +16,7 @@ public class Camino {
 
     public Camino(List<Gladiador> gladiadores) {
         for (Gladiador gladiador : gladiadores) {
-            GLADIADOR_TO_NUMERO_CASILLA.put(gladiador, 0);
+            this.GLADIADOR_TO_NUMERO_CASILLA.put(gladiador, 0);
         }
     }
 
@@ -27,8 +27,8 @@ public class Camino {
     public void mover(Gladiador gladiador, int numeroCasillas) {
         int numeroDeCasillaActualDelGladiador = this.GLADIADOR_TO_NUMERO_CASILLA.get(gladiador);
         int nuevaUbicacion = numeroDeCasillaActualDelGladiador + numeroCasillas;
-        if (nuevaUbicacion > this.SENDERO.size()) {
-            nuevaUbicacion = this.SENDERO.size();
+        if (nuevaUbicacion >= this.SENDERO.size()) {
+            nuevaUbicacion = this.SENDERO.size() - 1;
         }
         this.desplazarGladiadorEInteractuar(gladiador, nuevaUbicacion);
     }

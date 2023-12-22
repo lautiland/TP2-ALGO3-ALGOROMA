@@ -7,11 +7,11 @@ public class Equipamiento implements Interactuable {
 
     @Override
     public void interactuarCon(Gladiador gladiador, Camino camino) {
-        gladiador.actualizarEquipo();
+        gladiador.actualizarEquipamiento();
     }
 
     @Override
     public String toString() {
-        return "Equipamiento";
+        return "equipamiento";
     }
 }

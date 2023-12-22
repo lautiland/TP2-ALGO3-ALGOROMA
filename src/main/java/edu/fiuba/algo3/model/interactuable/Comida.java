@@ -16,6 +16,6 @@ public class Comida implements Interactuable {
 
     @Override
     public String toString() {
-        return "Comida";
+        return "comida";
     }
 }

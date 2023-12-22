@@ -17,8 +17,8 @@ public class EquipamientoTest {
         Gladiador gladiador = new Gladiador("Ignacius", new Dado());
 
         //Act
-        gladiador.actualizarEquipo(); //obtiene casco
-        gladiador.actualizarEquipo(); //obtiene armadura
+        gladiador.actualizarEquipamiento(); //obtiene casco
+        gladiador.actualizarEquipamiento(); //obtiene armadura
         gladiador.recibirAtaque();
 
         //Assert, gladiador inicia con 20 puntos
@@ -32,9 +32,9 @@ public class EquipamientoTest {
         Gladiador gladiador = new Gladiador("Ignacius", new Dado());
 
         //Act
-        gladiador.actualizarEquipo(); //obtiene casco
-        gladiador.actualizarEquipo(); //obtiene armadura
-        gladiador.actualizarEquipo(); //escudo y espada
+        gladiador.actualizarEquipamiento(); //obtiene casco
+        gladiador.actualizarEquipamiento(); //obtiene armadura
+        gladiador.actualizarEquipamiento(); //escudo y espada
         gladiador.recibirAtaque();
 
         //Assert, gladiador inicia con 20 puntos

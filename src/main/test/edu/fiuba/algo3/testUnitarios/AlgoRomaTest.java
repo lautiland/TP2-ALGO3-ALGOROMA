@@ -12,6 +12,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class AlgoRomaTest {
+
     @Test
     public void test01PuedoObtenerElJugadorActual() throws IOException {
         AlgoRoma algoRoma = new AlgoRoma();
@@ -20,8 +21,7 @@ public class AlgoRomaTest {
         algoRoma.iniciarJuegoCompleto("mapa.json");
 
         assertEquals("Atticus", algoRoma.obtenerJugadorActual().getNombre());
-    }
-
+   }
     @Test
     public void test02PuedoObtenerElTableroCorrecto() throws IOException {
         AlgoRoma algoRoma = new AlgoRoma();
@@ -29,8 +29,7 @@ public class AlgoRomaTest {
         algoRoma.agregarGladiador("Atticus");
         algoRoma.iniciarJuegoCompleto("mapa.json");
 
-        assertEquals(1, algoRoma.obtenerTablero().obtenerPosicionDe(algoRoma.obtenerJugadorActual()).X);
-        assertEquals(7, algoRoma.obtenerTablero().obtenerPosicionDe(algoRoma.obtenerJugadorActual()).Y);
+        assertEquals(0, algoRoma.obtenerTablero().obtenerPosicionDe(algoRoma.obtenerJugadorActual()));
     }
 
     @Test

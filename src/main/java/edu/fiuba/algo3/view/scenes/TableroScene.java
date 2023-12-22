@@ -4,6 +4,7 @@ import edu.fiuba.algo3.controller.BotonSiguienteJugadorHandler;
 import edu.fiuba.algo3.controller.BotonTirarDadosHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
 import edu.fiuba.algo3.view.modelview.Camino;
+import edu.fiuba.algo3.view.modelview.Gladiador;
 import edu.fiuba.algo3.view.modelview.Tablero;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,9 +26,9 @@ public class TableroScene extends SceneUtil {
     private final Camino CAMINO;
     private final edu.fiuba.algo3.view.modelview.Tablero TABLERO;
 
-    private final edu.fiuba.algo3.view.modelview.Gladiador observadorGladiador;
+    private final Gladiador observadorGladiador;
 
-    public TableroScene(Stage stage, AlgoRoma juego, Camino camino, edu.fiuba.algo3.view.modelview.Gladiador observadorGladiador) {
+    public TableroScene(Stage stage, AlgoRoma juego, Camino camino, Gladiador observadorGladiador) {
         this.STAGE = stage;
         this.observadorGladiador = observadorGladiador;
         this.JUEGO = juego;

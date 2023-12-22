@@ -30,14 +30,16 @@ public class Gladiador {
     public Gladiador(String nombre, Dado dado) {
         this.TIRADAS = new Tiradas(dado);
         this.NOMBRE = nombre;
-        this.OBSERVER_GLADIADOR = new edu.fiuba.algo3.view.modelview.Gladiador();
+        OBSERVER_GLADIADOR = null;
     }
 
     public void jugarTurno(Camino camino) {
         Logger.getInstance().info("Es el turno de " + this.NOMBRE);
         this.estado = this.estado.jugar(this, camino);
         this.TIRADAS.verificarLimite(this, camino);
-        OBSERVER_GLADIADOR.actualizar(this.NOMBRE, this.ENERGIA.obtenerPuntos(), this.equipamiento.toString().toLowerCase());
+        if (this.OBSERVER_GLADIADOR != null) {
+            OBSERVER_GLADIADOR.actualizar(this.NOMBRE, this.ENERGIA.obtenerPuntos(), this.equipamiento.toString().toLowerCase());
+        }
     }
 
     public void actualizarEquipamiento() {

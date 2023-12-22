@@ -4,12 +4,13 @@ import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
-public class Obstaculo extends Interactuable{
+public class Obstaculo extends Interactuable {
     public Obstaculo(String nombreObstaculo) {
-        super(nombreObstaculo);
+        super(nombreObstaculo.isEmpty() ? "sininteraccion" : nombreObstaculo);
     }
+
     public Obstaculo() {
-        super();
+        super("sininteraccion");
     }
 
     @Override

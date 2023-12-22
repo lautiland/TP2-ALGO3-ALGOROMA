@@ -13,19 +13,16 @@ public abstract class Interactuable {
     protected static final HashMap<String, Image> INTERACTUABLE_A_IMAGEN = new HashMap<>();
 
     public Interactuable(String nombreInteractuable) {
-        this.NOMBRE_INTERACTUABLE = nombreInteractuable;
+        this.NOMBRE_INTERACTUABLE = nombreInteractuable.toLowerCase();
         String imagen = "/interactuable/" + nombreInteractuable + ".png";
-        if (!INTERACTUABLE_A_IMAGEN.containsKey(nombreInteractuable) || !nombreInteractuable.equals("SinInteraccion")) {
+        if (!INTERACTUABLE_A_IMAGEN.containsKey(nombreInteractuable) && !nombreInteractuable.equalsIgnoreCase("sininteraccion")) {
+            System.out.println("Cargando imagen: " + imagen);
             INTERACTUABLE_A_IMAGEN.put(nombreInteractuable, new Image(Objects.requireNonNull(Interactuable.class.getResource(imagen)).toExternalForm()));
         }
     }
 
-    public Interactuable() {
-        this.NOMBRE_INTERACTUABLE = "SinInteraccion";
-    }
-
     public void paint(StackPane stackPane) {
-        if (!NOMBRE_INTERACTUABLE.equals("SinInteraccion")) {
+        if (!NOMBRE_INTERACTUABLE.equals("sininteraccion")) {
             ImageView interactuableView = new ImageView();
             Image imagenInteractuable = INTERACTUABLE_A_IMAGEN.get(NOMBRE_INTERACTUABLE);
             interactuableView.setFitWidth(INTERACUABLE_SIZE);

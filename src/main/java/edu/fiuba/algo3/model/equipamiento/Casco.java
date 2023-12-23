@@ -19,4 +19,8 @@ public class Casco extends Equipamiento {
         return new Armadura();
     }
 
+    @Override
+    public String toString() {
+        return "casco";
+    }
 }

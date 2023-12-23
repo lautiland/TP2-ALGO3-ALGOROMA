@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view.oldView;
+package edu.fiuba.algo3.view.scenes;
 
 import edu.fiuba.algo3.controller.BotonIniciarTableroHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
@@ -13,17 +13,20 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-public class JugadoresView extends View {
+public class NombreJugadoresScene extends SceneUtil {
 
     private static final int TEXTFIELD_W = 150;
+    private static final int MINIMO_CARACTERES = 4;
     private final Stage STAGE;
     private final Scene SCENE;
     private final VBox LAYOUT;
     private final AlgoRoma JUEGO;
     private final ArrayList<TextField> INPUTS = new ArrayList<>();
 
-    public JugadoresView(Stage stage, int cantidadJugdores, AlgoRoma juego) {
+    public NombreJugadoresScene(Stage stage, int cantidadJugdores, AlgoRoma juego) {
         this.STAGE = stage;
         this.LAYOUT = new VBox(SPACING);
         LAYOUT.setAlignment(Pos.CENTER);
@@ -49,6 +52,7 @@ public class JugadoresView extends View {
             configurarTitulo(jugador, TXT_FONT, TXT_FS);
 
             TextField nombre = new TextField();
+
             configurarTextField(nombre);
             INPUTS.add(nombre);
 
@@ -57,6 +61,36 @@ public class JugadoresView extends View {
             inputContainer.getChildren().addAll(jugador, nombre);
 
             LAYOUT.getChildren().add(inputContainer);
+        }
+    }
+
+    private void verificarInputs(Button comenzar) {
+        for (TextField input : INPUTS) {
+            input.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (input.getText().isEmpty() || input.getText().length() < MINIMO_CARACTERES) {
+                    input.setStyle("-fx-background-color: red; -fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
+                } else {
+                    input.setStyle("-fx-background-color: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
+                }
+
+                boolean inputsValidos = true;
+                Set<String> textosInput = new HashSet<>();
+
+                for (TextField input2 : INPUTS) {
+                    String texto = input2.getText().trim();
+
+                    if (texto.length() < MINIMO_CARACTERES) {
+                        inputsValidos = false;
+                    }
+
+                    if (!textosInput.add(texto)) {
+                        inputsValidos = false;
+                        break;
+                    }
+                }
+
+                comenzar.setDisable(!inputsValidos);
+            });
         }
     }
 
@@ -71,7 +105,10 @@ public class JugadoresView extends View {
     private void configurarBotonComenzar() {
         Button comenzar = new Button("Comenzar");
         configurarBoton(comenzar);
+        comenzar.setDisable(true);
         comenzar.setOnAction(new BotonIniciarTableroHandler(INPUTS, STAGE, JUEGO));
+
+        verificarInputs(comenzar);
 
         LAYOUT.getChildren().add(comenzar);
     }

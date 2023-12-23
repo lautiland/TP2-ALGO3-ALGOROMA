@@ -1,15 +1,15 @@
-package edu.fiuba.algo3.view.oldView;
+package edu.fiuba.algo3.view.scenes;
 
 import edu.fiuba.algo3.controller.BotonSiguienteJugadorHandler;
 import edu.fiuba.algo3.controller.BotonTirarDadosHandler;
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.model.Gladiador;
-import edu.fiuba.algo3.view.newView.Camino;
-import edu.fiuba.algo3.view.newView.Tablero;
+import edu.fiuba.algo3.view.modelview.Camino;
+import edu.fiuba.algo3.view.modelview.Gladiador;
+import edu.fiuba.algo3.view.modelview.Tablero;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -17,75 +17,77 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class TableroView extends View {
+public class TableroScene extends SceneUtil {
     private final Stage STAGE;
     private final Scene SCENE;
-    private final VBox LAYOUT = new VBox();
+    private final BorderPane LAYOUT = new BorderPane();
     private final AlgoRoma JUEGO;
-    private GridPane displayLayout = new GridPane();
-    private GridPane grillaTablero = new GridPane();
-    private Gladiador jugadorActual;
+    private GridPane grillaTablero;
     private final Camino CAMINO;
-    private final edu.fiuba.algo3.view.newView.Tablero TABLERO;
+    private final edu.fiuba.algo3.view.modelview.Tablero TABLERO;
 
-    public TableroView(Stage stage, AlgoRoma juego, Camino camino) {
+    private final Gladiador observadorGladiador;
+
+    public TableroScene(Stage stage, AlgoRoma juego, Camino camino, Gladiador observadorGladiador) {
         this.STAGE = stage;
-        this.displayLayout.setAlignment(Pos.CENTER);
-        LAYOUT.setAlignment(Pos.CENTER);
+        this.observadorGladiador = observadorGladiador;
         this.JUEGO = juego;
-        this.jugadorActual = juego.obtenerJugadorActual();
         this.CAMINO = camino;
         this.TABLERO = new Tablero(juego.getMapa());
 
-        actualizarTablero();
+        configurarBackground();
+        this.grillaTablero = TABLERO.paint();
+        CAMINO.paint(grillaTablero);
+        LAYOUT.setCenter(grillaTablero);
+        actualizarSiguienteTurno();
 
         SCENE = new Scene(LAYOUT, WIDTH, HEIGHT);
     }
 
     private void agregarBotonDados() {
+        LAYOUT.setBottom(null);
+        VBox subGrilla = new VBox();
+        subGrilla.setAlignment(Pos.CENTER);
         Button tirarDados = new Button("Tirar dados");
         tirarDados.setOnAction(new BotonTirarDadosHandler(STAGE, JUEGO, this));
         configurarBoton(tirarDados);
-        LAYOUT.getChildren().add(tirarDados);
+        subGrilla.getChildren().add(tirarDados);
+        subGrilla.setPadding(new Insets(0, 0, CELL_SIZE, 0));
+        LAYOUT.setBottom(subGrilla);
     }
 
     public void agregarBotonSiguienteJugador() {
+        LAYOUT.setBottom(null);
+        VBox subGrilla = new VBox();
+        subGrilla.setAlignment(Pos.CENTER);
         Button siguienteJugador = new Button("Siguiente");
         siguienteJugador.setOnAction(new BotonSiguienteJugadorHandler(this));
         configurarBoton(siguienteJugador);
-        LAYOUT.getChildren().add(siguienteJugador);
+        subGrilla.getChildren().add(siguienteJugador);
+        subGrilla.setPadding(new Insets(0, 0, CELL_SIZE, 0));
+        LAYOUT.setBottom(subGrilla);
     }
 
     public void actualizarMovimientos() {
-        LAYOUT.getChildren().clear();
-        configurarJugador();
+        configurarGrillaInfo();
+        LAYOUT.setCenter(null);
         this.grillaTablero = TABLERO.paint();
         CAMINO.paint(grillaTablero);
-        LAYOUT.getChildren().add(grillaTablero);
+        LAYOUT.setCenter(grillaTablero);
         agregarBotonSiguienteJugador();
-        this.jugadorActual = JUEGO.obtenerJugadorActual();
     }
 
-    public void actualizarTablero() {
-        LAYOUT.getChildren().clear();
-        configurarBackground();
-        configurarJugador();
-        this.grillaTablero = TABLERO.paint();
-        CAMINO.paint(grillaTablero);
-        LAYOUT.getChildren().add(grillaTablero);
+    public void actualizarSiguienteTurno() {
+        configurarGrillaInfo();
         agregarBotonDados();
     }
 
-    private void configurarJugador() {
-        Label jugadorLabel = new Label(this.jugadorActual.getNombre());
-        Label energiaLabel = new Label("Energía: " + this.jugadorActual.obtenerPuntosEnergia());
-        configurarTitulo(jugadorLabel, TITULO_PRINCIPAL_FONT, TITULO_FS);
-        configurarTitulo(energiaLabel, TXT_FONT, TITULO_FS);
-        LAYOUT.getChildren().addAll(jugadorLabel, energiaLabel);
+    private void configurarGrillaInfo() {
+        observadorGladiador.paint(LAYOUT);
     }
 
     private void configurarBackground() {
-        Image pasto_tile = new Image(Objects.requireNonNull(View.class.getResource("/tile/pasto_tile.png")).toExternalForm());
+        Image pasto_tile = new Image(Objects.requireNonNull(SceneUtil.class.getResource("/tile/pasto_tile.png")).toExternalForm());
         ImageView backgroundImageView = new ImageView(pasto_tile);
         backgroundImageView.setPreserveRatio(true);
         backgroundImageView.setSmooth(true); // Opcional: hace que el escalado sea más suave

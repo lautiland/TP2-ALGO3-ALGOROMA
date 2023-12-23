@@ -1,8 +1,8 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.view.oldView.InicioView;
-import edu.fiuba.algo3.view.oldView.View;
+import edu.fiuba.algo3.view.scenes.InicioScene;
+import edu.fiuba.algo3.view.scenes.SceneUtil;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 public class App extends Application {
 
-    private MediaPlayer mediaPlayer;    //para que el recolector de basura no lo borre y se siga reproduciendo
+    private MediaPlayer mediaPlayer;   //para que el recolector de basura no lo borre y se siga reproduciendo
 
     @Override
     public void start(Stage stage) {
@@ -24,7 +24,7 @@ public class App extends Application {
         configurarVentana(stage);
 
         AlgoRoma algoRoma = new AlgoRoma();
-        InicioView inicio = new InicioView(stage, algoRoma);
+        InicioScene inicio = new InicioScene(stage, algoRoma);
 
         stage.setScene(inicio.getScene());
         stage.show();
@@ -34,13 +34,12 @@ public class App extends Application {
         stage.setTitle("AlgoRoma");
         Image icon = new Image(Objects.requireNonNull(getClass().getResource("/equipamiento/casco.png")).toExternalForm());
         stage.getIcons().add(icon);
-        stage.setMaximized(true);
-        stage.setResizable(false);
         double width = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         double height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-        View.setDimensions(width, height);
-        //reproducirSonido();
-        //TODO: hacer que se reproduzca el sonido
+        SceneUtil.setDimensions(width, height);
+        stage.setMaximized(true);
+        stage.setResizable(false);
+        reproducirSonido();
     }
 
     private void reproducirSonido() {

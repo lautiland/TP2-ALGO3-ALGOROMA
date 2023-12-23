@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.view.oldView.SeleccionView;
+import edu.fiuba.algo3.view.scenes.CantidadJugadoresScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.Media;
@@ -24,7 +24,7 @@ public class BotonIniciarSeleccionHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         sonido.play();
-        SeleccionView seleccion = new SeleccionView(STAGE, JUEGO);
+        CantidadJugadoresScene seleccion = new CantidadJugadoresScene(STAGE, JUEGO);
         STAGE.setScene(seleccion.getScene());
         STAGE.setMaximized(true);
     }

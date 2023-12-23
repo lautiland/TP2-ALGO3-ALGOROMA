@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view.newView;
+package edu.fiuba.algo3.view.modelview;
 import javafx.scene.layout.StackPane;
 
 public interface Celda {

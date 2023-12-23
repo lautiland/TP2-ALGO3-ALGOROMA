@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.model.AlgoRoma;
-import edu.fiuba.algo3.view.oldView.JugadoresView;
+import edu.fiuba.algo3.view.scenes.NombreJugadoresScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.Media;
@@ -25,7 +25,7 @@ public class BotonCantidadJugadorHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         sonido.play();
-        JugadoresView jugadores = new JugadoresView(STAGE, CANTIDAD_JUGADORES, JUEGO);
+        NombreJugadoresScene jugadores = new NombreJugadoresScene(STAGE, CANTIDAD_JUGADORES, JUEGO);
         STAGE.setScene(jugadores.getScene());
         STAGE.setMaximized(true);
     }

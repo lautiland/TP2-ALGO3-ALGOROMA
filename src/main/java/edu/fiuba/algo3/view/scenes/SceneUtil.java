@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view.oldView;
+package edu.fiuba.algo3.view.scenes;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,7 +10,7 @@ import javafx.scene.text.FontWeight;
 
 import java.util.Objects;
 
-public class View {
+public class SceneUtil {
     protected static final int SPACING = 20;
     protected static final String TITULO_PRINCIPAL_FONT = "/tipografia/Gelio.ttf";
     protected static final int TITULO_PRINCIPAL_FS = 120;
@@ -23,7 +23,7 @@ public class View {
     protected static final int CELL_SIZE = 50;
     protected static double WIDTH;
     protected static double HEIGHT;
-    protected static final Image BACKGROUND = new Image(Objects.requireNonNull(View.class.getResource("/fondoColiseo.jpg")).toExternalForm());
+    protected static final Image BACKGROUND = new Image(Objects.requireNonNull(SceneUtil.class.getResource("/fondoColiseo.jpg")).toExternalForm());
 
     protected void configurarBackground(VBox layout) {
         ImageView backgroundImageView = new ImageView(BACKGROUND);

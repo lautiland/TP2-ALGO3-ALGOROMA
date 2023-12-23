@@ -68,9 +68,9 @@ public class NombreJugadoresScene extends SceneUtil {
         for (TextField input : INPUTS) {
             input.textProperty().addListener((observable, oldValue, newValue) -> {
                 if (input.getText().isEmpty() || input.getText().length() < MINIMO_CARACTERES) {
-                    input.setStyle("-fx-background-color: red; -fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
+                    input.setStyle("-fx-background-color: #b01934; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
                 } else {
-                    input.setStyle("-fx-background-color: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
+                    input.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
                 }
 
                 boolean inputsValidos = true;
@@ -96,7 +96,7 @@ public class NombreJugadoresScene extends SceneUtil {
 
     private void configurarTextField(TextField textField) {
         textField.setFont(Font.loadFont(getClass().getResourceAsStream(TXT_FONT), BTN_FS));
-        textField.setStyle("-fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
+        textField.setStyle("-fx-background-color: #b01934; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-alignment: center");
         textField.setPromptText("Nombre");
         textField.setMaxWidth(TEXTFIELD_W);
         textField.setMaxHeight(BTN_HEIGHT);

@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import java.util.Objects;
 
 public class Gladiador extends SceneUtil implements ObserverGladiador {
-    private static final double MULTIPLICADOR_TAMANIO = 1.5;
+    private static final double MULTIPLICADOR_TAMANIO = 2;
     private String nombre;
     private int energia;
     private String equipamiento;
